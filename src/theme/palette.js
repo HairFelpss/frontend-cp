@@ -8,48 +8,48 @@ export default {
   white,
   primary: {
     contrastText: white,
-    dark: colors.indigo[900],
-    main: colors.indigo[500],
-    light: colors.indigo[100]
+    dark: colors.blue[900],
+    main: colors.blue[500],
+    light: colors.blue[100]
   },
   secondary: {
     contrastText: white,
-    dark: colors.blue[900],
-    main: colors.blue['A400'],
-    light: colors.blue['A400']
+    dark: '#7049a3',
+    main: '#7049a3',
+    light: '#7049a3'
   },
   success: {
     contrastText: white,
-    dark: colors.green[900],
-    main: colors.green[600],
-    light: colors.green[400]
+    dark: '#2DBDA8',
+    main: '#2DBDA8',
+    light: '#2DBDA8'
   },
   info: {
     contrastText: white,
     dark: colors.blue[900],
-    main: colors.blue[600],
-    light: colors.blue[400]
+    main: colors.blue[500],
+    light: colors.blue[100]
   },
   warning: {
     contrastText: white,
-    dark: colors.orange[900],
-    main: colors.orange[600],
-    light: colors.orange[400]
+    dark: '#EFC663',
+    main: '#EFC663',
+    light: '#EFC663'
   },
   error: {
     contrastText: white,
-    dark: colors.red[900],
-    main: colors.red[600],
-    light: colors.red[400]
+    dark: '#E16070',
+    main: '#E16070',
+    light: '#E16070'
   },
   text: {
-    primary: colors.blueGrey[900],
-    secondary: colors.blueGrey[600],
+    primary: '#f5f5f5',
+    secondary: colors.blueGrey[200],
     link: colors.blue[600]
   },
   background: {
-    default: '#F4F6F8',
-    paper: white
+    default: '#353C45',
+    paper: '#353C45'
   },
   icon: colors.blueGrey[600],
   divider: colors.grey[200]

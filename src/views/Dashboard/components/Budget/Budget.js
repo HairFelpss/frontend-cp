@@ -46,25 +46,18 @@ const Budget = props => {
   const classes = useStyles();
 
   return (
-    <Card
-      {...rest}
-      className={clsx(classes.root, className)}
-    >
+    <Card {...rest} className={clsx(classes.root, className)}>
       <CardContent>
-        <Grid
-          container
-          justify="space-between"
-        >
+        <Grid container justify="space-between">
           <Grid item>
             <Typography
               className={classes.title}
               color="textSecondary"
               gutterBottom
-              variant="body2"
-            >
-              BUDGET
+              variant="body2">
+              DOAÇÕES MENSAIS
             </Typography>
-            <Typography variant="h3">$24,000</Typography>
+            <Typography variant="h3">R$2,000</Typography>
           </Grid>
           <Grid item>
             <Avatar className={classes.avatar}>
@@ -74,17 +67,11 @@ const Budget = props => {
         </Grid>
         <div className={classes.difference}>
           <ArrowDownwardIcon className={classes.differenceIcon} />
-          <Typography
-            className={classes.differenceValue}
-            variant="body2"
-          >
+          <Typography className={classes.differenceValue} variant="body2">
             12%
           </Typography>
-          <Typography
-            className={classes.caption}
-            variant="caption"
-          >
-            Since last month
+          <Typography className={classes.caption} variant="caption">
+            Desde o mês passado
           </Typography>
         </div>
       </CardContent>

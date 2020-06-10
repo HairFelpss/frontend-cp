@@ -26,6 +26,13 @@ const useStyles = makeStyles(theme => ({
   content: {
     padding: 0
   },
+  tableHeader: {
+    backgroundColor: theme.palette.primary.main
+  },
+  tableCell: { color: theme.palette.text.primary, fontSize: 16 },
+  inner: {
+    minWidth: 800
+  },
   inner: {
     minWidth: 1050
   },
@@ -93,17 +100,14 @@ const UsersTable = props => {
   };
 
   return (
-    <Card
-      {...rest}
-      className={clsx(classes.root, className)}
-    >
+    <Card {...rest} className={clsx(classes.root, className)}>
       <CardContent className={classes.content}>
         <PerfectScrollbar>
           <div className={classes.inner}>
             <Table>
-              <TableHead>
+              <TableHead className={classes.tableHeader}>
                 <TableRow>
-                  <TableCell padding="checkbox">
+                  <TableCell padding="checkbox" className={classes.tableCell}>
                     <Checkbox
                       checked={selectedUsers.length === users.length}
                       color="primary"
@@ -114,11 +118,12 @@ const UsersTable = props => {
                       onChange={handleSelectAll}
                     />
                   </TableCell>
-                  <TableCell>Name</TableCell>
-                  <TableCell>Email</TableCell>
-                  <TableCell>Location</TableCell>
-                  <TableCell>Phone</TableCell>
-                  <TableCell>Registration date</TableCell>
+                  <TableCell className={classes.tableCell}>Name</TableCell>
+                  <TableCell className={classes.tableCell}>Email</TableCell>
+                  <TableCell className={classes.tableCell}>Location</TableCell>
+                  <TableCell className={classes.tableCell}>
+                    Registration date
+                  </TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -127,8 +132,7 @@ const UsersTable = props => {
                     className={classes.tableRow}
                     hover
                     key={user.id}
-                    selected={selectedUsers.indexOf(user.id) !== -1}
-                  >
+                    selected={selectedUsers.indexOf(user.id) !== -1}>
                     <TableCell padding="checkbox">
                       <Checkbox
                         checked={selectedUsers.indexOf(user.id) !== -1}
@@ -139,10 +143,7 @@ const UsersTable = props => {
                     </TableCell>
                     <TableCell>
                       <div className={classes.nameContainer}>
-                        <Avatar
-                          className={classes.avatar}
-                          src={user.avatarUrl}
-                        >
+                        <Avatar className={classes.avatar} src={user.avatarUrl}>
                           {getInitials(user.name)}
                         </Avatar>
                         <Typography variant="body1">{user.name}</Typography>
@@ -153,7 +154,6 @@ const UsersTable = props => {
                       {user.address.city}, {user.address.state},{' '}
                       {user.address.country}
                     </TableCell>
-                    <TableCell>{user.phone}</TableCell>
                     <TableCell>
                       {moment(user.createdAt).format('DD/MM/YYYY')}
                     </TableCell>

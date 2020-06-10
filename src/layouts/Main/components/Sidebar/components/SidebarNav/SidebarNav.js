@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
     paddingBottom: 0
   },
   button: {
-    color: colors.blueGrey[800],
+    color: theme.palette.text.secondary,
     padding: '10px 8px',
     justifyContent: 'flex-start',
     textTransform: 'none',
@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme => ({
     fontWeight: theme.typography.fontWeightMedium
   },
   icon: {
-    color: theme.palette.icon,
+    color: theme.palette.text.secondary,
     width: 24,
     height: 24,
     display: 'flex',
@@ -41,36 +41,26 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const CustomRouterLink = forwardRef((props, ref) => (
-  <div
-    ref={ref}
-    style={{ flexGrow: 1 }}
-  >
+  <div ref={ref} style={{ flexGrow: 1 }}>
     <RouterLink {...props} />
   </div>
 ));
 
 const SidebarNav = props => {
-  const { pages, className, ...rest } = props;
+  const { pages, className, onClose, ...rest } = props;
 
   const classes = useStyles();
 
   return (
-    <List
-      {...rest}
-      className={clsx(classes.root, className)}
-    >
+    <List {...rest} className={clsx(classes.root, className)}>
       {pages.map(page => (
-        <ListItem
-          className={classes.item}
-          disableGutters
-          key={page.title}
-        >
+        <ListItem className={classes.item} disableGutters key={page.title}>
           <Button
+            onClick={onClose}
             activeClassName={classes.active}
             className={classes.button}
             component={CustomRouterLink}
-            to={page.href}
-          >
+            to={page.href}>
             <div className={classes.icon}>{page.icon}</div>
             {page.title}
           </Button>

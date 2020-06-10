@@ -29,6 +29,10 @@ const useStyles = makeStyles(theme => ({
   content: {
     padding: 0
   },
+  tableHeader: {
+    backgroundColor: theme.palette.primary.main
+  },
+  tableCell: { color: theme.palette.text.primary, fontSize: 16 },
   inner: {
     minWidth: 800
   },
@@ -58,55 +62,39 @@ const LatestOrders = props => {
   const [orders] = useState(mockData);
 
   return (
-    <Card
-      {...rest}
-      className={clsx(classes.root, className)}
-    >
+    <Card {...rest} className={clsx(classes.root, className)}>
       <CardHeader
         action={
-          <Button
-            color="primary"
-            size="small"
-            variant="outlined"
-          >
+          <Button color="primary" size="small" variant="outlined">
             New entry
           </Button>
         }
-        title="Latest Orders"
+        title="Ultimas Doações"
       />
       <Divider />
       <CardContent className={classes.content}>
         <PerfectScrollbar>
           <div className={classes.inner}>
             <Table>
-              <TableHead>
+              <TableHead className={classes.tableHeader}>
                 <TableRow>
-                  <TableCell>Order Ref</TableCell>
-                  <TableCell>Customer</TableCell>
-                  <TableCell sortDirection="desc">
-                    <Tooltip
-                      enterDelay={300}
-                      title="Sort"
-                    >
-                      <TableSortLabel
-                        active
-                        direction="desc"
-                      >
+                  <TableCell className={classes.tableCell}>Código</TableCell>
+                  <TableCell className={classes.tableCell}>Player</TableCell>
+                  <TableCell sortDirection="desc" className={classes.tableCell}>
+                    <Tooltip enterDelay={300} title="Sort">
+                      <TableSortLabel active direction="desc">
                         Date
                       </TableSortLabel>
                     </Tooltip>
                   </TableCell>
-                  <TableCell>Status</TableCell>
+                  <TableCell className={classes.tableCell}>Status</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
                 {orders.map(order => (
-                  <TableRow
-                    hover
-                    key={order.id}
-                  >
+                  <TableRow hover key={order.id}>
                     <TableCell>{order.ref}</TableCell>
-                    <TableCell>{order.customer.name}</TableCell>
+                    <TableCell>{order.player.name}</TableCell>
                     <TableCell>
                       {moment(order.createdAt).format('DD/MM/YYYY')}
                     </TableCell>
@@ -129,11 +117,7 @@ const LatestOrders = props => {
       </CardContent>
       <Divider />
       <CardActions className={classes.actions}>
-        <Button
-          color="primary"
-          size="small"
-          variant="text"
-        >
+        <Button color="primary" size="small" variant="text">
           View all <ArrowRightIcon />
         </Button>
       </CardActions>

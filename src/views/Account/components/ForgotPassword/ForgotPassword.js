@@ -18,7 +18,7 @@ const useStyles = makeStyles(() => ({
   root: {}
 }));
 
-const AccountDetails = props => {
+const ForgotPassword = props => {
   const { className, ...rest } = props;
 
   const classes = useStyles();
@@ -39,7 +39,7 @@ const AccountDetails = props => {
   return (
     <Card {...rest} className={clsx(classes.root, className)}>
       <form autoComplete="off" noValidate>
-        <CardHeader subheader="Atualize suas informações" title="Dados" />
+        <CardHeader title="Mudar senha" />
         <Divider />
         <CardContent>
           <Grid container spacing={3}>
@@ -94,8 +94,8 @@ const AccountDetails = props => {
   );
 };
 
-AccountDetails.propTypes = {
+ForgotPassword.propTypes = {
   className: PropTypes.string
 };
 
-export default AccountDetails;
+export default ForgotPassword;

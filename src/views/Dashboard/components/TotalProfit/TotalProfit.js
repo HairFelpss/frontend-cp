@@ -36,29 +36,19 @@ const TotalProfit = props => {
   const classes = useStyles();
 
   return (
-    <Card
-      {...rest}
-      className={clsx(classes.root, className)}
-    >
+    <Card {...rest} className={clsx(classes.root, className)}>
       <CardContent>
-        <Grid
-          container
-          justify="space-between"
-        >
+        <Grid container justify="space-between">
           <Grid item>
             <Typography
               className={classes.title}
               color="inherit"
               gutterBottom
-              variant="body2"
-            >
-              TOTAL PROFIT
+              variant="body2">
+              LUCRO TOTAL
             </Typography>
-            <Typography
-              color="inherit"
-              variant="h3"
-            >
-              $23,200
+            <Typography color="inherit" variant="h3">
+              R$10,200
             </Typography>
           </Grid>
           <Grid item>

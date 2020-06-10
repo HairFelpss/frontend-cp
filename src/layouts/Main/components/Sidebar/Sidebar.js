@@ -12,7 +12,7 @@ import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import SettingsIcon from '@material-ui/icons/Settings';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 
-import { Profile, SidebarNav, UpgradePlan } from './components';
+import { Profile, SidebarNav } from './components';
 
 const useStyles = makeStyles(theme => ({
   drawer: {
@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
     }
   },
   root: {
-    backgroundColor: theme.palette.white,
+    backgroundColor: theme.palette.background,
     display: 'flex',
     flexDirection: 'column',
     height: '100%',
@@ -91,19 +91,11 @@ const Sidebar = props => {
       classes={{ paper: classes.drawer }}
       onClose={onClose}
       open={open}
-      variant={variant}
-    >
-      <div
-        {...rest}
-        className={clsx(classes.root, className)}
-      >
+      variant={variant}>
+      <div {...rest} className={clsx(classes.root, className)}>
         <Profile />
         <Divider className={classes.divider} />
-        <SidebarNav
-          className={classes.nav}
-          pages={pages}
-        />
-        <UpgradePlan />
+        <SidebarNav className={classes.nav} pages={pages} onClose={onClose} />
       </div>
     </Drawer>
   );

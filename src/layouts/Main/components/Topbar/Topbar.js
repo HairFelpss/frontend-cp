@@ -28,43 +28,45 @@ const Topbar = props => {
   const [notifications] = useState([]);
 
   return (
-    <AppBar
-      {...rest}
-      className={clsx(classes.root, className)}
-    >
+    <AppBar {...rest} className={clsx(classes.root, className)}>
       <Toolbar>
-        <RouterLink to="/">
-          <img
-            alt="Logo"
-            src="/images/logos/logo--white.svg"
-          />
-        </RouterLink>
+        <Hidden lgUp>
+          <IconButton color="inherit" onClick={onSidebarOpen}>
+            <MenuIcon />
+          </IconButton>
+        </Hidden>
         <div className={classes.flexGrow} />
         <Hidden mdDown>
           <IconButton color="inherit">
             <Badge
               badgeContent={notifications.length}
               color="primary"
-              variant="dot"
-            >
+              variant="dot">
               <NotificationsIcon />
             </Badge>
           </IconButton>
-          <IconButton
-            className={classes.signOutButton}
-            color="inherit"
-          >
+          <IconButton className={classes.signOutButton} color="inherit">
             <InputIcon />
           </IconButton>
         </Hidden>
-        <Hidden lgUp>
-          <IconButton
-            color="inherit"
-            onClick={onSidebarOpen}
-          >
-            <MenuIcon />
-          </IconButton>
-        </Hidden>
+        <RouterLink to="/">
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center'
+            }}>
+            <img
+              alt="Logo"
+              src="/images/avatars/bg-barbaro.png"
+              style={{ width: 50, borderRadius: 100 }}
+            />
+            <p
+              style={{ paddingLeft: 10, fontWeight: 'bold', color: '#f5f5f5' }}>
+              PW Claytchola
+            </p>
+          </div>
+        </RouterLink>
       </Toolbar>
     </AppBar>
   );

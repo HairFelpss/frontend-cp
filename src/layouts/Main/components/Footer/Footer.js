@@ -16,24 +16,13 @@ const Footer = props => {
   const classes = useStyles();
 
   return (
-    <div
-      {...rest}
-      className={clsx(classes.root, className)}
-    >
+    <div {...rest} className={clsx(classes.root, className)}>
       <Typography variant="body1">
-        &copy;{' '}
-        <Link
-          component="a"
-          href="https://devias.io/"
-          target="_blank"
-        >
-          Devias IO
+        PW Claytchola &copy;{' '}
+        <Link component="a" href="https://nativecode.com.br/" target="_blank">
+          Criado por Native Code
         </Link>
-        . 2019
-      </Typography>
-      <Typography variant="caption">
-        Created with love for the environment. By designers and developers who
-        love to work together in offices!
+        . 2020
       </Typography>
     </div>
   );

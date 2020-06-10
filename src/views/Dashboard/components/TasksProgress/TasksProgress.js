@@ -44,23 +44,16 @@ const TasksProgress = props => {
   const classes = useStyles();
 
   return (
-    <Card
-      {...rest}
-      className={clsx(classes.root, className)}
-    >
+    <Card {...rest} className={clsx(classes.root, className)}>
       <CardContent>
-        <Grid
-          container
-          justify="space-between"
-        >
+        <Grid container justify="space-between">
           <Grid item>
             <Typography
               className={classes.title}
               color="textSecondary"
               gutterBottom
-              variant="body2"
-            >
-              TASKS PROGRESS
+              variant="body2">
+              TICKETS RESOLVIDOS
             </Typography>
             <Typography variant="h3">75.5%</Typography>
           </Grid>
