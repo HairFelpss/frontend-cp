@@ -117,7 +117,6 @@ const UsersTable = props => {
                   </TableCell>
                   <TableCell className={classes.tableCell}>Name</TableCell>
                   <TableCell className={classes.tableCell}>Email</TableCell>
-                  <TableCell className={classes.tableCell}>Location</TableCell>
                   <TableCell className={classes.tableCell}>
                     Registration date
                   </TableCell>
@@ -147,10 +146,6 @@ const UsersTable = props => {
                       </div>
                     </TableCell>
                     <TableCell>{user.email}</TableCell>
-                    <TableCell>
-                      {user.address.city}, {user.address.state},{' '}
-                      {user.address.country}
-                    </TableCell>
                     <TableCell>
                       {moment(user.createdAt).format('DD/MM/YYYY')}
                     </TableCell>
