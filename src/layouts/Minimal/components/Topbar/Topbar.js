@@ -37,7 +37,7 @@ const Topbar = props => {
             />
             <p
               style={{ paddingLeft: 10, fontWeight: 'bold', color: '#f5f5f5' }}>
-              PW Claytchola
+              Perfect World
             </p>
           </div>
         </RouterLink>

@@ -18,7 +18,7 @@ const Footer = props => {
   return (
     <div {...rest} className={clsx(classes.root, className)}>
       <Typography variant="body1">
-        PW Claytchola &copy;{' '}
+        Perfect World &copy;{' '}
         <Link component="a" href="https://nativecode.com.br/" target="_blank">
           Criado por Native Code
         </Link>
