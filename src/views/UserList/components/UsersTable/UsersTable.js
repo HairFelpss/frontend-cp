@@ -31,9 +31,6 @@ const useStyles = makeStyles(theme => ({
   },
   tableCell: { color: theme.palette.text.primary, fontSize: 16 },
   inner: {
-    minWidth: 800
-  },
-  inner: {
     minWidth: 1050
   },
   nameContainer: {
