@@ -24,9 +24,8 @@ const ForgotPassword = props => {
   const classes = useStyles();
 
   const [values, setValues] = useState({
-    firstName: 'Lucas',
-    lastName: 'Souza Mendes',
-    email: 'lucassouze@gmail.com'
+    password: 'Lucas',
+    confirmPassword: 'Lucas'
   });
 
   const handleChange = event => {
@@ -46,39 +45,28 @@ const ForgotPassword = props => {
             <Grid item md={6} xs={12}>
               <TextField
                 fullWidth
-                helperText="Please specify the first name"
-                label="First name"
+                helperText="Digite sua senha atual"
+                label="Password"
                 margin="dense"
-                name="firstName"
+                name="password"
                 onChange={handleChange}
                 required
-                value={values.firstName}
+                value={values.password}
                 variant="outlined"
+                type="password"
               />
             </Grid>
             <Grid item md={6} xs={12}>
               <TextField
                 fullWidth
-                label="Last name"
+                label="Confirm Password"
                 margin="dense"
-                name="lastName"
+                name="confirmPassword"
                 onChange={handleChange}
                 required
-                value={values.lastName}
+                value={values.confirmPassword}
                 variant="outlined"
-              />
-            </Grid>
-            <Grid item md={6} xs={12}>
-              <TextField
-                fullWidth
-                label="Email Address"
-                margin="dense"
-                name="email"
-                onChange={handleChange}
-                required
-                value={values.email}
-                variant="outlined"
-                disabled
+                type="password"
               />
             </Grid>
           </Grid>
@@ -86,7 +74,7 @@ const ForgotPassword = props => {
         <Divider />
         <CardActions>
           <Button color="primary" variant="contained">
-            <Save /> <p style={{ paddingLeft: 10 }}>Salvar Dados</p>
+            <Save /> <p style={{ paddingLeft: 10 }}>Atualizar Senha</p>
           </Button>
         </CardActions>
       </form>

@@ -80,7 +80,12 @@ function draw() {
   // Corner points, from bottom-left to bottom-right clockwise
   // | 1 2 |
   // | 0 3 |
-  const corners = [[left, bottom], [left, top], [right, top], [right, bottom]];
+  const corners = [
+    [left, bottom],
+    [left, top],
+    [right, top],
+    [right, bottom]
+  ];
 
   // Find first (starting) corner with fallback to 'bottom'
   const borders = ['bottom', 'left', 'top', 'right'];
