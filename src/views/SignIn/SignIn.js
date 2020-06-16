@@ -93,9 +93,9 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'center'
   },
   form: {
-    paddingLeft: 100,
-    paddingRight: 100,
-    paddingBottom: 125,
+    paddingLeft: 16,
+    paddingRight: 16,
+    paddingBottom: 225,
     flexBasis: 700,
     [theme.breakpoints.down('sm')]: {
       paddingLeft: theme.spacing(2),
@@ -173,7 +173,7 @@ const SignIn = props => {
   return (
     <div className={classes.root}>
       <Grid className={classes.grid} container>
-        <Grid className={classes.content} item lg={7} xs={12}>
+        <Grid className={classes.content} item lg={17} xs={12}>
           <div className={classes.content}>
             <div className={classes.contentHeader}>
               <IconButton href="/dashboard" />
