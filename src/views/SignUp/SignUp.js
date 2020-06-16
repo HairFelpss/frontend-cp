@@ -110,8 +110,8 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'center'
   },
   form: {
-    paddingLeft: 100,
-    paddingRight: 100,
+    paddingLeft: 16,
+    paddingRight: 16,
     paddingBottom: 125,
     flexBasis: 700,
     [theme.breakpoints.down('sm')]: {
@@ -194,7 +194,7 @@ const SignUp = props => {
   return (
     <div className={classes.root}>
       <Grid className={classes.grid} container>
-        <Grid className={classes.content} item lg={7} xs={12}>
+        <Grid className={classes.content} item lg={12} xs={12}>
           <div className={classes.content}>
             <div className={classes.contentHeader}>
               <IconButton onClick={handleBack}>
