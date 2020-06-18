@@ -176,7 +176,9 @@ const SignIn = (props) => {
         <Grid className={classes.content} item lg={12} xs={12}>
           <div className={classes.content}>
             <div className={classes.contentHeader}>
-              <IconButton href="/dashboard" />
+              <IconButton href="/dashboard">
+                <ArrowBackIcon />
+              </IconButton>
             </div>
             <div className={classes.contentBody}>
               <form className={classes.form} onSubmit={handleSignIn}>
