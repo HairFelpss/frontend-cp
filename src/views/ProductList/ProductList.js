@@ -33,7 +33,7 @@ const ProductList = () => {
       <div className={classes.content}>
         <Grid
           container
-          spacing={3}
+          spacing={1}
         >
           {products.map(product => (
             <Grid
