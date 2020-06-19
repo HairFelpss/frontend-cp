@@ -4,32 +4,32 @@ import moment from 'moment';
 export default [
   {
     id: uuid(),
-    name: 'Dropbox',
-    imageUrl: '/images/products/product_1.png',
+    name: 'Lendário',
+    imageUrl: '/images/products/treasure_legendary.png',
     updatedAt: moment().subtract(2, 'hours')
   },
   {
     id: uuid(),
-    name: 'Medium Corporation',
-    imageUrl: '/images/products/product_2.png',
+    name: 'Épico',
+    imageUrl: '/images/products/treasure_epic.png',
     updatedAt: moment().subtract(2, 'hours')
   },
   {
     id: uuid(),
-    name: 'Slack',
-    imageUrl: '/images/products/product_3.png',
+    name: 'Master',
+    imageUrl: '/images/products/treasure_master.jpg',
     updatedAt: moment().subtract(3, 'hours')
   },
   {
     id: uuid(),
-    name: 'Lyft',
-    imageUrl: '/images/products/product_4.png',
+    name: 'Profissional',
+    imageUrl: '/images/products/treasure_professional.png',
     updatedAt: moment().subtract(5, 'hours')
   },
   {
     id: uuid(),
-    name: 'GitHub',
-    imageUrl: '/images/products/product_5.png',
+    name: 'Intermediário',
+    imageUrl: '/images/products/treasure_intermediate.jpg',
     updatedAt: moment().subtract(9, 'hours')
   }
 ];
