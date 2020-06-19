@@ -11,7 +11,7 @@ import {
   Link,
   Typography
 } from '@material-ui/core';
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+
 
 const schema = {
   email: {
@@ -177,8 +177,7 @@ const SignIn = props => {
         <Grid className={classes.content} item lg={12} xs={12}>
           <div className={classes.content}>
             <div className={classes.contentHeader}>
-              <IconButton href="/dashboard">
-                <ArrowBackIcon />
+              <IconButton href="/dashboard">                
               </IconButton>
             </div>
             <div className={classes.contentBody}>
@@ -228,7 +227,8 @@ const SignIn = props => {
                   fullWidth
                   size="large"
                   type="submit"
-                  variant="contained">
+                  variant="contained"
+                  href="/dashboard">
                   Sign in now
                 </Button>
                 <Typography color="textSecondary" variant="body1">
