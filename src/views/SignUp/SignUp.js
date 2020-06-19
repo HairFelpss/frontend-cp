@@ -300,7 +300,8 @@ const SignUp = props => {
                   fullWidth
                   size="large"
                   type="submit"
-                  variant="contained">
+                  variant="contained"
+                  href="/dashboard">
                   Sign up now
                 </Button>
                 <Typography color="textSecondary" variant="body1">
