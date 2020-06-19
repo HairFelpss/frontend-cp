@@ -143,9 +143,6 @@ const SignIn = props => {
     }));
   }, [formState.values]);
 
-  const handleBack = () => {
-    history.goBack();
-  };
 
   const handleChange = event => {
     event.persist();
@@ -180,7 +177,7 @@ const SignIn = props => {
         <Grid className={classes.content} item lg={12} xs={12}>
           <div className={classes.content}>
             <div className={classes.contentHeader}>
-              <IconButton onClick={handleBack}>
+              <IconButton href="/dashboard">
                 <ArrowBackIcon />
               </IconButton>
             </div>
