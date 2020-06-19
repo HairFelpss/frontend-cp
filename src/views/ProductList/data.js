@@ -3,56 +3,56 @@ import uuid from 'uuid/v1';
 export default [
   {
     id: uuid(),
-    title: 'Legendary',
+    title: 'Lendário',
     description:
-      'For those whose fame extends all over the world, making him a legendary adventurer.',
+      'Para aqueles cuja fama se estende por todo o mundo, fazendo dele um Aventureiro Lendário.',
     imageUrl: '/images/products/treasure_legendary.png',
-    totalDownloads: 'Remaining',
+    totalDownloads: 'Itens',
     updatedAt: '27/03/2019'
   },
   {
     id: uuid(),
-    title: 'Épic',
+    title: 'Épico',
     description:
-      'If you get this, it means you made your name in the world and becomes a epic adventure.',
+      'Adquirindo esse tesouro signifca que você fez seu nome no mundo e se tornou um aventureiro Épico.',
     imageUrl: '/images/products/treasure_epic.png',
-    totalDownloads: 'Remaining',
+    totalDownloads: 'Itens',
     createdAt: '31/03/2019'
   },
   {
     id: uuid(),
     title: 'Master',
     description:
-      'For those who mastered the art of venturing without a problem and made his own fame',
+      'Para quem dominou a arte de se aventurar sem problemas e fez sua própria fama',
     imageUrl: '/images/products/treasure_master.jpg',
-    totalDownloads: 'Remaining',
+    totalDownloads: 'Itens',
     createdAt: '03/04/2019'
   },
   {
     id: uuid(),
-    title: 'Professional',
+    title: 'Profissional',
     description:
-      'For you who are a Adventure Professional and need a boost .',
+      'Para você que é um Aventureiro Profissional e precisa de um impulso para a proxima missão.',
     imageUrl: '/images/products/treasure_professional.png',
-    totalDownloads: 'Remaining',
+    totalDownloads: 'Itens',
     createdAt: '04/04/2019'
   },
   {
     id: uuid(),
-    title: 'Intermediate',
+    title: 'Intermediário',
     description:
-      'For adventures who wants start the adventure with some good stuff.',
+      'Para Aventureiros que querem começar a sua jornada com algumas coisas decentes.',
     imageUrl: '/images/products/treasure_intermediate.jpg',
-    totalDownloads: 'Remaining',
+    totalDownloads: 'Itens',
     createdAt: '04/04/2019'
   },
   {
     id: uuid(),
-    title: 'Begginer',
+    title: 'Iniciante',
     description:
-      'The perfect way to start your adventure with some coin.',
+      'A maneira perfeita de começar sua aventura com algumas moedas.',
     imageUrl: '/images/products/treasure_begginer.png',
-    totalDownloads: 'Remaining',
+    totalDownloads: 'Itens',
     createdAt: '04/04/2019'
   }
 ];
