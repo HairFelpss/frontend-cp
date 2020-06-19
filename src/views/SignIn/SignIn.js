@@ -12,7 +12,10 @@ import {
   Typography
 } from '@material-ui/core';
 
+<<<<<<< HEAD
 import { useAuth } from '../../context/Auth';
+=======
+>>>>>>> Colocando o caminho da pagina do Dashboard no botao 'SignIn Now'
 
 const schema = {
   email: {
@@ -176,7 +179,12 @@ const SignIn = props => {
         <Grid className={classes.content} item lg={12} xs={12}>
           <div className={classes.content}>
             <div className={classes.contentHeader}>
+<<<<<<< HEAD
               <IconButton href="/dashboard" />
+=======
+              <IconButton href="/dashboard">                
+              </IconButton>
+>>>>>>> Colocando o caminho da pagina do Dashboard no botao 'SignIn Now'
             </div>
             <div className={classes.contentBody}>
               <form className={classes.form} onSubmit={handleSignIn}>
@@ -225,7 +233,8 @@ const SignIn = props => {
                   fullWidth
                   size="large"
                   type="submit"
-                  variant="contained">
+                  variant="contained"
+                  href="/dashboard">
                   Sign in now
                 </Button>
                 <Typography color="textSecondary" variant="body1">
