@@ -11,7 +11,8 @@ import {
   Link,
   Typography
 } from '@material-ui/core';
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+
+import { useAuth } from '../../context/Auth';
 
 const schema = {
   email: {
@@ -122,7 +123,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const SignIn = props => {
-  const { history } = props;
+  const { signIn } = useAuth();
 
   const classes = useStyles();
 
@@ -142,10 +143,6 @@ const SignIn = props => {
       errors: errors || {}
     }));
   }, [formState.values]);
-
-  const handleBack = () => {
-    history.goBack();
-  };
 
   const handleChange = event => {
     event.persist();
@@ -168,9 +165,8 @@ const SignIn = props => {
 
   const handleSignIn = event => {
     event.preventDefault();
-    history.push('/');
+    signIn(formState.values);
   };
-
   const hasError = field =>
     formState.touched[field] && formState.errors[field] ? true : false;
 
@@ -180,9 +176,7 @@ const SignIn = props => {
         <Grid className={classes.content} item lg={7} xs={12}>
           <div className={classes.content}>
             <div className={classes.contentHeader}>
-              <IconButton onClick={handleBack}>
-                <ArrowBackIcon />
-              </IconButton>
+              <IconButton href="/dashboard" />
             </div>
             <div className={classes.contentBody}>
               <form className={classes.form} onSubmit={handleSignIn}>
