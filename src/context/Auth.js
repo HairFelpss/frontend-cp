@@ -25,7 +25,9 @@ export default function AuthProvider({ children }) {
 
   const signOut = () => {
     setAuth(null);
+    setStorageAuth(null);
   };
+
   return (
     <AuthContext.Provider
       value={{ signed: !!storageAuth, auth, signIn, signOut }}>
