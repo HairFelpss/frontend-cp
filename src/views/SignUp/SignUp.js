@@ -47,7 +47,7 @@ const schema = {
   }
 };
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.background.default,
     height: '100%'
@@ -138,7 +138,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const SignUp = props => {
+const SignUp = (props) => {
   const { history } = props;
 
   const classes = useStyles();
@@ -153,17 +153,17 @@ const SignUp = props => {
   useEffect(() => {
     const errors = validate(formState.values, schema);
 
-    setFormState(formState => ({
+    setFormState((formState) => ({
       ...formState,
       isValid: errors ? false : true,
       errors: errors || {}
     }));
   }, [formState.values]);
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     event.persist();
 
-    setFormState(formState => ({
+    setFormState((formState) => ({
       ...formState,
       values: {
         ...formState.values,
@@ -183,12 +183,12 @@ const SignUp = props => {
     history.goBack();
   };
 
-  const handleSignUp = event => {
+  const handleSignUp = (event) => {
     event.preventDefault();
     history.push('/');
   };
 
-  const hasError = field =>
+  const hasError = (field) =>
     formState.touched[field] && formState.errors[field] ? true : false;
 
   return (
@@ -300,7 +300,8 @@ const SignUp = props => {
                   fullWidth
                   size="large"
                   type="submit"
-                  variant="contained">
+                  variant="contained"
+                  href="/dashboard">
                   Sign up now
                 </Button>
                 <Typography color="textSecondary" variant="body1">
