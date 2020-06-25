@@ -47,7 +47,7 @@ const schema = {
   }
 };
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.background.default,
     height: '100%'
@@ -110,8 +110,8 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'center'
   },
   form: {
-    paddingLeft: 100,
-    paddingRight: 100,
+    paddingLeft: 16,
+    paddingRight: 16,
     paddingBottom: 125,
     flexBasis: 700,
     [theme.breakpoints.down('sm')]: {
@@ -138,7 +138,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const SignUp = props => {
+const SignUp = (props) => {
   const { history } = props;
 
   const classes = useStyles();
@@ -153,17 +153,17 @@ const SignUp = props => {
   useEffect(() => {
     const errors = validate(formState.values, schema);
 
-    setFormState(formState => ({
+    setFormState((formState) => ({
       ...formState,
       isValid: errors ? false : true,
       errors: errors || {}
     }));
   }, [formState.values]);
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     event.persist();
 
-    setFormState(formState => ({
+    setFormState((formState) => ({
       ...formState,
       values: {
         ...formState.values,
@@ -183,18 +183,18 @@ const SignUp = props => {
     history.goBack();
   };
 
-  const handleSignUp = event => {
+  const handleSignUp = (event) => {
     event.preventDefault();
     history.push('/');
   };
 
-  const hasError = field =>
+  const hasError = (field) =>
     formState.touched[field] && formState.errors[field] ? true : false;
 
   return (
     <div className={classes.root}>
       <Grid className={classes.grid} container>
-        <Grid className={classes.content} item lg={7} xs={12}>
+        <Grid className={classes.content} item lg={12} xs={12}>
           <div className={classes.content}>
             <div className={classes.contentHeader}>
               <IconButton onClick={handleBack}>
@@ -300,7 +300,8 @@ const SignUp = props => {
                   fullWidth
                   size="large"
                   type="submit"
-                  variant="contained">
+                  variant="contained"
+                  href="/dashboard">
                   Sign up now
                 </Button>
                 <Typography color="textSecondary" variant="body1">
