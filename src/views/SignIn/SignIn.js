@@ -12,10 +12,7 @@ import {
   Typography
 } from '@material-ui/core';
 
-<<<<<<< HEAD
 import { useAuth } from '../../context/Auth';
-=======
->>>>>>> 500b9e2ec06604cb89d5a53e2dacff44a8653c48
 
 const schema = {
   email: {
@@ -127,7 +124,6 @@ const useStyles = makeStyles(theme => ({
 
 const SignIn = props => {
   const { signIn } = useAuth();
-
   const classes = useStyles();
 
   const [formState, setFormState] = useState({
@@ -147,10 +143,6 @@ const SignIn = props => {
     }));
   }, [formState.values]);
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 500b9e2ec06604cb89d5a53e2dacff44a8653c48
   const handleChange = event => {
     event.persist();
 
@@ -174,6 +166,7 @@ const SignIn = props => {
     event.preventDefault();
     signIn(formState.values);
   };
+
   const hasError = field =>
     formState.touched[field] && formState.errors[field] ? true : false;
 
@@ -183,12 +176,13 @@ const SignIn = props => {
         <Grid className={classes.content} item lg={12} xs={12}>
           <div className={classes.content}>
             <div className={classes.contentHeader}>
-<<<<<<< HEAD
+
               <IconButton href="/dashboard" />
-=======
               <IconButton href="/dashboard">                
               </IconButton>
->>>>>>> 500b9e2ec06604cb89d5a53e2dacff44a8653c48
+
+              <IconButton href="/dashboard"></IconButton>
+>>>>>>> 6d6d515b4f16216ff524d9640e3a0969cf09c333
             </div>
             <div className={classes.contentBody}>
               <form className={classes.form} onSubmit={handleSignIn}>

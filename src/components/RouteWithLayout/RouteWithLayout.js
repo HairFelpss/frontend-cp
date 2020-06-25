@@ -32,9 +32,9 @@ const RouteWithLayout = props => {
 RouteWithLayout.propTypes = {
   component: PropTypes.oneOfType([PropTypes.element, PropTypes.func])
     .isRequired,
+  isPrivate: PropTypes.bool,
   layout: PropTypes.any.isRequired,
-  path: PropTypes.string,
-  isPrivate: PropTypes.bool
+  path: PropTypes.string
 };
 
 RouteWithLayout.defaultProps = {
