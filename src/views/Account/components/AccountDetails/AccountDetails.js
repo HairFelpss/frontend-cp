@@ -10,12 +10,21 @@ import {
   Divider,
   Grid,
   Button,
-  TextField
+  TextField,
+  Select,
+  FormControl,
+  MenuItem,
+  InputLabel
 } from '@material-ui/core';
 import Save from '@material-ui/icons/Save';
 
 const useStyles = makeStyles(() => ({
-  root: {}
+  root: {},
+  formControl: {  
+    minWidth: 372,
+    marginTop: 8
+    
+  }
 }));
 
 const AccountDetails = props => {
@@ -24,16 +33,20 @@ const AccountDetails = props => {
   const classes = useStyles();
 
   const [values, setValues] = useState({
-    firstName: 'Lucas',
-    lastName: 'Souza Mendes',
-    email: 'lucassouze@gmail.com'
+    Name: 'Lucas Souza Mendes',
+    Login: 'Luquinha',
+    email: 'lucassouze@gmail.com',
+    C_email: 'lucassouze@gmail.com'
   });
+
+  const [ age, setAge] = useState('');
 
   const handleChange = event => {
     setValues({
       ...values,
       [event.target.name]: event.target.value
     });
+    setAge(event.target.value)
   };
 
   return (
@@ -46,39 +59,85 @@ const AccountDetails = props => {
             <Grid item md={6} xs={12}>
               <TextField
                 fullWidth
-                helperText="Please specify the first name"
-                label="First name"
+                label="Nome"
                 margin="dense"
-                name="firstName"
+                name="Name"
                 onChange={handleChange}
                 required
-                value={values.firstName}
+                value={values.Name}
                 variant="outlined"
               />
             </Grid>
             <Grid item md={6} xs={12}>
               <TextField
                 fullWidth
-                label="Last name"
+                label="Login"
                 margin="dense"
-                name="lastName"
+                name="Login"
                 onChange={handleChange}
                 required
-                value={values.lastName}
+                value={values.Login}
                 variant="outlined"
               />
             </Grid>
             <Grid item md={6} xs={12}>
               <TextField
                 fullWidth
-                label="Email Address"
+                label="Endereço de Email"
                 margin="dense"
                 name="email"
                 onChange={handleChange}
                 required
                 value={values.email}
                 variant="outlined"
+              />
+            </Grid>
+            <Grid item md={6} xs={12}>
+              <TextField
+                fullWidth
+                label="Confirmação Email"
+                margin="dense"
+                name="C_email"
+                onChange={handleChange}
+                required
+                value={values.C_email}
+                variant="outlined"
                 disabled
+              />
+            </Grid>
+            <Grid item md={6} xs={12}>   
+              <FormControl variant="outlined" className={classes.formControl}>
+                <InputLabel 
+                  id="demo-simple-select-outlined-label">Pergunta de Verificação</InputLabel>
+                <Select
+                  id="demo-simple-select-outlined"
+                  margin="dense"
+                  value={age}
+                  onChange={handleChange}
+                  label="Esse Aqui"
+                >
+                  <MenuItem value="">
+                    <em>None</em>
+                  </MenuItem>
+                  <MenuItem value={10}>Nome do seu cachorro</MenuItem>
+                  <MenuItem value={20}>Cor favorita</MenuItem>
+                  <MenuItem value={30}>Seu apelido</MenuItem>
+                  <MenuItem value={40}>Comida preferida</MenuItem>
+                  <MenuItem value={50}>Local favorito</MenuItem>
+                </Select>
+              </FormControl>
+            </Grid>
+            <Grid item md={6} xs={12}>
+              <TextField
+                className={classes.textField}
+                fullWidth
+                margin="dense"
+                label="Resposta"
+                name="Resposta"
+                onChange={handleChange}
+                required
+                type="text"
+                variant="outlined"
               />
             </Grid>
           </Grid>
