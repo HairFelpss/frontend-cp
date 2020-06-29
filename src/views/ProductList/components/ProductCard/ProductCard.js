@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/styles';
@@ -8,7 +8,8 @@ import {
   CardActions,
   Typography,
   Grid,
-  Divider
+  Divider,
+  Button
 } from '@material-ui/core';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import GetAppIcon from '@material-ui/icons/GetApp';
@@ -40,64 +41,41 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const ProductCard = props => {
-  const { className, product, ...rest } = props;
-
+  const { className, product, open, handleOpen, handleClose, ...rest } = props;
   const classes = useStyles();
 
   return (
-    <Card
-      {...rest}
-      className={clsx(classes.root, className)}
-    >
+    <Card {...rest} className={clsx(classes.root, className)}>
       <CardContent>
         <div className={classes.imageContainer}>
-          <img
-            alt="Product"
-            className={classes.image}
-            src={product.imageUrl}
-          />
+          <img alt="Product" className={classes.image} src={product.imageUrl} />
         </div>
-        <Typography
-          align="center"
-          gutterBottom
-          variant="h4"
-        >
+        <Typography align="center" gutterBottom variant="h4">
           {product.title}
         </Typography>
-        <Typography
-          align="center"
-          variant="body1"
-        >
+        <Typography align="center" variant="body1">
           {product.description}
         </Typography>
       </CardContent>
       <Divider />
       <CardActions>
-        <Grid
-          container
-          justify="space-between"
-        >
-          <Grid
-            className={classes.statsItem}
-            item
-          >
+        <Grid container justify="space-between">
+          <Grid className={classes.statsItem} item>
             <AccessTimeIcon className={classes.statsIcon} />
-            <Typography
-              display="inline"
-              variant="body2"
-            >
-              Atualizado a 2hr atrás
+            <Typography display="inline" variant="body2">
+              Att a 2hr atrás
             </Typography>
           </Grid>
-          <Grid
-            className={classes.statsItem}
-            item
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => handleOpen(product)}
           >
+            R${product.amount}
+          </Button>
+          <Grid className={classes.statsItem} item>
             <GetAppIcon className={classes.statsIcon} />
-            <Typography
-              display="inline"
-              variant="body2"
-            >
+            <Typography display="inline" variant="body2">
               {product.totalDownloads}
             </Typography>
           </Grid>

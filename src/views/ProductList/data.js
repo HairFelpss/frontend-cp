@@ -23,7 +23,7 @@ export default [
     id: uuid(),
     title: 'Master',
     description:
-      'Para quem dominou a arte de se aventurar sem problemas e fez sua própria fama',
+      'Para quem dominou a arte de se aventurar sem problemas e fez sua própria fama  moedas amaveis asass',
     imageUrl: '/images/products/treasure_master.jpg',
     totalDownloads: ' Itens Restantes',
     createdAt: '03/04/2019'

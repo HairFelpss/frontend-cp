@@ -11,7 +11,7 @@ html {
 }
 
 body {
-  background-color:#2e353d;
+  background-color: #2e353d;
   height: 100%;
 }
 
@@ -21,4 +21,19 @@ a {
 
 #root {
   height: 100%;
+}
+
+::-webkit-scrollbar {
+  width: 15px;
+  height: 15px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background-image: linear-gradient(45deg, #2196f3, #353c45);
+  box-shadow: '#353C45'0 3px 13px 1px;
+  -webkit-box-shadow: '#353C45'0 3px 13px 1px;
 }

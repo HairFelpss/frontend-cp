@@ -21,11 +21,25 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import mockData from './data';
 
 const useStyles = makeStyles(() => ({
-  root: {
-    height: '100%'
-  },
+  root: {},
   content: {
-    padding: 0
+    padding: 0,
+    overflow: 'auto',
+    maxHeight: 385,
+    '&::-webkit-scrollbar': {
+      width: '15px',
+      height: '15px'
+    },
+
+    '&::-webkit-scrollbar-track': {
+      backgroundColor: 'rgba(255, 255, 255, 0.1)'
+    },
+
+    '&::-webkit-scrollbar-thumb': {
+      backgroundImage: 'linear-gradient(45deg, #2196f3, #353c45)',
+      boxShadow: '#353C45 0 3px 13px 1px',
+      webkitBoxShadow: '#353C45 0 3px 13px 1px'
+    }
   },
   image: {
     height: 48,
@@ -44,10 +58,7 @@ const LatestProducts = props => {
   const [products] = useState(mockData);
 
   return (
-    <Card
-      {...rest}
-      className={clsx(classes.root, className)}
-    >
+    <Card {...rest} className={clsx(classes.root, className)}>
       <CardHeader
         subtitle={`${products.length} in total`}
         title="Latest products"
@@ -56,10 +67,7 @@ const LatestProducts = props => {
       <CardContent className={classes.content}>
         <List>
           {products.map((product, i) => (
-            <ListItem
-              divider={i < products.length - 1}
-              key={product.id}
-            >
+            <ListItem divider={i < products.length - 1} key={product.id}>
               <ListItemAvatar>
                 <img
                   alt="Product"
@@ -71,10 +79,7 @@ const LatestProducts = props => {
                 primary={product.name}
                 secondary={`Updated ${product.updatedAt.fromNow()}`}
               />
-              <IconButton
-                edge="end"
-                size="small"
-              >
+              <IconButton edge="end" size="small">
                 <MoreVertIcon />
               </IconButton>
             </ListItem>
@@ -83,11 +88,7 @@ const LatestProducts = props => {
       </CardContent>
       <Divider />
       <CardActions className={classes.actions}>
-        <Button
-          color="primary"
-          size="small"
-          variant="text"
-        >
+        <Button color="primary" size="small" variant="text">
           View all <ArrowRightIcon />
         </Button>
       </CardActions>

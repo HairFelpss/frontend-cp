@@ -5,7 +5,10 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 
 import { ProductsToolbar, ProductCard } from './components';
-import mockData from './data';
+import handleAuth from '../../services/api/cashBox';
+
+import Modal from '../../components/PaymentModal';
+import box from './data';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -25,25 +28,33 @@ const useStyles = makeStyles(theme => ({
 const ProductList = () => {
   const classes = useStyles();
 
-  const [products] = useState(mockData);
+  const [open, setOpen] = useState(false);
+  const [products] = useState(box);
+  const [buyBox, setBuyBox] = useState(null);
+
+  const handleOpen = async box => {
+    const response = await handleAuth(box);
+    setBuyBox(response.boxInfo.code);
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   return (
     <div className={classes.root}>
       <ProductsToolbar />
       <div className={classes.content}>
-        <Grid
-          container
-          spacing={1}
-        >
+        <Grid container spacing={1}>
           {products.map(product => (
-            <Grid
-              item
-              key={product.id}
-              lg={4}
-              md={6}
-              xs={12}
-            >
-              <ProductCard product={product} />
+            <Grid item key={product.id} lg={4} md={6} xs={12}>
+              <ProductCard
+                product={product}
+                open={open}
+                handleOpen={handleOpen}
+                handleClose={handleClose}
+              />
             </Grid>
           ))}
         </Grid>
@@ -57,6 +68,7 @@ const ProductList = () => {
           <ChevronRightIcon />
         </IconButton>
       </div>
+      <Modal open={open} handleClose={handleClose} box={buyBox} />
     </div>
   );
 };

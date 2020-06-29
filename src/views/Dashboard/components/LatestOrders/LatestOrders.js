@@ -27,7 +27,9 @@ import { StatusBullet } from 'components';
 const useStyles = makeStyles(theme => ({
   root: {},
   content: {
-    padding: 0
+    padding: 0,
+    overflow: 'auto',
+    height: '100%'
   },
   tableHeader: {
     backgroundColor: theme.palette.primary.main
