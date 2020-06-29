@@ -50,7 +50,7 @@ export default [
     id: uuid(),
     title: 'Iniciante',
     description:
-      'A maneira perfeita de começar sua aventura com algumas moedas.',
+      'A maneira perfeita de começar sua aventura com algumas moedas para não passar tantas dificuldades.',
     imageUrl: '/images/products/treasure_begginer.png',
     totalDownloads: ' Itens Restantes',
     createdAt: '04/04/2019'
