@@ -24,8 +24,10 @@ export default function AuthProvider({ children }) {
   };
 
   const signOut = () => {
+    console.log('Entrou')
     setAuth(null);
     setStorageAuth(null);
+    
   };
 
   return (
