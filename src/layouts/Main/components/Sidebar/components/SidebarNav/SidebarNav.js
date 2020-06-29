@@ -37,6 +37,13 @@ const useStyles = makeStyles(theme => ({
     '& $icon': {
       color: theme.palette.primary.main
     }
+  },
+  logout: {
+    color: theme.palette.error.main,
+    fontWeight: theme.typography.fontWeightMedium,
+    '& $icon': {
+      color: theme.palette.error.main
+    }
   }
 }));
 
@@ -57,7 +64,7 @@ const SidebarNav = props => {
         <ListItem className={classes.item} disableGutters key={page.title}>
           <Button
             onClick={page.onClick ? page.onClick : onClose}
-            activeClassName={classes.active}
+            activeClassName={page.onClick ? classes.logout : classes.active}
             className={classes.button}
             component={CustomRouterLink}
             to={page.href}

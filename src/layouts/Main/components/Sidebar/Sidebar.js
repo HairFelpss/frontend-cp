@@ -15,7 +15,6 @@ import { Profile, SidebarNav } from './components';
 
 import { useAuth } from '../../../../context/Auth';
 
-
 const useStyles = makeStyles(theme => ({
   drawer: {
     width: 240,
@@ -41,10 +40,8 @@ const useStyles = makeStyles(theme => ({
 
 const Sidebar = props => {
   const { open, variant, onClose, className, ...rest } = props;
-  
+
   const { signOut } = useAuth();
-  
-  
 
   const classes = useStyles();
 
@@ -77,7 +74,7 @@ const Sidebar = props => {
     {
       title: 'Settings',
       href: '/settings',
-      icon: <SettingsIcon />,
+      icon: <SettingsIcon />
     },
     {
       title: 'Logout',
@@ -86,7 +83,6 @@ const Sidebar = props => {
       onClick: () => signOut()
     }
   ];
-  
 
   return (
     <Drawer
@@ -94,11 +90,12 @@ const Sidebar = props => {
       classes={{ paper: classes.drawer }}
       onClose={onClose}
       open={open}
-      variant={variant}>
+      variant={variant}
+    >
       <div {...rest} className={clsx(classes.root, className)}>
         <Profile />
         <Divider className={classes.divider} />
-        <SidebarNav className={classes.nav} pages={pages} onClose={onClose}  />
+        <SidebarNav className={classes.nav} pages={pages} onClose={onClose} />
       </div>
     </Drawer>
   );
