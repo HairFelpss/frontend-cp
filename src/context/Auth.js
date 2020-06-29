@@ -30,7 +30,8 @@ export default function AuthProvider({ children }) {
 
   return (
     <AuthContext.Provider
-      value={{ signed: !!storageAuth, auth, signIn, signOut }}>
+      value={{ signed: !!storageAuth, auth, signIn, signOut }}
+    >
       {children}
     </AuthContext.Provider>
   );

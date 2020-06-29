@@ -31,5 +31,11 @@ export default [
     name: 'Intermediário',
     imageUrl: '/images/products/treasure_intermediate.jpg',
     updatedAt: moment().subtract(9, 'hours')
+  },
+  {
+    id: uuid(),
+    name: 'Iniciante',
+    imageUrl: '/images/products/treasure_begginer.png',
+    updatedAt: moment().subtract(9, 'hours')
   }
 ];

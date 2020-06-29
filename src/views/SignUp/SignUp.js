@@ -11,18 +11,22 @@ import {
   Link,
   FormHelperText,
   Checkbox,
-  Typography
+  Typography,
+  Select,
+  FormControl,
+  MenuItem,
+  InputLabel
 } from '@material-ui/core';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 const schema = {
-  firstName: {
+  name: {
     presence: { allowEmpty: false, message: 'is required' },
     length: {
       maximum: 32
     }
   },
-  lastName: {
+  login: {
     presence: { allowEmpty: false, message: 'is required' },
     length: {
       maximum: 32
@@ -35,7 +39,20 @@ const schema = {
       maximum: 64
     }
   },
+  c_email: {
+    presence: { allowEmpty: false, message: 'is required' },
+    email: true,
+    length: {
+      maximum: 64
+    }
+  },
   password: {
+    presence: { allowEmpty: false, message: 'is required' },
+    length: {
+      maximum: 128
+    }
+  },
+  c_password: {
     presence: { allowEmpty: false, message: 'is required' },
     length: {
       maximum: 128
@@ -47,7 +64,14 @@ const schema = {
   }
 };
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
+  formControl: {
+    marginTop: theme.spacing(2),
+    minWidth: 240
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2),
+  },
   root: {
     backgroundColor: theme.palette.background.default,
     height: '100%'
@@ -138,7 +162,9 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const SignUp = (props) => {
+
+
+const SignUp = props => {
   const { history } = props;
 
   const classes = useStyles();
@@ -150,20 +176,23 @@ const SignUp = (props) => {
     errors: {}
   });
 
+  const [ age, setAge] = useState('');
+
   useEffect(() => {
     const errors = validate(formState.values, schema);
 
-    setFormState((formState) => ({
+    setFormState(formState => ({
       ...formState,
       isValid: errors ? false : true,
       errors: errors || {}
     }));
   }, [formState.values]);
 
-  const handleChange = (event) => {
+  const handleChange = event => {
     event.persist();
+    setAge(event.target.value)
 
-    setFormState((formState) => ({
+    setFormState(formState => ({
       ...formState,
       values: {
         ...formState.values,
@@ -183,12 +212,18 @@ const SignUp = (props) => {
     history.goBack();
   };
 
-  const handleSignUp = (event) => {
+  const handleSignUp = event => {
+    if ( formState.values.email === formState.values.c_email){
+      alert('emailconfere')
+    }else{
+      alert('verificar email')
+    }
+
     event.preventDefault();
     history.push('/');
   };
 
-  const hasError = (field) =>
+  const hasError = field =>
     formState.touched[field] && formState.errors[field] ? true : false;
 
   return (
@@ -208,63 +243,133 @@ const SignUp = (props) => {
                 </Typography>
                 <Typography color="textSecondary" gutterBottom>
                   Utilize seu email para criar uma nova conta
-                </Typography>
+                </Typography>            
                 <TextField
                   className={classes.textField}
-                  error={hasError('firstName')}
+                  error={hasError('login')}
                   fullWidth
-                  helperText={
-                    hasError('firstName') ? formState.errors.firstName[0] : null
-                  }
-                  label="First name"
-                  name="firstName"
+                  label="Login"
+                  name="login"
                   onChange={handleChange}
-                  type="text"
-                  value={formState.values.firstName || ''}
+                  required
+                  value={formState.values.login || ''}
                   variant="outlined"
-                />
+                />      
+               
                 <TextField
                   className={classes.textField}
-                  error={hasError('lastName')}
+                  error={hasError('name')}
                   fullWidth
-                  helperText={
-                    hasError('lastName') ? formState.errors.lastName[0] : null
-                  }
-                  label="Last name"
-                  name="lastName"
+                  label="Nome"
+                  name="name"
                   onChange={handleChange}
-                  type="text"
-                  value={formState.values.lastName || ''}
+                  required
+                  value={formState.values.name || ''}
                   variant="outlined"
                 />
-                <TextField
-                  className={classes.textField}
-                  error={hasError('email')}
-                  fullWidth
-                  helperText={
-                    hasError('email') ? formState.errors.email[0] : null
-                  }
-                  label="Email address"
-                  name="email"
-                  onChange={handleChange}
-                  type="text"
-                  value={formState.values.email || ''}
-                  variant="outlined"
-                />
-                <TextField
-                  className={classes.textField}
-                  error={hasError('password')}
-                  fullWidth
-                  helperText={
-                    hasError('password') ? formState.errors.password[0] : null
-                  }
-                  label="Password"
-                  name="password"
-                  onChange={handleChange}
-                  type="password"
-                  value={formState.values.password || ''}
-                  variant="outlined"
-                />
+                <Grid container spacing={1}>
+                  <Grid item md={6} xs={6}>
+                    <TextField
+                      className={classes.textField}
+                      error={hasError('email')}
+                      fullWidth
+                      label="Email"
+                      name="email"
+                      helperText={
+                        hasError('email') ? formState.errors.email[0] : null
+                      }
+                      onChange={handleChange}
+                      required
+                      type="text"
+                      variant="outlined"
+                      value={formState.values.email || ''}
+                    />
+                  </Grid>
+                  <Grid item md={6} xs={6}>
+                    <TextField
+                      className={classes.textField}
+                      error={hasError('c_email')}
+                      fullWidth
+                      label="Confirme o Email"
+                      name="c_email"
+                      helperText={
+                        hasError('c_email') ? formState.errors.c_email[0] : null
+                      }
+                      onChange={handleChange}
+                      required
+                      type="text"
+                      variant="outlined"
+                      value={formState.values.c_email || ''}
+                    />
+                  </Grid>
+                  <Grid item md={6} xs={6}>
+                    <TextField
+                      className={classes.textField}
+                      error={hasError('password')}
+                      fullWidth
+                      label="Senha"
+                      name="password"
+                      helperText={
+                        hasError('password') ? formState.errors.password[0] : null
+                      }
+                      onChange={handleChange}
+                      required
+                      type="password"
+                      variant="outlined"
+                    />
+                  </Grid>
+                  <Grid item md={6} xs={6}>
+                    <TextField
+                      className={classes.textField}
+                      error={hasError('c_password')}
+                      fullWidth
+                      label="Confirme a Senha"
+                      name="c_password"
+                      helperText={
+                        hasError('c_password') ? formState.errors.c_password[0] : null
+                      }
+                      onChange={handleChange}
+                      required
+                      type="password"
+                      variant="outlined"                      
+                    />
+                  </Grid>                
+                  <Grid item md={6} xs={6}>   
+                    <FormControl variant="outlined" className={classes.formControl}>
+                      <InputLabel id="demo-simple-select-outlined-label">Pergunta de Verificação</InputLabel>
+                      <Select
+                        
+                        id="demo-simple-select-outlined"
+                        value={age}
+                        onChange={handleChange}
+                        label="Esse Aqui"
+                      >
+                        <MenuItem value="">
+                          <em>None</em>
+                        </MenuItem>
+                        <MenuItem value={10}>Nome do seu cachorro</MenuItem>
+                        <MenuItem value={20}>Cor favorita</MenuItem>
+                        <MenuItem value={30}>Seu apelido</MenuItem>
+                        <MenuItem value={40}>Comida preferida</MenuItem>
+                        <MenuItem value={50}>Local favorito</MenuItem>
+                      </Select>
+                    </FormControl>
+                  </Grid>
+                  <Grid item md={6} xs={6}>
+                    <TextField
+                      className={classes.textField}
+                      fullWidth
+                      label="Resposta"
+                      name="Resposta"
+                      onChange={handleChange}
+                      required
+                      type="text"
+                      variant="outlined"
+                    />
+                  </Grid>
+
+                </Grid>
+
                 <div className={classes.policy}>
                   <Checkbox
                     checked={formState.values.policy || false}
@@ -300,8 +405,7 @@ const SignUp = (props) => {
                   fullWidth
                   size="large"
                   type="submit"
-                  variant="contained"
-                  href="/dashboard">
+                  variant="contained">
                   Sign up now
                 </Button>
                 <Typography color="textSecondary" variant="body1">

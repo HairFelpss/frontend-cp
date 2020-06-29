@@ -9,8 +9,11 @@ import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import SettingsIcon from '@material-ui/icons/Settings';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
+import ExitToAppOutlinedIcon from '@material-ui/icons/ExitToAppOutlined';
 
 import { Profile, SidebarNav } from './components';
+
+import { useAuth } from '../../../../context/Auth';
 
 const useStyles = makeStyles(theme => ({
   drawer: {
@@ -37,6 +40,8 @@ const useStyles = makeStyles(theme => ({
 
 const Sidebar = props => {
   const { open, variant, onClose, className, ...rest } = props;
+
+  const { signOut } = useAuth();
 
   const classes = useStyles();
 
@@ -70,6 +75,12 @@ const Sidebar = props => {
       title: 'Settings',
       href: '/settings',
       icon: <SettingsIcon />
+    },
+    {
+      title: 'Logout',
+      href: '/',
+      icon: <ExitToAppOutlinedIcon />,
+      onClick: () => signOut()
     }
   ];
 
@@ -79,7 +90,8 @@ const Sidebar = props => {
       classes={{ paper: classes.drawer }}
       onClose={onClose}
       open={open}
-      variant={variant}>
+      variant={variant}
+    >
       <div {...rest} className={clsx(classes.root, className)}>
         <Profile />
         <Divider className={classes.divider} />
