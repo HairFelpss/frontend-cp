@@ -25,7 +25,9 @@ const useStyles = makeStyles(() => ({
     height: '100%'
   },
   content: {
-    padding: 0
+    padding: 0,
+    overflow: 'auto',
+    height:  367
   },
   image: {
     height: 48,
@@ -81,6 +83,7 @@ const LatestProducts = props => {
           ))}
         </List>
       </CardContent>
+      
       <Divider />
       <CardActions className={classes.actions}>
         <Button
