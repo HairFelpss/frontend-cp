@@ -23,7 +23,6 @@ const useStyles = makeStyles(theme => ({
 
 export default function SimpleModal({ open, handleClose, box }) {
   const classes = useStyles();
-  console.log('AQUI O ===> ', box);
   return (
     <Modal
       aria-labelledby="transition-modal-title"

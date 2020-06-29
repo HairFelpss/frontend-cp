@@ -5,7 +5,7 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 
 import { ProductsToolbar, ProductCard } from './components';
-import handleAuth from '../../services/api/cashBox';
+import handlePagSeguro from '../../services/api/pagseguro';
 
 import Modal from '../../components/PaymentModal';
 import box from './data';
@@ -33,7 +33,7 @@ const ProductList = () => {
   const [buyBox, setBuyBox] = useState(null);
 
   const handleOpen = async box => {
-    const response = await handleAuth(box);
+    const response = await handlePagSeguro(box);
     setBuyBox(response.boxInfo.code);
     setOpen(true);
   };

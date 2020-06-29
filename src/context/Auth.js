@@ -24,15 +24,14 @@ export default function AuthProvider({ children }) {
   };
 
   const signOut = () => {
-    console.log('Entrou')
     setAuth(null);
     setStorageAuth(null);
-    
   };
 
   return (
     <AuthContext.Provider
-      value={{ signed: !!storageAuth, auth, signIn, signOut }}>
+      value={{ signed: !!storageAuth, auth, signIn, signOut }}
+    >
       {children}
     </AuthContext.Provider>
   );

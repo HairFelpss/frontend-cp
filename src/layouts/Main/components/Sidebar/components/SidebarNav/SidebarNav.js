@@ -51,23 +51,19 @@ const SidebarNav = props => {
 
   const classes = useStyles();
 
-
-  console.log(pages)
-
   return (
     <List {...rest} className={clsx(classes.root, className)}>
       {pages.map(page => (
-
         <ListItem className={classes.item} disableGutters key={page.title}>
           <Button
-            onClick={page.onClick?page.onClick:onClose}
+            onClick={page.onClick ? page.onClick : onClose}
             activeClassName={classes.active}
             className={classes.button}
             component={CustomRouterLink}
-            to={page.href}>
+            to={page.href}
+          >
             <div className={classes.icon}>{page.icon}</div>
             {page.title}
-            
           </Button>
         </ListItem>
       ))}
