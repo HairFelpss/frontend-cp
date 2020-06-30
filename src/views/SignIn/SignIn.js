@@ -6,6 +6,7 @@ import { makeStyles } from '@material-ui/styles';
 import {
   Grid,
   Button,
+  IconButton,
   TextField,
   Link,
   Typography
@@ -94,7 +95,7 @@ const useStyles = makeStyles(theme => ({
   form: {
     paddingLeft: 16,
     paddingRight: 16,
-    paddingBottom: 225,
+    paddingBottom: 125,
     flexBasis: 700,
     [theme.breakpoints.down('sm')]: {
       paddingLeft: theme.spacing(2),
@@ -123,6 +124,7 @@ const useStyles = makeStyles(theme => ({
 
 const SignIn = props => {
   const { signIn } = useAuth();
+
   const classes = useStyles();
 
   const [formState, setFormState] = useState({
@@ -165,7 +167,6 @@ const SignIn = props => {
     event.preventDefault();
     signIn(formState.values);
   };
-
   const hasError = field =>
     formState.touched[field] && formState.errors[field] ? true : false;
 
@@ -175,6 +176,7 @@ const SignIn = props => {
         <Grid className={classes.content} item lg={12} xs={12}>
           <div className={classes.content}>
             <div className={classes.contentHeader}>
+              <IconButton href="/dashboard" />
             </div>
             <div className={classes.contentBody}>
               <form className={classes.form} onSubmit={handleSignIn}>
@@ -223,8 +225,7 @@ const SignIn = props => {
                   fullWidth
                   size="large"
                   type="submit"
-                  variant="contained"
-                  href="/dashboard">
+                  variant="contained">
                   Sign in now
                 </Button>
                 <Typography color="textSecondary" variant="body1">
