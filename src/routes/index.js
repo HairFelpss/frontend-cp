@@ -17,10 +17,6 @@ import {
 const Routes = () => {
   return (
     <Switch>
-<<<<<<< HEAD:src/routes/index.js
-=======
-      <Redirect exact from="/" to="/sign-in" />
->>>>>>> 500b9e2ec06604cb89d5a53e2dacff44a8653c48:src/Routes.js
       <RouteWithLayout
         component={DashboardView}
         exact

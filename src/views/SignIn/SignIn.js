@@ -6,7 +6,6 @@ import { makeStyles } from '@material-ui/styles';
 import {
   Grid,
   Button,
-  IconButton,
   TextField,
   Link,
   Typography
@@ -176,13 +175,6 @@ const SignIn = props => {
         <Grid className={classes.content} item lg={12} xs={12}>
           <div className={classes.content}>
             <div className={classes.contentHeader}>
-
-              <IconButton href="/dashboard" />
-              <IconButton href="/dashboard">                
-              </IconButton>
-
-              <IconButton href="/dashboard"></IconButton>
->>>>>>> 6d6d515b4f16216ff524d9640e3a0969cf09c333
             </div>
             <div className={classes.contentBody}>
               <form className={classes.form} onSubmit={handleSignIn}>
