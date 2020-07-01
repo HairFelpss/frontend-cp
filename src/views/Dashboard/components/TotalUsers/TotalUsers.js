@@ -24,7 +24,8 @@ const useStyles = makeStyles(theme => ({
   },
   icon: {
     height: 32,
-    width: 32
+    width: 32,
+    color: 'white'
   },
   difference: {
     marginTop: theme.spacing(2),
@@ -54,7 +55,8 @@ const TotalUsers = props => {
               className={classes.title}
               color="textSecondary"
               gutterBottom
-              variant="body2">
+              variant="body2"
+            >
               CONTAS REGISTRADAS
             </Typography>
             <Typography variant="h3">1,600</Typography>

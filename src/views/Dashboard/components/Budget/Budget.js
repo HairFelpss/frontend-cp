@@ -24,7 +24,8 @@ const useStyles = makeStyles(theme => ({
   },
   icon: {
     height: 32,
-    width: 32
+    width: 32,
+    color: 'white'
   },
   difference: {
     marginTop: theme.spacing(2),
@@ -54,7 +55,8 @@ const Budget = props => {
               className={classes.title}
               color="textSecondary"
               gutterBottom
-              variant="body2">
+              variant="body2"
+            >
               DOAÇÕES MENSAIS
             </Typography>
             <Typography variant="h3">R$2,000</Typography>
