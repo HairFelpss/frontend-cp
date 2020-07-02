@@ -6,7 +6,6 @@ import PerfectScrollbar from 'react-perfect-scrollbar';
 import { makeStyles } from '@material-ui/styles';
 import {
   Button,
-  ButtonGroup,
   Card,
   CardActions,
   CardHeader,
@@ -33,13 +32,6 @@ const useStyles = makeStyles(theme => ({
   root: {},
   content: {
     padding: 0
-  },
-  drawer: {
-    width: 240,
-    [theme.breakpoints.up('md')]: {
-      marginTop: 64,
-      height: 'calc(100% - 64px)'
-    }
   },
   grid: {},
   btnGroup: {
@@ -72,9 +64,6 @@ const useStyles = makeStyles(theme => ({
     minWidth: 160,
     padding: '0 5px'
   },
-  selectEmpty: {
-    marginTop: theme.spacing(1)
-  },
   tableCell: { color: theme.palette.text.primary, fontSize: 15 },
   inner: {
     minWidth: 1050
@@ -94,9 +83,6 @@ const useStyles = makeStyles(theme => ({
   statusContainer: { textTransform: 'capitalize' },
   status: {
     marginRight: theme.spacing(1)
-  },
-  avatar: {
-    marginRight: theme.spacing(2)
   },
   actions: {
     justifyContent: 'flex-end'
