@@ -12,7 +12,7 @@ export default [
     id: uuid(),
     subject:
       'O desgraça eu depositei 700 conto ontem ze vai tomar no cu so cade meu cash o inferno',
-    category: 'Atraso',
+    category: 'late',
     email: 'ekaterina.tankova@devias.io',
     status: 'close',
     createdAt: 1555016400000
@@ -21,7 +21,7 @@ export default [
     ref: getRandomInt(),
     id: uuid(),
     subject: 'ipsum factum est ipsum factum est',
-    category: 'Atraso',
+    category: 'late',
     email: 'cao.yu@devias.io',
     status: 'pending',
     createdAt: 1555016400000
@@ -30,7 +30,7 @@ export default [
     ref: getRandomInt(),
     id: uuid(),
     subject: 'ipsum factum est ipsum factum est',
-    category: 'Atraso',
+    category: 'late',
     email: 'alexa.richardson@devias.io',
     status: 'open',
     createdAt: 1555016400000
@@ -39,7 +39,7 @@ export default [
     ref: getRandomInt(),
     id: uuid(),
     subject: 'ipsum factum est ipsum factum est',
-    category: 'Bug',
+    category: 'bug',
     email: 'anje.keizer@devias.io',
     status: 'open',
     createdAt: 1554930000000
@@ -48,7 +48,7 @@ export default [
     ref: getRandomInt(),
     id: uuid(),
     subject: 'ipsum factum est ipsum factum est',
-    category: 'Atraso',
+    category: 'late',
     email: 'clarke.gillebert@devias.io',
     status: 'pending',
     createdAt: 1554757200000
@@ -57,7 +57,7 @@ export default [
     ref: getRandomInt(),
     id: uuid(),
     subject: 'ipsum factum est ipsum factum est',
-    category: 'Duvidas',
+    category: 'question',
     email: 'adam.denisov@devias.io',
     status: 'close',
     createdAt: 1554670800000
@@ -66,7 +66,7 @@ export default [
     ref: getRandomInt(),
     id: uuid(),
     subject: 'ipsum factum est ipsum factum est',
-    category: 'Duvidas',
+    category: 'question',
     email: 'ava.gregoraci@devias.io',
     status: 'close',
     createdAt: 1554325200000
@@ -75,7 +75,7 @@ export default [
     ref: getRandomInt(),
     id: uuid(),
     subject: 'ipsum factum est ipsum factum est',
-    category: 'Duvidas',
+    category: 'question',
     email: 'emilee.simchenko@devias.io',
     status: 'open',
     createdAt: 1523048400000
@@ -84,7 +84,7 @@ export default [
     ref: getRandomInt(),
     id: uuid(),
     subject: 'ipsum factum est ipsum factum est',
-    category: 'Duvidas',
+    category: 'question',
     email: 'kwak.seong.min@devias.io',
     status: 'close'
   },
@@ -92,7 +92,7 @@ export default [
     ref: getRandomInt(),
     id: uuid(),
     subject: 'ipsum factum est ipsum factum est',
-    category: 'Duvidas',
+    category: 'question',
     email: 'merrile.burgett@devias.io',
     status: 'pending',
     createdAt: 1522702800000

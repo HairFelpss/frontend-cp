@@ -25,7 +25,9 @@ import {
   TablePagination,
   Divider
 } from '@material-ui/core';
-
+import BugReportIcon from '@material-ui/icons/BugReport';
+import WatchLaterIcon from '@material-ui/icons/WatchLater';
+import HelpIcon from '@material-ui/icons/Help';
 import { StatusBullet } from 'components';
 
 const useStyles = makeStyles(theme => ({
@@ -77,6 +79,11 @@ const useStyles = makeStyles(theme => ({
     fontSize: 20
   },
   category: { textTransform: 'capitalize' },
+  categoryRow: {
+    display: 'flex',
+    alignContent: 'center',
+    justifyContent: 'space-evenly'
+  },
   statusContainer: { textTransform: 'capitalize' },
   status: {
     marginRight: theme.spacing(1)
@@ -121,6 +128,25 @@ const TicketsTable = props => {
     open: 'success',
     pending: 'info',
     close: 'danger'
+  };
+
+  const userCategory = {
+    late: (
+      <div className={classes.categoryRow}>
+        <WatchLaterIcon className={classes.see} /> atraso
+      </div>
+    ),
+    bug: (
+      <div className={classes.categoryRow}>
+        <BugReportIcon className={classes.finish} />
+        bug
+      </div>
+    ),
+    question: (
+      <div className={classes.categoryRow}>
+        <HelpIcon className={classes.reOpen} /> duvida
+      </div>
+    )
   };
 
   const [l_date, setL_date] = React.useState('');
@@ -325,7 +351,7 @@ const TicketsTable = props => {
                     </TableCell>
                     <TableCell>
                       <Typography variant="body1" className={classes.category}>
-                        {user.category}
+                        {userCategory[user.category]}
                       </Typography>
                     </TableCell>
                     <TableCell>{user.email}</TableCell>
