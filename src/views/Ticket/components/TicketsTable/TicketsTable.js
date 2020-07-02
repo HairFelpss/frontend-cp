@@ -5,11 +5,14 @@ import moment from 'moment';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import { makeStyles } from '@material-ui/styles';
 import {
+  Button,
+  ButtonGroup,
   Card,
   CardActions,
+  CardHeader,
   CardContent,
   Checkbox,
-  InputLabel, 
+  InputLabel,
   MenuItem,
   FormControl,
   Select,
@@ -38,24 +41,36 @@ const useStyles = makeStyles(theme => ({
       height: 'calc(100% - 64px)'
     }
   },
-  grid: {
-    
+  grid: {},
+  btnGroup: {
+    display: 'flex',
+    flexAlign: 'row',
+    alignContent: 'center',
+    justifyContent: 'space-evenly'
+  },
+  see: {
+    color: theme.palette.primary.main,
+    borderColor: theme.palette.primary.main
+  },
+  finish: {
+    color: theme.palette.error.main,
+    borderColor: theme.palette.error.main,
+    marginLeft: '1%'
+  },
+  reOpen: {
+    color: theme.palette.success.main,
+    borderColor: theme.palette.success.main,
+    marginLeft: '1%'
   },
   divider: {
-    marginTop: 54.5,
     margin: theme.spacing(2)
   },
   tableHeader: {
     backgroundColor: theme.palette.primary.main
   },
-  formControl: { 
+  formControl: {
     minWidth: 160,
-    position: "relative",
-    top: 35
-  },
-
-  select: {
-    color: "white"
+    padding: '0 5px'
   },
   selectEmpty: {
     marginTop: theme.spacing(1)
@@ -69,12 +84,14 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center'
   },
   label: {
-    position: "relative",
-    top: 55    
+    position: 'relative',
+    top: 55
   },
   lab: {
     fontSize: 20
   },
+  category: { textTransform: 'capitalize' },
+  statusContainer: { textTransform: 'capitalize' },
   status: {
     marginRight: theme.spacing(1)
   },
@@ -83,11 +100,33 @@ const useStyles = makeStyles(theme => ({
   },
   actions: {
     justifyContent: 'flex-end'
+  },
+  subject: {
+    maxWidth: '300px',
+    whiteSpace: ' nowrap',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis'
+  },
+  scrollbar: {
+    '&::-webkit-scrollbar': {
+      width: '15px',
+      height: '15px'
+    },
+
+    '&::-webkit-scrollbar-track': {
+      backgroundColor: 'rgba(255, 255, 255, 0.1)'
+    },
+
+    '&::-webkit-scrollbar-thumb': {
+      backgroundImage: 'linear-gradient(45deg, #2196f3, #353c45)',
+      boxShadow: '#353C45 0 3px 13px 1px',
+      webkitBoxShadow: '#353C45 0 3px 13px 1px'
+    }
   }
 }));
 
 const TicketsTable = props => {
-  const { className,onClose, variant, open , users, ...rest } = props;
+  const { className, onClose, variant, open, users, ...rest } = props;
 
   const classes = useStyles();
 
@@ -101,25 +140,23 @@ const TicketsTable = props => {
     close: 'danger'
   };
 
-
-  const [l_data, setL_data] = React.useState('');
+  const [l_date, setL_date] = React.useState('');
   const [l_status, setL_status] = React.useState('');
-  const [l_solicitante, setL_solicitante] = React.useState('');
+  const [l_ticketSolver, setL_ticketSolver] = React.useState('');
+  const [l_category, setL_category] = React.useState('');
 
-  const handleChangedata = (event) => {
-      setL_data(event.target.value);
-
+  const handleChangeDate = event => {
+    setL_date(event.target.value);
   };
-  const handleChangestatus = (event) => {
-      setL_status(event.target.value);
-
+  const handleChangeStatus = event => {
+    setL_status(event.target.value);
   };
-  const handleChangesolicitante = (event) => {
-      setL_solicitante(event.target.value);
-
+  const handleChangeTicketSolver = event => {
+    setL_ticketSolver(event.target.value);
   };
-
-
+  const handleChangeCategory = event => {
+    setL_category(event.target.value);
+  };
 
   const handleSelectAll = event => {
     const { users } = props;
@@ -163,74 +200,93 @@ const TicketsTable = props => {
     setRowsPerPage(event.target.value);
   };
 
-
-
-
   return (
     <Card {...rest} className={clsx(classes.root, className)}>
-      <CardContent className={classes.content}>
-      <Grid  container className={classes.grid}>
-      <Grid item md={1} xs={4}>
-          <div className={classes.label}>
-            <Typography>
-              <label className={classes.lab}>Tickets:</label>
-            </Typography>
+      <CardHeader
+        avatar={
+          <div container className={classes.btnGroup}>
+            <Button variant="outlined" className={classes.see}>
+              Visualizar
+            </Button>
+            <Button variant="outlined" className={classes.finish}>
+              Encerrar
+            </Button>
+            <Button variant="outlined" className={classes.reOpen}>
+              Reabrir
+            </Button>
           </div>
-        </Grid>
+        }
+        action={
+          <Grid container className={classes.grid}>
+            <Grid item xl={3} lg={3} md={3} sm={3} xs={12}>
+              <FormControl variant="filled" className={classes.formControl}>
+                <InputLabel id="demo-simple-select-label">Data</InputLabel>
+                <Select
+                  labelId="demo-simple-select-filled-label"
+                  id="demo-simple-select-filled"
+                  value={l_date}
+                  onChange={handleChangeDate}
+                >
+                  <MenuItem value={0}>23/12/29</MenuItem>
+                  <MenuItem value={1}>23/12/29</MenuItem>
+                  <MenuItem value={2}>23/12/29</MenuItem>
+                </Select>
+              </FormControl>
+            </Grid>
 
+            <Grid item xl={3} lg={3} md={3} sm={3} xs={12}>
+              <FormControl variant="filled" className={classes.formControl}>
+                <InputLabel id="demo-simple-select-label">Status</InputLabel>
+                <Select
+                  labelId="demo-simple-select-filled-label"
+                  id="demo-simple-select-filled"
+                  value={l_status}
+                  onChange={handleChangeStatus}
+                >
+                  <MenuItem value={0}>Open</MenuItem>
+                  <MenuItem value={1}>Close</MenuItem>
+                  <MenuItem value={2}>Pending</MenuItem>
+                </Select>
+              </FormControl>
+            </Grid>
 
-        <Grid item md={2} xs={6}>
-          <FormControl className={classes.formControl}>
-          <InputLabel id="demo-simple-select-label">Data</InputLabel>
-          <Select className={classes.select}
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={l_data}
-            onChange={handleChangedata}
-          >
-            <MenuItem value={10}>23/12/29</MenuItem>
-            <MenuItem value={20}>23/12/29</MenuItem>
-            <MenuItem value={30}>23/12/29</MenuItem>
-          </Select>
-          </FormControl>
-        </Grid> 
+            <Grid item xl={3} lg={3} md={3} sm={3} xs={12}>
+              <FormControl variant="filled" className={classes.formControl}>
+                <InputLabel id="demo-simple-select-label">Atendente</InputLabel>
+                <Select
+                  labelId="demo-simple-select-filled-label"
+                  id="demo-simple-select-filled"
+                  value={l_ticketSolver}
+                  onChange={handleChangeTicketSolver}
+                >
+                  <MenuItem value={0}>GM Claytchola</MenuItem>
+                  <MenuItem value={1}>Cabelin firmezao</MenuItem>
+                  <MenuItem value={2}>ADM Peixero</MenuItem>
+                </Select>
+              </FormControl>
+            </Grid>
+            <Grid item xl={3} lg={3} md={3} sm={3} xs={12}>
+              <FormControl variant="filled" className={classes.formControl}>
+                <InputLabel id="demo-simple-select-label">Categoria</InputLabel>
+                <Select
+                  labelId="demo-simple-select-filled-label"
+                  id="demo-simple-select-filled"
+                  value={l_category}
+                  onChange={handleChangeCategory}
+                >
+                  <MenuItem value={0}>Bugs</MenuItem>
+                  <MenuItem value={1}>Duvidas</MenuItem>
+                  <MenuItem value={2}>Atraso</MenuItem>
+                </Select>
+              </FormControl>
+            </Grid>
+          </Grid>
+        }
+      />
 
-        <Grid item md={2} xs={6}>
-          <FormControl className={classes.formControl}>
-          <InputLabel id="demo-simple-select-label">Status</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={l_status}
-            onChange={handleChangestatus}
-          >
-            <MenuItem value={10}>open</MenuItem>
-            <MenuItem value={20}>close</MenuItem>
-            <MenuItem value={30}>pending</MenuItem>
-          </Select>
-          </FormControl>
-        </Grid> 
-
-        <Grid item md={2} xs={6}>
-          <FormControl className={classes.formControl}>
-          <InputLabel id="demo-simple-select-label">Solicitante</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={l_solicitante}
-            onChange={handleChangesolicitante}
-          >
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
-          </Select>
-          </FormControl>
-        </Grid> 
-
-        </Grid>
-
-        <Divider className={classes.divider} />
-        <PerfectScrollbar>          
+      <Divider className={classes.divider} />
+      <CardContent className={classes.content}>
+        <PerfectScrollbar className={classes.scrollbar}>
           <div className={classes.inner}>
             <Table>
               <TableHead className={classes.tableHeader}>
@@ -246,10 +302,15 @@ const TicketsTable = props => {
                       onChange={handleSelectAll}
                     />
                   </TableCell>
-                  <TableCell className={classes.tableCell}>ID</TableCell>
+                  <TableCell className={classes.tableCell}>Codigo</TableCell>
                   <TableCell className={classes.tableCell}>Assunto</TableCell>
-                  <TableCell className={classes.tableCell}>Solicitante</TableCell>
-                  <TableCell className={classes.tableCell}>Data do Ticket</TableCell>
+                  <TableCell className={classes.tableCell}>Categoria</TableCell>
+                  <TableCell className={classes.tableCell}>
+                    Solicitante
+                  </TableCell>
+                  <TableCell className={classes.tableCell}>
+                    Data do Ticket
+                  </TableCell>
                   <TableCell className={classes.tableCell}>Status</TableCell>
                 </TableRow>
               </TableHead>
@@ -259,7 +320,8 @@ const TicketsTable = props => {
                     className={classes.tableRow}
                     hover
                     key={user.id}
-                    selected={selectedUsers.indexOf(user.id) !== -1}>
+                    selected={selectedUsers.indexOf(user.id) !== -1}
+                  >
                     <TableCell padding="checkbox">
                       <Checkbox
                         checked={selectedUsers.indexOf(user.id) !== -1}
@@ -270,13 +332,22 @@ const TicketsTable = props => {
                     </TableCell>
                     <TableCell>
                       <div className={classes.nameContainer}>
-                        <Typography variant="body1">#{user.id}</Typography>
+                        <Typography variant="body1">#{user.ref}</Typography>
                       </div>
                     </TableCell>
-                    <TableCell><a href=".dashboard">{user.subject}</a></TableCell>
+                    <TableCell>
+                      <Typography variant="body1" className={classes.subject}>
+                        {user.subject}
+                      </Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Typography variant="body1" className={classes.category}>
+                        {user.category}
+                      </Typography>
+                    </TableCell>
                     <TableCell>{user.email}</TableCell>
                     <TableCell>
-                    {moment(user.createdAt).format('DD/MM/YYYY')}
+                      {moment(user.createdAt).format('DD/MM/YYYY')}
                     </TableCell>
                     <TableCell>
                       <div className={classes.statusContainer}>
@@ -285,7 +356,7 @@ const TicketsTable = props => {
                           color={statusColors[user.status]}
                           size="sm"
                         />
-                         {user.status}
+                        {user.status}
                       </div>
                     </TableCell>
                   </TableRow>

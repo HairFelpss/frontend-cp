@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/styles';
 
@@ -18,7 +17,6 @@ const Ticket = () => {
   const classes = useStyles();
 
   const [users] = useState(mockData);
-  
 
   return (
     <div className={classes.root}>
