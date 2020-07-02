@@ -27,8 +27,7 @@ const useStyles = makeStyles(() => ({
     overflow: 'auto',
     maxHeight: 385,
     '&::-webkit-scrollbar': {
-      width: '15px',
-      height: '15px'
+      width: '10px'
     },
 
     '&::-webkit-scrollbar-track': {
