@@ -13,11 +13,22 @@ const useStyles = makeStyles(theme => ({
   paper: {
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-evenly',
     backgroundColor: theme.palette.background.default,
-    border: '2px solid #000',
+    border: '0.5px solid #2196f3',
     boxShadow: theme.shadows[1],
-    padding: theme.spacing(2, 4, 3)
+    padding: theme.spacing(2, 0),
+    width: '40%',
+    [theme.breakpoints.down('md')]: {
+      width: '60%'
+    },
+    [theme.breakpoints.down('sm')]: {
+      flexDirection: 'column',
+      height: '50%'
+    }
+  },
+  logos: {
+    maxHeight: 80
   }
 }));
 
@@ -38,7 +49,7 @@ export default function SimpleModal({ open, handleClose, box }) {
     >
       <Fade in={open}>
         <div className={classes.paper}>
-          <div>
+          <div className={classes.field}>
             <form
               action="https://sandbox.pagseguro.uol.com.br/v2/checkout/payment.html"
               method="get"
@@ -54,9 +65,25 @@ export default function SimpleModal({ open, handleClose, box }) {
               />
             </form>
           </div>
-          <div>ASDASDA</div>
-          <div>PAGSEGURO</div>
-          <div>PAGSEGURO</div>
+          <div className={classes.field}>
+            <img
+              src="/images/logos/mercadopago.png"
+              alt="Mercado Pago"
+              className={classes.logos}
+            />
+          </div>
+          <div className={classes.field}>
+            <img
+              src="/images/logos/picpay-logo.svg"
+              alt="PicPay"
+              className={classes.logos}
+            />
+          </div>
+          <img
+            src="/images/logos/paypal.svg"
+            alt="PicPay"
+            className={classes.logos}
+          />
         </div>
       </Fade>
     </Modal>

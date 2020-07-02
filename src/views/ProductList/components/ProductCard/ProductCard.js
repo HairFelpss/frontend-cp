@@ -9,7 +9,8 @@ import {
   Typography,
   Grid,
   Divider,
-  Button
+  Button,
+  Tooltip
 } from '@material-ui/core';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import GetAppIcon from '@material-ui/icons/GetApp';
@@ -37,6 +38,17 @@ const useStyles = makeStyles(theme => ({
   statsIcon: {
     color: theme.palette.icon,
     marginRight: theme.spacing(1)
+  },
+  text: {
+    paddingTop: '10px',
+    height: '20%'
+  },
+  description: {
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    display: '-webkit-box',
+    '-webkit-line-clamp': 2 /* number of lines to show */,
+    '-webkit-box-orient': 'vertical'
   }
 }));
 
@@ -50,12 +62,30 @@ const ProductCard = props => {
         <div className={classes.imageContainer}>
           <img alt="Product" className={classes.image} src={product.imageUrl} />
         </div>
-        <Typography align="center" gutterBottom variant="h4">
-          {product.title}
-        </Typography>
-        <Typography align="center" variant="body1">
-          {product.description}
-        </Typography>
+        <div className={classes.text}>
+          <Typography align="center" gutterBottom variant="h4">
+            {product.title}
+          </Typography>
+          <Tooltip
+            title={
+              <Typography
+                align="center"
+                variant="body1"
+                className={classes.tooltip}
+              >
+                {product.description}
+              </Typography>
+            }
+          >
+            <Typography
+              className={classes.description}
+              align="center"
+              variant="body1"
+            >
+              {product.description}
+            </Typography>
+          </Tooltip>
+        </div>
       </CardContent>
       <Divider />
       <CardActions>

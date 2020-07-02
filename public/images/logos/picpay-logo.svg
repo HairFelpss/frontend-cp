@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="svg"
+   viewBox="0 0 175.39117 161.40337"
+   version="1.1"
+   sodipodi:docname="picpay-logo.svg"
+   width="175.39117"
+   height="161.40337"
+   inkscape:version="0.92.2 (5c3e80d, 2017-08-06)">
+  <metadata
+     id="metadata9">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs7" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1600"
+     inkscape:window-height="837"
+     id="namedview5"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:zoom="1.737619"
+     inkscape:cx="156.89073"
+     inkscape:cy="159.88914"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg" />
+  <path
+     class="logo"
+     d="m 50.788645,32.3 h 5.8 V 15.4 h -5.8 z m 7.8,-28.4 h -3.9 v 3.9 h 3.9 z m -21.9,1.9 h -5.6 v 4.9 h 5.2 c 3.3,0 5.2,1.6 5.2,4.6 0,3 -1.9,4.7 -5.2,4.7 h -5.2 v -9.2 h -5.8 v 21.5 h 5.8 v -7.4 h 5.5 c 6.7,0 10.6,-3.6 10.6,-9.8 0,-5.8 -3.8,-9.3 -10.5,-9.3 z m 25.8,-5.8 h -11.7 v 11.7 h 11.7 z m -1.9,9.7 h -7.8 V 1.9 h 7.8 z m 34,-3.9 h -5.3 v 4.9 h 5 c 3.3,0 5.2,1.6 5.2,4.6 0,3 -1.9,4.7 -5.2,4.7 h -5 v -9.2 h -5.8 v 21.5 h 5.8 v -7.4 h 5.3 c 6.699995,0 10.599995,-3.6 10.599995,-9.8 0,-5.8 -3.9,-9.3 -10.599995,-9.3 z m 48.699995,6.2 -5,12.6 -5,-12.6 h -6 l 8,20.3 -3.1,7.7 h 6.1 l 11,-28 z m -26,-0.1 c -3.5,0 -6.2,0.8 -9.2,2.3 l 1.8,4 c 2.1,-1.2 4.2,-1.8 6.1,-1.8 2.8,0 4.2,1.2 4.2,3.4 v 0.4 h -5.6 c -5,0 -7.7,2.3 -7.7,6.1 0,3.7 2.6,6.3 7,6.3 2.8,0 4.8,-1 6.4,-2.7 v 2.2 h 5.7 V 18.9 c -0.2,-4.3 -3.3,-7 -8.7,-7 z m 3.4,13.6 c -0.6,1.7 -2.3,3.1 -4.7,3.1 -2,0 -3.2,-1 -3.2,-2.6 0,-1.6 1.1,-2.3 3.3,-2.3 h 4.6 z m -49.299995,2.4 c -2.8,0 -4.8,-2.2 -4.8,-5.5 0,-3.2 2,-5.4 4.8,-5.4 2,0 3.5,0.8 4.6,2.2 l 3.9,-2.8 c -1.8,-2.7 -4.9,-4.3 -8.8,-4.3 -6.1,-0.1 -10.3,4.1 -10.3,10.3 0,6.2 4.2,10.3 10.3,10.3 4.2,0 7.3,-1.7 9,-4.5 l -4,-2.7 c -1,1.6 -2.6,2.4 -4.7,2.4 z"
+     id="path2"
+     style="fill:#21c25e;fill-opacity:1"
+     inkscape:connector-curvature="0"
+     inkscape:export-filename="C:\Users\suitedoalex\sites\picpay-logo-14.png"
+     inkscape:export-xdpi="38.709679"
+     inkscape:export-ydpi="38.709679" />
+  <rect
+     style="opacity:1;fill:#21c25e;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.52218771;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+     id="rect852"
+     width="175.39117"
+     height="87.085167"
+     x="0"
+     y="50.299686"
+     inkscape:export-filename="C:\Users\suitedoalex\sites\picpay-logo-15.png"
+     inkscape:export-xdpi="27.367397"
+     inkscape:export-ydpi="27.367397" />
+  <path
+     inkscape:connector-curvature="0"
+     class="logo"
+     d="m 51.195589,106.14227 h 5.8 V 89.242268 h -5.8 z m 7.8,-28.400004 h -3.9 v 3.9 h 3.9 z m -21.9,1.9 h -5.600001 v 4.9 h 5.200001 c 3.299999,0 5.199999,1.6 5.199999,4.6 0,3.000002 -1.9,4.700002 -5.199999,4.700002 h -5.200001 v -9.200002 h -5.8 v 21.500004 h 5.8 v -7.4 h 5.500001 c 6.699999,0 10.599999,-3.600002 10.599999,-9.800004 0,-5.8 -3.8,-9.3 -10.499999,-9.3 z m 25.8,-5.8 h -11.7 v 11.7 h 11.7 z m -1.9,9.7 h -7.8 v -7.8 h 7.8 z m 33.999999,-3.9 h -5.3 v 4.9 h 5 c 3.3,0 5.199996,1.6 5.199996,4.6 0,3.000002 -1.899996,4.700002 -5.199996,4.700002 h -5 v -9.200002 h -5.8 v 21.500004 h 5.8 v -7.4 h 5.3 c 6.699992,0 10.599992,-3.600002 10.599992,-9.800004 0,-5.8 -3.9,-9.3 -10.599992,-9.3 z m 48.699992,6.2 -5,12.600004 -5,-12.600004 h -6 l 8,20.300004 -3.1,7.7 h 6.1 l 11,-28.000004 z m -26,-0.1 c -3.5,0 -6.2,0.8 -9.2,2.3 l 1.8,4.000002 c 2.1,-1.2 4.2,-1.8 6.1,-1.8 2.8,0 4.2,1.2 4.2,3.4 v 0.4 h -5.6 c -5,0 -7.7,2.3 -7.7,6.100002 0,3.7 2.6,6.3 7,6.3 2.8,0 4.8,-1 6.4,-2.7 v 2.2 h 5.7 V 92.742268 c -0.2,-4.300002 -3.3,-7.000002 -8.7,-7.000002 z m 3.4,13.600004 c -0.6,1.7 -2.3,3.1 -4.7,3.1 -2,0 -3.2,-1 -3.2,-2.6 0,-1.6 1.1,-2.300002 3.3,-2.300002 h 4.6 z m -49.299992,2.4 c -2.8,0 -4.799999,-2.2 -4.799999,-5.500002 0,-3.2 1.999999,-5.4 4.799999,-5.4 2,0 3.5,0.8 4.6,2.2 l 3.9,-2.8 c -1.8,-2.700002 -4.9,-4.300002 -8.8,-4.300002 -6.099999,-0.1 -10.299999,4.100002 -10.299999,10.300002 0,6.200002 4.2,10.300002 10.299999,10.300002 4.2,0 7.3,-1.7 9,-4.5 l -4,-2.7 c -1,1.6 -2.6,2.4 -4.7,2.4 z"
+     id="path2-5-0"
+     style="fill:#ffffff"
+     inkscape:export-filename="C:\Users\suitedoalex\sites\picpay-logo-15.png"
+     inkscape:export-xdpi="27.367397"
+     inkscape:export-ydpi="27.367397" />
+</svg>
