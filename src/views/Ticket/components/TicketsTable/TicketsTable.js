@@ -54,9 +54,6 @@ const useStyles = makeStyles(theme => ({
     borderColor: theme.palette.success.main,
     marginLeft: '1%'
   },
-  divider: {
-    margin: theme.spacing(2)
-  },
   tableHeader: {
     backgroundColor: theme.palette.primary.main
   },
@@ -270,7 +267,7 @@ const TicketsTable = props => {
         }
       />
 
-      <Divider className={classes.divider} />
+      <Divider />
       <CardContent className={classes.content}>
         <PerfectScrollbar className={classes.scrollbar}>
           <div className={classes.inner}>
