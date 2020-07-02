@@ -11,12 +11,20 @@ import {
   Settings as SettingsView,
   SignUp as SignUpView,
   SignIn as SignInView,
-  NotFound as NotFoundView
+  NotFound as NotFoundView,
+  Ticket as TicketView
 } from '../views';
 
 const Routes = () => {
   return (
     <Switch>
+      <RouteWithLayout
+        component={TicketView}
+        exact
+        layout={MainLayout}
+        path="/tickets"
+        isPrivate
+      />
       <RouteWithLayout
         component={DashboardView}
         exact

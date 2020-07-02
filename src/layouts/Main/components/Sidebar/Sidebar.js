@@ -10,6 +10,7 @@ import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import SettingsIcon from '@material-ui/icons/Settings';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import ExitToAppOutlinedIcon from '@material-ui/icons/ExitToAppOutlined';
+import ConfirmationNumberRoundedIcon from '@material-ui/icons/ConfirmationNumberRounded';
 
 import { Profile, SidebarNav } from './components';
 
@@ -50,6 +51,11 @@ const Sidebar = props => {
       title: 'Dashboard',
       href: '/dashboard',
       icon: <DashboardIcon />
+    },
+    {
+      title: 'Tickets',
+      href: '/tickets',
+      icon: <ConfirmationNumberRoundedIcon />
     },
     {
       title: 'Users',
