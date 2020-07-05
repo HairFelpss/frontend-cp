@@ -55,7 +55,7 @@ export default function SimpleModal({ open, handleClose, box }) {
               method="get"
               target="_blank"
             >
-              <input type="hidden" name="code" value={box} />
+              <input type="hidden" name="code" value={box.pagseguro} />
               <input type="hidden" name="iot" value="button" />
               <input
                 type="image"
@@ -66,11 +66,14 @@ export default function SimpleModal({ open, handleClose, box }) {
             </form>
           </div>
           <div className={classes.field}>
-            <img
-              src="/images/logos/mercadopago.png"
-              alt="Mercado Pago"
-              className={classes.logos}
-            />
+            <form action={box.mercadopago} method="POST" target="_blank">
+              <input
+                type="image"
+                src="/images/logos/mercadopago.png"
+                alt="Mercado Pago"
+                name="submit"
+              />
+            </form>
           </div>
           <div className={classes.field}>
             <img
