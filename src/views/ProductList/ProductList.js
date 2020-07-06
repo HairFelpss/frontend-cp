@@ -6,6 +6,7 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 
 import { ProductsToolbar, ProductCard } from './components';
 import handlePagSeguro from '../../services/api/pagseguro';
+import handleMercadoPago from '../../services/api/mercadopago';
 
 import Modal from '../../components/PaymentModal';
 import box from './data';
@@ -30,11 +31,13 @@ const ProductList = () => {
 
   const [open, setOpen] = useState(false);
   const [products] = useState(box);
-  const [buyBox, setBuyBox] = useState(null);
+  const [buyBox, setBuyBox] = useState({});
 
   const handleOpen = async box => {
-    const response = await handlePagSeguro(box);
-    setBuyBox(response.boxInfo.code);
+    const pagseguro = await handlePagSeguro(box);
+    const mercadopago = await handleMercadoPago(box);
+    setBuyBox({ pagseguro: pagseguro.boxInfo.code, mercadopago: mercadopago });
+    console.log(mercadopago);
     setOpen(true);
   };
 

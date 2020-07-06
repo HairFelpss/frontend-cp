@@ -11,7 +11,7 @@ export default [
     ref: getRandomInt(),
     id: uuid(),
     subject:
-      'O desgraça eu depositei 700 conto ontem ze vai tomar no cu so cade meu cash o inferno',
+      'O desgraça eu depositei 700 conto ontem ze sai tomar no cu so cade meu cash o inferno',
     category: 'late',
     email: 'ekaterina.tankova@devias.io',
     status: 'close',
