@@ -15,6 +15,8 @@ import {
   Ticket as TicketView
 } from '../views';
 
+import { Success as SuccessView, Fail as FailView } from '../views/Payment';
+
 const Routes = () => {
   return (
     <Switch>
@@ -58,6 +60,20 @@ const Routes = () => {
         exact
         layout={MainLayout}
         path="/settings"
+        isPrivate
+      />
+      <RouteWithLayout
+        component={SuccessView}
+        exact
+        layout={MinimalLayout}
+        path="/success"
+        isPrivate
+      />
+      <RouteWithLayout
+        component={FailView}
+        exact
+        layout={MinimalLayout}
+        path="/fail"
         isPrivate
       />
       <RouteWithLayout
