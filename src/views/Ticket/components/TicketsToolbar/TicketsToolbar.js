@@ -2,33 +2,25 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/styles';
-import { Button } from '@material-ui/core';
 
 import { SearchInput } from 'components';
+import { Typography } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
   root: {},
   row: {
-    height: '42px',
     display: 'flex',
+    justifyContent: 'space-between',
     alignItems: 'center',
+    height: '42px',
     marginTop: theme.spacing(1)
-  },
-  spacer: {
-    flexGrow: 1
-  },
-  importButton: {
-    marginRight: theme.spacing(1)
-  },
-  exportButton: {
-    marginRight: theme.spacing(1)
   },
   searchInput: {
     marginRight: theme.spacing(1)
   }
 }));
 
-const ProductsToolbar = props => {
+const TicketsToolbar = props => {
   const { className, ...rest } = props;
 
   const classes = useStyles();
@@ -36,25 +28,18 @@ const ProductsToolbar = props => {
   return (
     <div {...rest} className={clsx(classes.root, className)}>
       <div className={classes.row}>
-        <span className={classes.spacer} />
-        <Button className={classes.importButton}>Import</Button>
-        <Button className={classes.exportButton}>Export</Button>
-        <Button color="primary" variant="contained">
-          Add product
-        </Button>
-      </div>
-      <div className={classes.row}>
+        <Typography variant="h3">Tickets</Typography>
         <SearchInput
           className={classes.searchInput}
-          placeholder="Search product"
+          placeholder="Search Ticket"
         />
       </div>
     </div>
   );
 };
 
-ProductsToolbar.propTypes = {
+TicketsToolbar.propTypes = {
   className: PropTypes.string
 };
 
-export default ProductsToolbar;
+export default TicketsToolbar;
