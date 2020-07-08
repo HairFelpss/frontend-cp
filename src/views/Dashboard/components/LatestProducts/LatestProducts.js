@@ -25,20 +25,7 @@ const useStyles = makeStyles(() => ({
   content: {
     padding: 0,
     overflow: 'auto',
-    maxHeight: 385,
-    '&::-webkit-scrollbar': {
-      width: '10px'
-    },
-
-    '&::-webkit-scrollbar-track': {
-      backgroundColor: 'rgba(255, 255, 255, 0.1)'
-    },
-
-    '&::-webkit-scrollbar-thumb': {
-      backgroundImage: 'linear-gradient(45deg, #2196f3, #353c45)',
-      boxShadow: '#353C45 0 3px 13px 1px',
-      webkitBoxShadow: '#353C45 0 3px 13px 1px'
-    }
+    maxHeight: 385
   },
   image: {
     height: 48,

@@ -5,9 +5,13 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 
 import { ProductsToolbar, ProductCard } from './components';
-import handlePagSeguro from '../../services/api/pagseguro';
 
 import Modal from '../../components/PaymentModal';
+import Pagseguro from '../../components/PaymentButtons/Pagseguro';
+import Picpay from '../../components/PaymentButtons/Picpay';
+import Mercadopago from '../../components/PaymentButtons/Mercadopago';
+import Paypal from '../../components/PaymentButtons/Paypal';
+
 import box from './data';
 
 const useStyles = makeStyles(theme => ({
@@ -29,12 +33,11 @@ const ProductList = () => {
   const classes = useStyles();
 
   const [open, setOpen] = useState(false);
-  const [products] = useState(box);
-  const [buyBox, setBuyBox] = useState(null);
+  const [defaultBox] = useState(box);
+  const [currentBox, setCurrentBox] = useState({});
 
   const handleOpen = async box => {
-    const response = await handlePagSeguro(box);
-    setBuyBox(response.boxInfo.code);
+    setCurrentBox(box);
     setOpen(true);
   };
 
@@ -47,7 +50,7 @@ const ProductList = () => {
       <ProductsToolbar />
       <div className={classes.content}>
         <Grid container spacing={1}>
-          {products.map(product => (
+          {defaultBox.map(product => (
             <Grid item key={product.id} lg={4} md={6} xs={12}>
               <ProductCard
                 product={product}
@@ -68,7 +71,12 @@ const ProductList = () => {
           <ChevronRightIcon />
         </IconButton>
       </div>
-      <Modal open={open} handleClose={handleClose} box={buyBox} />
+      <Modal open={open} handleClose={handleClose}>
+        <Pagseguro box={currentBox} handleClose={handleClose} />
+        <Mercadopago box={currentBox} handleClose={handleClose} />
+        <Picpay box={currentBox} handleClose={handleClose} />
+        <Paypal box={currentBox} handleClose={handleClose} />
+      </Modal>
     </div>
   );
 };

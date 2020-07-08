@@ -26,13 +26,10 @@ const useStyles = makeStyles(theme => ({
       flexDirection: 'column',
       height: '50%'
     }
-  },
-  logos: {
-    maxHeight: 80
   }
 }));
 
-export default function SimpleModal({ open, handleClose, box }) {
+export default function SimpleModal({ open, handleClose, children }) {
   const classes = useStyles();
   return (
     <Modal
@@ -49,41 +46,11 @@ export default function SimpleModal({ open, handleClose, box }) {
     >
       <Fade in={open}>
         <div className={classes.paper}>
-          <div className={classes.field}>
-            <form
-              action="https://sandbox.pagseguro.uol.com.br/v2/checkout/payment.html"
-              method="get"
-              target="_blank"
-            >
-              <input type="hidden" name="code" value={box} />
-              <input type="hidden" name="iot" value="button" />
-              <input
-                type="image"
-                src="https://stc.pagseguro.uol.com.br/public/img/botoes/pagamentos/99x61-comprar-azul-assina.gif"
-                name="submit"
-                alt="Pague com PagSeguro - é rápido, grátis e seguro!"
-              />
-            </form>
-          </div>
-          <div className={classes.field}>
-            <img
-              src="/images/logos/mercadopago.png"
-              alt="Mercado Pago"
-              className={classes.logos}
-            />
-          </div>
-          <div className={classes.field}>
-            <img
-              src="/images/logos/picpay-logo.svg"
-              alt="PicPay"
-              className={classes.logos}
-            />
-          </div>
-          <img
-            src="/images/logos/paypal.svg"
-            alt="PicPay"
-            className={classes.logos}
-          />
+          {children.map((child, index) => (
+            <div className={classes.logos} key={index}>
+              {child}
+            </div>
+          ))}
         </div>
       </Fade>
     </Modal>
