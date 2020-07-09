@@ -1,7 +1,19 @@
 import React, { useState, useEffect } from 'react';
+import { makeStyles } from '@material-ui/styles';
+
 import handleMercadoPago from '../../../services/api/mercadopago';
 
+const useStyles = makeStyles(theme => ({
+  image: {
+    display: 'inline-block',
+    maxWidth: '100%',
+    width: 110
+  }
+}));
+
 const Mercadopago = ({ box }) => {
+  const classes = useStyles();
+
   const [code, setCode] = useState('');
 
   useEffect(() => {
@@ -19,7 +31,7 @@ const Mercadopago = ({ box }) => {
         src="/images/logos/mercadopago.png"
         alt="Mercado Pago"
         name="submit"
-        style={{ maxWidth: 100 }}
+        className={classes.image}
       />
     </form>
   );

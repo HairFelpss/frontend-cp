@@ -5,10 +5,9 @@ import { makeStyles } from '@material-ui/styles';
 import { Divider, Drawer } from '@material-ui/core';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import PeopleIcon from '@material-ui/icons/People';
-import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
+import StoreIcon from '@material-ui/icons/Store';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import SettingsIcon from '@material-ui/icons/Settings';
-import LockOpenIcon from '@material-ui/icons/LockOpen';
 import ExitToAppOutlinedIcon from '@material-ui/icons/ExitToAppOutlined';
 import ConfirmationNumberRoundedIcon from '@material-ui/icons/ConfirmationNumberRounded';
 
@@ -63,14 +62,9 @@ const Sidebar = props => {
       icon: <PeopleIcon />
     },
     {
-      title: 'Products',
-      href: '/products',
-      icon: <ShoppingBasketIcon />
-    },
-    {
-      title: 'Authentication',
-      href: '/sign-in',
-      icon: <LockOpenIcon />
+      title: 'Store',
+      href: '/store',
+      icon: <StoreIcon />
     },
     {
       title: 'Account',

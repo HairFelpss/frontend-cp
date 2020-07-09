@@ -7,14 +7,14 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(4)
   },
   content: {
-    paddingTop: 150,
+    paddingTop: 50,
     textAlign: 'center'
   },
   image: {
     marginTop: 50,
     display: 'inline-block',
     maxWidth: '100%',
-    width: 560
+    width: 400
   }
 }));
 
@@ -38,16 +38,19 @@ const Success = () => {
       <Grid container justify="center" spacing={4}>
         <Grid item lg={6} xs={12}>
           <div className={classes.content}>
-            <Typography variant="h1">SUCCESS</Typography>
+            <Typography variant="h1">Compra realizada com sucesso!</Typography>
             <Typography variant="subtitle2">
-              You either tried some shady route or you came here by mistake.
-              Whichever it is, try using the navigation
+              Parabéns! Assim que o pagamento for concluído seu baú estará
+              fresquinho para você!
             </Typography>
             <img
               alt="Under development"
               className={classes.image}
-              src="/images/undraw_page_not_found_su7k.svg"
+              src="/images/success-chest8.svg"
             />
+            <a href="https://www.freepik.com/free-photos-vectors/business">
+              Business vector created by freepik - www.freepik.com
+            </a>
           </div>
         </Grid>
       </Grid>
