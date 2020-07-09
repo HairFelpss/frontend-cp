@@ -45,7 +45,7 @@ const Routes = () => {
         component={ProductListView}
         exact
         layout={MainLayout}
-        path="/products"
+        path="/store"
         isPrivate
       />
       <RouteWithLayout

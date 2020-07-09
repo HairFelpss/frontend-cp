@@ -41,7 +41,8 @@ const Topbar = props => {
             <Badge
               badgeContent={notifications.length}
               color="primary"
-              variant="dot">
+              variant="dot"
+            >
               <NotificationsIcon />
             </Badge>
           </IconButton>
@@ -55,14 +56,16 @@ const Topbar = props => {
               display: 'flex',
               flexDirection: 'row',
               alignItems: 'center'
-            }}>
+            }}
+          >
             <img
               alt="Logo"
               src="/images/avatars/bg-barbaro.png"
               style={{ width: 50, borderRadius: 100 }}
             />
             <p
-              style={{ paddingLeft: 10, fontWeight: 'bold', color: '#f5f5f5' }}>
+              style={{ paddingLeft: 10, fontWeight: 'bold', color: '#f5f5f5' }}
+            >
               Perfect World
             </p>
           </div>

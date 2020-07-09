@@ -8,7 +8,6 @@ import {
   Card,
   CardActions,
   CardContent,
-  Avatar,
   Checkbox,
   Table,
   TableBody,
@@ -18,8 +17,6 @@ import {
   Typography,
   TablePagination
 } from '@material-ui/core';
-
-import { getInitials } from 'helpers';
 
 const useStyles = makeStyles(theme => ({
   root: {},
@@ -36,9 +33,6 @@ const useStyles = makeStyles(theme => ({
   nameContainer: {
     display: 'flex',
     alignItems: 'center'
-  },
-  avatar: {
-    marginRight: theme.spacing(2)
   },
   actions: {
     justifyContent: 'flex-end'
@@ -128,7 +122,8 @@ const UsersTable = props => {
                     className={classes.tableRow}
                     hover
                     key={user.id}
-                    selected={selectedUsers.indexOf(user.id) !== -1}>
+                    selected={selectedUsers.indexOf(user.id) !== -1}
+                  >
                     <TableCell padding="checkbox">
                       <Checkbox
                         checked={selectedUsers.indexOf(user.id) !== -1}
@@ -139,9 +134,6 @@ const UsersTable = props => {
                     </TableCell>
                     <TableCell>
                       <div className={classes.nameContainer}>
-                        <Avatar className={classes.avatar} src={user.avatarUrl}>
-                          {getInitials(user.name)}
-                        </Avatar>
                         <Typography variant="body1">{user.name}</Typography>
                       </div>
                     </TableCell>

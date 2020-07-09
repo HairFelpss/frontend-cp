@@ -7,14 +7,15 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(4)
   },
   content: {
-    paddingTop: 150,
+    paddingTop: 50,
     textAlign: 'center'
   },
   image: {
+    color: 'white',
     marginTop: 50,
     display: 'inline-block',
     maxWidth: '100%',
-    width: 560
+    width: 300
   }
 }));
 
@@ -26,15 +27,15 @@ const Fail = () => {
       <Grid container justify="center" spacing={4}>
         <Grid item lg={6} xs={12}>
           <div className={classes.content}>
-            <Typography variant="h1">FAIL</Typography>
+            <Typography variant="h1">Vixe!</Typography>
             <Typography variant="subtitle2">
-              You either tried some shady route or you came here by mistake.
-              Whichever it is, try using the navigation
+              Algo deu errado! Esperamos que tente novamente no futuro!
             </Typography>
             <img
               alt="Under development"
               className={classes.image}
-              src="/images/undraw_page_not_found_su7k.svg"
+              src="/images/wait.svg"
+              ð
             />
           </div>
         </Grid>
