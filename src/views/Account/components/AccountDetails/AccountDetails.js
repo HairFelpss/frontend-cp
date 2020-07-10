@@ -11,20 +11,11 @@ import {
   Grid,
   Button,
   TextField,
-  Select,
-  FormControl,
-  MenuItem,
-  InputLabel
 } from '@material-ui/core';
 import Save from '@material-ui/icons/Save';
 
 const useStyles = makeStyles(() => ({
-  root: {},
-  formControl: {  
-    minWidth: 372,
-    marginTop: 8
-    
-  }
+  root: {}
 }));
 
 const AccountDetails = props => {
@@ -39,14 +30,13 @@ const AccountDetails = props => {
     C_email: 'lucassouze@gmail.com'
   });
 
-  const [ age, setAge] = useState('');
+  
 
   const handleChange = event => {
     setValues({
       ...values,
       [event.target.name]: event.target.value
     });
-    setAge(event.target.value)
   };
 
   return (
@@ -55,6 +45,7 @@ const AccountDetails = props => {
         <CardHeader subheader="Atualize suas informações" title="Dados" />
         <Divider />
         <CardContent>
+          
           <Grid container spacing={3}>
             <Grid item md={6} xs={12}>
               <TextField
@@ -106,26 +97,17 @@ const AccountDetails = props => {
               />
             </Grid>
             <Grid item md={6} xs={12}>   
-              <FormControl variant="outlined" className={classes.formControl}>
-                <InputLabel 
-                  id="demo-simple-select-outlined-label">Pergunta de Verificação</InputLabel>
-                <Select
-                  id="demo-simple-select-outlined"
-                  margin="dense"
-                  value={age}
-                  onChange={handleChange}
-                  label="Esse Aqui"
-                >
-                  <MenuItem value="">
-                    <em>None</em>
-                  </MenuItem>
-                  <MenuItem value={10}>Nome do seu cachorro</MenuItem>
-                  <MenuItem value={20}>Cor favorita</MenuItem>
-                  <MenuItem value={30}>Seu apelido</MenuItem>
-                  <MenuItem value={40}>Comida preferida</MenuItem>
-                  <MenuItem value={50}>Local favorito</MenuItem>
-                </Select>
-              </FormControl>
+            <TextField
+                fullWidth
+                label="Pergunta de verificação"
+                margin="dense"
+                name="Pergunta"
+                onChange={handleChange}
+                required
+                value="Qual o nome do seu pet?"
+                variant="outlined"
+                disabled
+              /> 
             </Grid>
             <Grid item md={6} xs={12}>
               <TextField
@@ -138,7 +120,7 @@ const AccountDetails = props => {
                 required
                 type="text"
                 variant="outlined"
-              />
+              /> 
             </Grid>
           </Grid>
         </CardContent>
