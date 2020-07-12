@@ -27,10 +27,6 @@ const useStyles = makeStyles(theme => ({
   tableHeader: {
     backgroundColor: theme.palette.primary.main
   },
-  formControl: {
-    minWidth: 160,
-    padding: '0 5px'
-  },
   tableCell: { color: theme.palette.text.primary, fontSize: 15 },
   inner: {
     minWidth: 1050
@@ -49,7 +45,7 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'space-evenly'
   },
   subject: {
-    maxWidth: '400px',
+    maxWidth: '250px',
     whiteSpace: ' nowrap',
     overflow: 'hidden',
     textOverflow: 'ellipsis'
@@ -145,8 +141,9 @@ const ExtractTable = props => {
                     />
                   </TableCell>
                   <TableCell className={classes.tableCell}>Data</TableCell>
-                  <TableCell className={classes.tableCell}>Assunto</TableCell>
-                  <TableCell className={classes.tableCell}>Categoria</TableCell>
+                  <TableCell className={classes.tableCell}>Nome</TableCell>
+                  <TableCell className={classes.tableCell}>Valor</TableCell>
+                  <TableCell className={classes.tableCell}>Status</TableCell>
                 </TableRow>
               </TableHead>              
               <TableBody>
@@ -157,7 +154,6 @@ const ExtractTable = props => {
                     key={user.id}
                     selected={selectedUsers.indexOf(user.id) !== -1}
                   >
-
                     <TableCell padding="checkbox">
                       <Checkbox
                         checked={selectedUsers.indexOf(user.id) !== -1}
@@ -166,9 +162,6 @@ const ExtractTable = props => {
                         value="true"
                       />
                     </TableCell>
-
-
-
                     <TableCell>
                       <div className={classes.nameContainer}>
                         <Typography variant="body1">{moment(user.createdAt).format('DD/MM/YYYY')}</Typography>
@@ -179,7 +172,8 @@ const ExtractTable = props => {
                         {user.subject}
                       </Typography>
                     </TableCell>
-                    <TableCell> {user.category}</TableCell>  
+                    <TableCell> {user.value}</TableCell> 
+                    <TableCell> {user.status} </TableCell> 
                   </TableRow>
                 ))}
               </TableBody>
