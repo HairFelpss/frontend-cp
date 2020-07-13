@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/styles';
 
-import handleMercadoPago from '../../../services/api/mercadopago';
+import handleMercadoPago from '../../../services/api/payment/mercadopago';
 
 const useStyles = makeStyles(theme => ({
   image: {

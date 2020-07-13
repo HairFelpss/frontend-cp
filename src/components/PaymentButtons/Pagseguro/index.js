@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/styles';
 
-import handlePagSeguro from '../../../services/api/pagseguro';
+import handlePagSeguro from '../../../services/api/payment/pagseguro';
 
 const useStyles = makeStyles(theme => ({
   image: {

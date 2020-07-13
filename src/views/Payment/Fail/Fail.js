@@ -12,10 +12,10 @@ const useStyles = makeStyles(theme => ({
   },
   image: {
     color: 'white',
-    marginTop: 30,
+    marginTop: 50,
     display: 'inline-block',
     maxWidth: '100%',
-    width: 450
+    width: 300
   }
 }));
 
@@ -35,7 +35,6 @@ const Fail = () => {
               alt="Under development"
               className={classes.image}
               src="/images/warning.svg"
-              ð
             />
           </div>
         </Grid>

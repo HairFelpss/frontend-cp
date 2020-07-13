@@ -23,15 +23,31 @@ const Success = () => {
   const [type, setType] = useState('');
   const [code, setCode] = useState('');
 
-  useEffect(() => {
+  const mp = () => {
+    const urlParam = new URLSearchParams(window.location.search);
+    const params = [];
+    for (let value of urlParam.entries()) {
+      params.push(value);
+    }
+    const keys = params.map(param => param[0]);
+    const values = params.map(param => param[1]);
+    const result = keys.reduce(
+      (obj, key, index) => ({ ...obj, [key]: values[index] }),
+      {}
+    );
+  };
+
+  const pagseguro = () => {
     const urlParam = new URLSearchParams(window.location.search);
     const params = [];
     for (let value of urlParam.keys()) {
       params.push(value);
     }
-    setType(params[0]);
-    setCode(urlParam.get(params[0]));
-  }, []);
+    console.log(params[0]);
+    console.log(urlParam.get(params[0]));
+  };
+
+  useEffect(() => mp(), []);
 
   return (
     <div className={classes.root}>

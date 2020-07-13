@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/styles';
-import handlePaypal from '../../../services/api/paypal';
+import handlePaypal from '../../../services/api/payment/paypal';
 
 const useStyles = makeStyles(theme => ({
   image: {
