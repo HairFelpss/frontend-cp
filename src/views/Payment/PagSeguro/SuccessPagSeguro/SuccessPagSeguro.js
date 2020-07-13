@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Success = () => {
+const SuccessPagSeguro = () => {
   const classes = useStyles();
   const [type, setType] = useState('');
   const [code, setCode] = useState('');
@@ -58,4 +58,4 @@ const Success = () => {
   );
 };
 
-export default Success;
+export default SuccessPagSeguro;

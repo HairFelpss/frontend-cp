@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Fail = () => {
+const FailMercadoPago = () => {
   const classes = useStyles();
 
   return (
@@ -44,4 +44,4 @@ const Fail = () => {
   );
 };
 
-export default Fail;
+export default FailMercadoPago;

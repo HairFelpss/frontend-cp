@@ -15,7 +15,19 @@ import {
   Ticket as TicketView
 } from '../views';
 
-import { Success as SuccessView, Fail as FailView } from '../views/Payment';
+import { 
+  SuccessMercadoPago as SuccessMercadoPagoView, 
+  SuccessPagSeguro as SuccessPagSeguroView, 
+  SuccessPayPal as SuccessPayPalView, 
+  SuccessPicPay as SuccessPicPayView 
+} from '../views/Payment';
+
+import { 
+  FailMercadoPago as FailMercadoPagoView, 
+  FailPagSeguro as FailPagSeguroView, 
+  FailPayPal as FailPayPalView, 
+  FailPicPay as FailPicPayView  
+} from '../views/Payment';
 
 const Routes = () => {
   return (
@@ -63,20 +75,6 @@ const Routes = () => {
         isPrivate
       />
       <RouteWithLayout
-        component={SuccessView}
-        exact
-        layout={MinimalLayout}
-        path="/success"
-        isPrivate
-      />
-      <RouteWithLayout
-        component={FailView}
-        exact
-        layout={MinimalLayout}
-        path="/fail"
-        isPrivate
-      />
-      <RouteWithLayout
         component={SignUpView}
         exact
         layout={MinimalLayout}
@@ -93,6 +91,62 @@ const Routes = () => {
         exact
         layout={MinimalLayout}
         path="/not-found"
+      />
+      <RouteWithLayout
+        component={SuccessMercadoPagoView}
+        exact
+        layout={MinimalLayout}
+        path="/success/mercadopago"
+        isPrivate
+      />   
+      <RouteWithLayout
+        component={SuccessPagSeguroView}
+        exact
+        layout={MinimalLayout}
+        path="/success/pagseguro"
+        isPrivate
+      />   
+      <RouteWithLayout
+        component={SuccessPayPalView}
+        exact
+        layout={MinimalLayout}
+        path="/success/paypal"
+        isPrivate
+      />   
+      <RouteWithLayout
+        component={SuccessPicPayView}
+        exact
+        layout={MinimalLayout}
+        path="/success/picpay"
+        isPrivate
+      />      
+      <RouteWithLayout
+        component={FailMercadoPagoView}
+        exact
+        layout={MinimalLayout}
+        path="/fail/mercadopago"
+        isPrivate
+      />      
+      <RouteWithLayout
+        component={FailPagSeguroView}
+        exact
+        layout={MinimalLayout}
+        path="/fail/pagseguro"
+        isPrivate
+      />
+      <RouteWithLayout
+        component={FailPayPalView}
+        exact
+        layout={MinimalLayout}
+        path="/fail/paypal"
+        isPrivate
+      />
+      <RouteWithLayout
+        component={FailPicPayView}
+        exact
+        layout={MinimalLayout}
+        path="/fail/picpay"
+        isPrivate
       />
       <Redirect to="/not-found" />
     </Switch>
