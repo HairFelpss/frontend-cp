@@ -8,6 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import history from './services/history';
 import { ThemeProvider } from '@material-ui/styles';
 import AuthProvider from './context/Auth';
+import UserProvider from './context/User';
 
 import { chartjs } from './helpers';
 import theme from './theme';
@@ -30,10 +31,12 @@ export default class App extends Component {
     return (
       <ThemeProvider theme={theme}>
         <AuthProvider>
-          <Router history={history}>
-            <Routes />
-            <ToastContainer autoClose={5000} />
-          </Router>
+          <UserProvider>
+            <Router history={history}>
+              <Routes />
+              <ToastContainer autoClose={5000} />
+            </Router>
+          </UserProvider>
         </AuthProvider>
       </ThemeProvider>
     );

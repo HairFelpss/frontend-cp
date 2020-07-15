@@ -167,6 +167,7 @@ const SignIn = props => {
     event.preventDefault();
     signIn(formState.values);
   };
+
   const hasError = field =>
     formState.touched[field] && formState.errors[field] ? true : false;
 
@@ -187,7 +188,8 @@ const SignIn = props => {
                   align="center"
                   className={classes.sugestion}
                   color="textSecondary"
-                  variant="body1">
+                  variant="body1"
+                >
                   Bem vindo ao nosso servidor
                 </Typography>
                 <TextField
@@ -225,7 +227,8 @@ const SignIn = props => {
                   fullWidth
                   size="large"
                   type="submit"
-                  variant="contained">
+                  variant="contained"
+                >
                   Sign in now
                 </Button>
                 <Typography color="textSecondary" variant="body1">

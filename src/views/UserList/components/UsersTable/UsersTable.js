@@ -139,7 +139,7 @@ const UsersTable = props => {
                     </TableCell>
                     <TableCell>{user.email}</TableCell>
                     <TableCell>
-                      {moment(user.createdAt).format('DD/MM/YYYY')}
+                      {moment(user.creatime).format('DD/MM/YYYY')}
                     </TableCell>
                   </TableRow>
                 ))}
