@@ -133,7 +133,8 @@ const TicketsTable = props => {
   const userCategory = {
     late: (
       <div className={classes.categoryRow}>
-        <WatchLaterIcon className={classes.see} /> atraso
+        <WatchLaterIcon className={classes.see} />
+        atraso
       </div>
     ),
     bug: (
@@ -144,7 +145,8 @@ const TicketsTable = props => {
     ),
     question: (
       <div className={classes.categoryRow}>
-        <HelpIcon className={classes.reOpen} /> duvida
+        <HelpIcon className={classes.reOpen} />
+        duvida
       </div>
     )
   };

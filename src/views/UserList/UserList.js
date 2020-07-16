@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/styles';
 
 import { UsersToolbar, UsersTable } from './components';
 
 import { useUser } from '../../context/User';
+//import Modal from '../../components/COLOCAR UM NOME INTELIGENTE TIPO FORM MODAL';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -16,12 +17,29 @@ const useStyles = makeStyles(theme => ({
 
 const UserList = () => {
   const classes = useStyles();
-  const { getUsers } = useUser();
-  const [users, setUsers] = useState([]);
+  const {
+    contextGetUsers,
+    contextUpdateUser,
+    contextDeleteUser,
+    users,
+    contextGetOneUser
+  } = useUser();
+
+  const [selectedUsers, setSelectedUsers] = useState([]);
+  const [user, setUser] = useState([]);
+
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const handleGetUsers = async () => {
-    const response = await getUsers();
-    setUsers(response);
+    await contextGetUsers();
   };
 
   useEffect(() => {
@@ -30,10 +48,26 @@ const UserList = () => {
 
   return (
     <div className={classes.root}>
-      <UsersToolbar />
+      <UsersToolbar
+        selectedUsers={selectedUsers}
+        contextGetOneUser={contextGetOneUser}
+        handleOpen={handleOpen}
+        setUser={setUser}
+        contextDeleteUser={contextDeleteUser}
+        contextGetUsers={contextGetUsers}
+        setSelectedUsers={setSelectedUsers}
+      />
       <div className={classes.content}>
-        <UsersTable users={users} />
+        <UsersTable
+          users={users}
+          setSelectedUsers={setSelectedUsers}
+          selectedUsers={selectedUsers}
+        />
       </div>
+      {/*<Modal open={open} handleClose={handleClose}>
+          <FORM user={user}         contextUpdateUser={contextUpdateUser}
+/>
+        </Modal>*/}
     </div>
   );
 };
