@@ -10,7 +10,7 @@ import {
   Divider,
   Grid,
   Button,
-  TextField,
+  TextField
 } from '@material-ui/core';
 import Save from '@material-ui/icons/Save';
 
@@ -19,19 +19,10 @@ const useStyles = makeStyles(() => ({
 }));
 
 const AccountDetails = props => {
-  const { className, ...rest } = props;
+  const { className, userStorage, ...rest } = props;
 
   const classes = useStyles();
-
-  const [values, setValues] = useState({
-    Name: 'Lucas Souza Mendes',
-    Login: 'Luquinha',
-    email: 'lucassouze@gmail.com',
-    C_email: 'lucassouze@gmail.com'
-  });
-
-  
-
+  const [values, setValues] = useState(userStorage);
   const handleChange = event => {
     setValues({
       ...values,
@@ -45,29 +36,16 @@ const AccountDetails = props => {
         <CardHeader subheader="Atualize suas informações" title="Dados" />
         <Divider />
         <CardContent>
-          
           <Grid container spacing={3}>
             <Grid item md={6} xs={12}>
               <TextField
                 fullWidth
                 label="Nome"
                 margin="dense"
-                name="Name"
+                name="name"
                 onChange={handleChange}
                 required
-                value={values.Name}
-                variant="outlined"
-              />
-            </Grid>
-            <Grid item md={6} xs={12}>
-              <TextField
-                fullWidth
-                label="Login"
-                margin="dense"
-                name="Login"
-                onChange={handleChange}
-                required
-                value={values.Login}
+                value={values.name}
                 variant="outlined"
               />
             </Grid>
@@ -91,13 +69,13 @@ const AccountDetails = props => {
                 name="C_email"
                 onChange={handleChange}
                 required
-                value={values.C_email}
+                value={values.email}
                 variant="outlined"
                 disabled
               />
             </Grid>
-            <Grid item md={6} xs={12}>   
-            <TextField
+            <Grid item md={6} xs={12}>
+              <TextField
                 fullWidth
                 label="Pergunta de verificação"
                 margin="dense"
@@ -107,7 +85,7 @@ const AccountDetails = props => {
                 value="Qual o nome do seu pet?"
                 variant="outlined"
                 disabled
-              /> 
+              />
             </Grid>
             <Grid item md={6} xs={12}>
               <TextField
@@ -120,7 +98,7 @@ const AccountDetails = props => {
                 required
                 type="text"
                 variant="outlined"
-              /> 
+              />
             </Grid>
           </Grid>
         </CardContent>
