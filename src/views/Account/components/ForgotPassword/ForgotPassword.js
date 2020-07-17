@@ -41,7 +41,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const ForgotPassword = props => {
-  const { className, ...rest } = props;
+  const { className, handleUpdateUser, ...rest } = props;
 
   const classes = useStyles();
   const [editMode, setEditMode] = useState(false);
@@ -64,7 +64,10 @@ const ForgotPassword = props => {
     });
   };
 
-  const handleUpdateUser = async () => {};
+  const handleEditMode = () => {
+    setEditMode(!editMode);
+    setValues({ oldPassword: '', password: '', confirmPassword: '' });
+  };
 
   return (
     <Card {...rest} className={clsx(classes.root, className)}>
@@ -193,14 +196,14 @@ const ForgotPassword = props => {
             className={classes.saveBtn}
             color="primary"
             variant="contained"
-            onClick={() => handleUpdateUser()}
+            onClick={() => handleUpdateUser(values)}
           >
             <Save /> <p style={{ paddingLeft: 10 }}>Salvar Dados</p>
           </Button>
           <Button
             className={classes.editBtn}
             variant="contained"
-            onClick={() => setEditMode(!editMode)}
+            onClick={() => handleEditMode()}
           >
             <Edit />
             <p style={{ paddingLeft: 10 }}>

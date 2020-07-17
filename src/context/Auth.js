@@ -14,7 +14,6 @@ export default function AuthProvider({ children }) {
   const signIn = async payload => {
     try {
       const response = await handleAuth(payload);
-      console.log(response);
       setStorageAuth(response.token);
       setStorageUserId(response.user.id);
       toast.info(`Bem vindo ${response.user.name}`);

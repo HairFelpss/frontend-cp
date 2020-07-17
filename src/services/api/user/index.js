@@ -26,18 +26,18 @@ export async function postUser(payload) {
     throw err;
   }
 }
-export async function updateUser(payload) {
+export async function updateUser(id, payload) {
   try {
-    const response = await api.put(`/users/${payload}`);
+    const response = await api.put(`/users/${id}`, payload);
     return response.data;
   } catch (err) {
     throw err;
   }
 }
 
-export async function deleteUser(payload) {
+export async function deleteUser(id) {
   try {
-    const response = await api.delete(`/users/${payload}`);
+    const response = await api.delete(`/users/${id}`);
     return response.data;
   } catch (err) {
     throw err;

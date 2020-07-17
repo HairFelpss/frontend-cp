@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState } from 'react';
+import { toast } from 'react-toastify';
 
 import {
   getUsers,
@@ -18,7 +19,7 @@ export default function UserProvider({ children }) {
       const response = await getUsers();
       setUser(response);
     } catch (err) {
-      console.log(err);
+      console.log('err => ', err);
     }
   };
 
@@ -27,24 +28,23 @@ export default function UserProvider({ children }) {
       const response = await getOneUser(payload);
       return response;
     } catch (err) {
-      console.log(err);
+      console.log('err => ', err);
     }
   };
   const contextPostUser = async payload => {
     try {
-      const response = await postUser(payload);
-      //setUser(response);
+      await postUser(payload);
     } catch (err) {
-      console.log(err);
+      console.log('err => ', err);
     }
   };
 
   const contextUpdateUser = async (id, payload) => {
     try {
-      const response = await updateUser(id, payload);
-      //setUser(response);
+      await updateUser(id, payload);
+      //toast.info(`Bem vindo ${response}`);
     } catch (err) {
-      console.log(err);
+      console.log('err => ', err);
     }
   };
 
@@ -53,7 +53,7 @@ export default function UserProvider({ children }) {
       const response = await deleteUser(payload);
       //setUser(response);
     } catch (err) {
-      console.log(err);
+      console.log('err => ', err);
     }
   };
 

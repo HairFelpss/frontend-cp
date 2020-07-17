@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
 const Account = () => {
   const classes = useStyles();
   const { storageUserId } = useAuth();
-  const { contextGetOneUser } = useUser();
+  const { contextGetOneUser, contextUpdateUser } = useUser();
 
   const [values, setValues] = useState({
     name: '',
@@ -24,6 +24,11 @@ const Account = () => {
     question: '',
     answer: ''
   });
+
+  const handleUpdateUser = async user => {
+    await contextUpdateUser(storageUserId, user);
+    handleUserInfo();
+  };
 
   const handleUserInfo = async () => {
     const response = await contextGetOneUser(storageUserId);
@@ -39,10 +44,18 @@ const Account = () => {
     <div className={classes.root}>
       <Grid container spacing={4}>
         <Grid item lg={8} md={6} xl={8} xs={12}>
-          <AccountDetails values={values} setValues={setValues} />
+          <AccountDetails
+            values={values}
+            setValues={setValues}
+            handleUpdateUser={handleUpdateUser}
+          />
         </Grid>
         <Grid item lg={4} md={6} xl={4} xs={12}>
-          <ForgotPassword values={values} setValues={setValues} />
+          <ForgotPassword
+            values={values}
+            setValues={setValues}
+            handleUpdateUser={handleUpdateUser}
+          />
         </Grid>
       </Grid>
     </div>

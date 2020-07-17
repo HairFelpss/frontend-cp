@@ -45,7 +45,14 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const AccountDetails = props => {
-  const { className, values, setValues, handleUserInfo, ...rest } = props;
+  const {
+    className,
+    values,
+    setValues,
+    handleUserInfo,
+    handleUpdateUser,
+    ...rest
+  } = props;
 
   const classes = useStyles();
 
@@ -168,6 +175,7 @@ const AccountDetails = props => {
             className={classes.saveBtn}
             color="primary"
             variant="contained"
+            onClick={() => handleUpdateUser(values)}
           >
             <Save /> <p style={{ paddingLeft: 10 }}>Salvar Dados</p>
           </Button>

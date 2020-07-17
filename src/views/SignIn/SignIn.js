@@ -172,7 +172,7 @@ const SignIn = props => {
     formState.touched[field] && formState.errors[field] ? true : false;
 
   return (
-    <div className={classes.root}>
+    <div {...props} className={classes.root}>
       <Grid className={classes.grid} container>
         <Grid className={classes.content} item lg={12} xs={12}>
           <div className={classes.content}>

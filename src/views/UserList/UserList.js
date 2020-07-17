@@ -38,8 +38,6 @@ const UserList = () => {
     setOpen(false);
   };
 
-  console.log(user);
-
   const handleGetUsers = async () => {
     await contextGetUsers();
   };
