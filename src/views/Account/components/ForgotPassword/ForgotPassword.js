@@ -114,7 +114,7 @@ const ForgotPassword = props => {
             <Grid item md={6} xs={12}>
               <TextField
                 fullWidth
-                helperText="Digite sua senha atual"
+                helperText="Digite sua nova senha"
                 label="New Password"
                 margin="dense"
                 name="password"
@@ -152,6 +152,7 @@ const ForgotPassword = props => {
               <TextField
                 fullWidth
                 label="Confirm Password"
+                helperText="Confirme sua nova senha"
                 margin="dense"
                 name="confirmPassword"
                 onChange={handleChange}
