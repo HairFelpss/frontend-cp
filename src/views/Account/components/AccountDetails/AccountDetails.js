@@ -10,20 +10,50 @@ import {
   Divider,
   Grid,
   Button,
-  TextField
+  TextField,
+  Select,
+  FormControl,
+  MenuItem,
+  InputLabel
 } from '@material-ui/core';
 import Save from '@material-ui/icons/Save';
+import Edit from '@material-ui/icons/Edit';
+import uuid from 'uuid/v1';
 
-const useStyles = makeStyles(() => ({
-  root: {}
+import questions from '../../../../common/verificationQuestion';
+const useStyles = makeStyles(theme => ({
+  actions: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+  saveBtn: {
+    backgroundColor: theme.palette.primary.main
+  },
+  editBtn: {
+    backgroundColor: theme.palette.error.main,
+    color: theme.palette.white
+  },
+  formControl: {
+    marginTop: theme.spacing(2),
+    minWidth: 240
+  },
+  select: {
+    color: '#000000',
+    opacity: 0.3
+  }
 }));
 
 const AccountDetails = props => {
-  const { className, userStorage, ...rest } = props;
+  const { className, values, setValues, handleUserInfo, ...rest } = props;
 
   const classes = useStyles();
-  const [values, setValues] = useState(userStorage);
+
+  const [defaultQuestion, setDefaultQuestion] = useState('');
+  const [editMode, setEditMode] = useState(false);
+
   const handleChange = event => {
+    setDefaultQuestion(event.target.value);
     setValues({
       ...values,
       [event.target.name]: event.target.value
@@ -47,6 +77,20 @@ const AccountDetails = props => {
                 required
                 value={values.name}
                 variant="outlined"
+                disabled={!editMode}
+              />
+            </Grid>
+            <Grid item md={6} xs={12}>
+              <TextField
+                fullWidth
+                label="Nick"
+                margin="dense"
+                name="nick"
+                onChange={handleChange}
+                required
+                value={values.truename}
+                variant="outlined"
+                disabled={!editMode}
               />
             </Grid>
             <Grid item md={6} xs={12}>
@@ -59,6 +103,7 @@ const AccountDetails = props => {
                 required
                 value={values.email}
                 variant="outlined"
+                disabled={!editMode}
               />
             </Grid>
             <Grid item md={6} xs={12}>
@@ -71,41 +116,70 @@ const AccountDetails = props => {
                 required
                 value={values.email}
                 variant="outlined"
-                disabled
+                disabled={!editMode}
               />
+            </Grid>
+            <Grid item md={6} xs={12}>
+              <FormControl variant="outlined" className={classes.formControl}>
+                <InputLabel
+                  id="demo-simple-select-outlined-label"
+                  className={editMode ? null : classes.select}
+                >
+                  Pergunta de Verificação
+                </InputLabel>
+                <Select
+                  id="demo-simple-select-outlined"
+                  value={defaultQuestion}
+                  onChange={handleChange}
+                  label="Pergunta"
+                  name="question"
+                  disabled={!editMode}
+                >
+                  <MenuItem value="">
+                    <em>None</em>
+                  </MenuItem>
+                  {questions.map(question => (
+                    <MenuItem key={uuid()} value={question}>
+                      {question}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
             </Grid>
             <Grid item md={6} xs={12}>
               <TextField
                 fullWidth
-                label="Pergunta de verificação"
-                margin="dense"
-                name="Pergunta"
-                onChange={handleChange}
-                required
-                value="Qual o nome do seu pet?"
-                variant="outlined"
-                disabled
-              />
-            </Grid>
-            <Grid item md={6} xs={12}>
-              <TextField
-                className={classes.textField}
-                fullWidth
-                margin="dense"
                 label="Resposta"
-                name="Resposta"
+                margin="dense"
+                name="answer"
                 onChange={handleChange}
                 required
-                type="text"
+                value={values.answer}
                 variant="outlined"
+                className={classes.textField}
+                disabled={!editMode}
               />
             </Grid>
           </Grid>
         </CardContent>
         <Divider />
-        <CardActions>
-          <Button color="primary" variant="contained">
+        <CardActions className={classes.actions}>
+          <Button
+            className={classes.saveBtn}
+            color="primary"
+            variant="contained"
+          >
             <Save /> <p style={{ paddingLeft: 10 }}>Salvar Dados</p>
+          </Button>
+          <Button
+            className={classes.editBtn}
+            variant="contained"
+            onClick={() => setEditMode(!editMode)}
+          >
+            <Edit />
+            <p style={{ paddingLeft: 10 }}>
+              {editMode ? 'Bloquear' : 'Editar'}
+            </p>
           </Button>
         </CardActions>
       </form>

@@ -26,7 +26,7 @@ const UserList = () => {
   } = useUser();
 
   const [selectedUsers, setSelectedUsers] = useState([]);
-  const [user, setUser] = useState([]);
+  const [user, setUser] = useState({});
 
   const [open, setOpen] = useState(false);
 
@@ -37,6 +37,8 @@ const UserList = () => {
   const handleClose = () => {
     setOpen(false);
   };
+
+  console.log(user);
 
   const handleGetUsers = async () => {
     await contextGetUsers();
