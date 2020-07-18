@@ -5,7 +5,7 @@ import { UsersToolbar, UsersTable } from './components';
 import Dialog from '@material-ui/core/Dialog';
 import { useUser } from '../../context/User';
 
-import  Modal  from '../../components/FormModalCreate';
+import  Modal  from '../../components/FormModal';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -29,7 +29,7 @@ const UserList = () => {
   const [selectedUsers, setSelectedUsers] = useState([]);
   const [user, setUser] = useState([]);
   const [open, setOpen] = useState(false);
-
+  
   const handleOpen = () => {
     setOpen(true);
   };

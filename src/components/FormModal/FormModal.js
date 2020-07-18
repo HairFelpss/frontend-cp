@@ -13,6 +13,7 @@ import {
 } from '@material-ui/core';
 import uuid from 'uuid/v1';
 import questions from '../../common/verificationQuestion';
+
 const useStyles = makeStyles(theme => ({
   modalCreate: {
     height: '444px',
@@ -26,23 +27,27 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const FormModalCreate = props => {
-    const {className, 
-           onChange,
-           user,
+const FormModal = props => {
+    const {user,
+           setUser,
            handleClose,
            contextUpdateUser,
-            ...rest} = props
+           selectedUser } = props
 
 const classes = useStyles();
 
+
+const handleUpdateUser = async user => {
+  await contextUpdateUser(selectedUser, user);
+  
+};
 
 return (
 
     <div>                
         <DialogContent className={classes.modalCreate}>
         <Typography className={classes.title} variant="h2">
-            Sign in
+            Edit User
           </Typography>
           <Grid container spacing={3}>
             <Grid item md={6} xs={12}>
@@ -52,7 +57,7 @@ return (
                 margin="dense"
                 name="login"
                 variant="outlined"
-                value={user.name}                
+                value={user.truename}                           
               />
             </Grid>
             <Grid item md={6} xs={12}>
@@ -62,6 +67,7 @@ return (
                 margin="dense"
                 name="nome"
                 variant="outlined"
+                value={user.name}
               />
             </Grid>
             <Grid item md={6} xs={12}>
@@ -71,6 +77,7 @@ return (
                 margin="dense"
                 name="email"
                 variant="outlined"
+                value={user.email}
               />
             </Grid>
             <Grid item md={6} xs={12}>
@@ -80,6 +87,7 @@ return (
                 margin="dense"
                 name="C_email"
                 variant="outlined"
+                value={user.email}
               />
             </Grid>
             <Grid item md={6} xs={12}>
@@ -128,6 +136,7 @@ return (
                 margin="dense"
                 name="answer"     
                 variant="outlined"
+                value={user.answer}
               />
             </Grid>
           </Grid>
@@ -142,7 +151,7 @@ return (
                   variant="contained"
                   onClick={handleClose}
                 >
-                  Create
+                  Save User
         </Button>
     </div>
   );
@@ -150,4 +159,4 @@ return (
 
 
 
-export default FormModalCreate;
+export default FormModal;
