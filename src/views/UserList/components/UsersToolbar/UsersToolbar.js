@@ -51,8 +51,9 @@ const UsersToolbar = props => {
     const response = await contextGetOneUser(selectedUsers);
     setUser(response);
     handleOpen(true);
+  
   };
-
+  
   const handleDeleteUser = async () => {
     await contextDeleteUser(selectedUsers);
     await contextGetUsers();

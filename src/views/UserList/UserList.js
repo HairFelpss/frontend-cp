@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/styles';
 
 import { UsersToolbar, UsersTable } from './components';
-
+import Dialog from '@material-ui/core/Dialog';
 import { useUser } from '../../context/User';
-//import Modal from '../../components/COLOCAR UM NOME INTELIGENTE TIPO FORM MODAL';
+
+import  Modal  from '../../components/FormModalCreate';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -26,8 +27,7 @@ const UserList = () => {
   } = useUser();
 
   const [selectedUsers, setSelectedUsers] = useState([]);
-  const [user, setUser] = useState({});
-
+  const [user, setUser] = useState([]);
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
@@ -41,6 +41,7 @@ const UserList = () => {
   const handleGetUsers = async () => {
     await contextGetUsers();
   };
+    
 
   useEffect(() => {
     handleGetUsers();
@@ -64,19 +65,9 @@ const UserList = () => {
           selectedUsers={selectedUsers}
         />
       </div>
-      {/*<Modal open={open} handleClose={handleClose}>
-          <FORM user={user} contextUpdateUser={contextUpdateUser} />
-          Talvez voce vai ter que passar mais coisa ze, provavelmente ja
-          ta criada eh so passar, odeio "eh" mas meu teclado eh americano
-          e vou mudar so pra nao parecer bobao nao fodas.
-
-          Faz com calma a parada, raciocina, faz funcionar principalemnte,
-          quando voce conseguir, possivelmente a mairia dos outros modais
-          vao ser a ctrl+c ctrl+v, entao nao gasta 20h nisso tbm nao porque
-          ce vai ta tirando
-
-          beba agua e jesus te ama bejos
-        </Modal>*/}
+      <Dialog  open={open} handleClose={handleClose}>
+        <Modal   open={open} user={user} handleClose={handleClose} />
+      </Dialog>
     </div>
   );
 };
