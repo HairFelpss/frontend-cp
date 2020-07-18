@@ -2,10 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/styles';
 
 import { UsersToolbar, UsersTable } from './components';
-import Dialog from '@material-ui/core/Dialog';
 import { useUser } from '../../context/User';
 
-import  Modal  from '../../components/FormModal';
+import Modal from '../../components/FormModal';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -29,7 +28,7 @@ const UserList = () => {
   const [selectedUsers, setSelectedUsers] = useState([]);
   const [user, setUser] = useState([]);
   const [open, setOpen] = useState(false);
-  
+
   const handleOpen = () => {
     setOpen(true);
   };
@@ -41,7 +40,6 @@ const UserList = () => {
   const handleGetUsers = async () => {
     await contextGetUsers();
   };
-    
 
   useEffect(() => {
     handleGetUsers();
@@ -65,9 +63,14 @@ const UserList = () => {
           selectedUsers={selectedUsers}
         />
       </div>
-      <Dialog  open={open} handleClose={handleClose}>
-        <Modal   open={open} user={user} handleClose={handleClose} />
-      </Dialog>
+      <Modal
+        open={open}
+        specificObj={user}
+        handleClose={handleClose}
+        getFunction={contextGetUsers}
+        updateFunction={contextUpdateUser}
+        selectedObj={selectedUsers}
+      />
     </div>
   );
 };

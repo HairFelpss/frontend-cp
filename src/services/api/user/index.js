@@ -28,7 +28,9 @@ export async function postUser(payload) {
 }
 export async function updateUser(id, payload) {
   try {
+    console.log('asdsadsadsad => ', id, payload);
     const response = await api.put(`/users/${id}`, payload);
+    console.log(response.data);
     return response.data;
   } catch (err) {
     throw err;
