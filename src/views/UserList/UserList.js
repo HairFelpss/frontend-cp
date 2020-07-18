@@ -27,7 +27,6 @@ const UserList = () => {
 
   const [selectedUsers, setSelectedUsers] = useState([]);
   const [user, setUser] = useState({});
-
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {

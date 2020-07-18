@@ -11,18 +11,18 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Mercadopago = ({ box }) => {
+const Mercadopago = ({ treasure }) => {
   const classes = useStyles();
 
   const [code, setCode] = useState('');
 
   useEffect(() => {
     const buy = async () => {
-      const mercadopago = await handleMercadoPago(box);
+      const mercadopago = await handleMercadoPago(treasure);
       setCode(mercadopago);
     };
     buy();
-  }, [box]);
+  }, [treasure]);
 
   return (
     <form action={code} method="POST" target="_blank">
