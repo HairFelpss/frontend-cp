@@ -6,6 +6,7 @@ import {
   Card,
   CardContent,
   CardActions,
+  Radio,
   Typography,
   Grid,
   Divider,
@@ -14,9 +15,19 @@ import {
 } from '@material-ui/core';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import GetAppIcon from '@material-ui/icons/GetApp';
+import moment from 'moment';
+import 'moment/locale/pt-br';
 
 const useStyles = makeStyles(theme => ({
   root: {},
+  content: {
+    display: 'flex',
+    flexDirection: 'column', //this will allow flex-end to move item to the right
+    justifyContent: 'center'
+  },
+  leftItem: {
+    alignSelf: 'flex-start'
+  },
   imageContainer: {
     height: 64,
     width: 64,
@@ -49,22 +60,50 @@ const useStyles = makeStyles(theme => ({
     display: '-webkit-box',
     '-webkit-line-clamp': 2 /* number of lines to show */,
     '-webkit-box-orient': 'vertical'
+  },
+  date: {
+    width: '11ch',
+    overflow: 'hidden',
+    whiteSpace: 'nowrap',
+    textOverflow: 'ellipsis'
   }
 }));
 
 const ProductCard = props => {
-  const { className, product, open, handleOpen, handleClose, ...rest } = props;
+  const {
+    className,
+    treasure,
+    open,
+    handleOpen,
+    handleSelectOne,
+    selectedTreasure,
+    ...rest
+  } = props;
+
   const classes = useStyles();
 
   return (
     <Card {...rest} className={clsx(classes.root, className)}>
       <CardContent>
-        <div className={classes.imageContainer}>
-          <img alt="Product" className={classes.image} src={product.imageUrl} />
+        <div className={classes.content}>
+          <Radio
+            className={classes.leftItem}
+            checked={selectedTreasure === treasure.id}
+            color="primary"
+            onChange={() => handleSelectOne(treasure, treasure.id)}
+            value="true"
+          />
+          <div className={classes.imageContainer}>
+            <img
+              alt="Product"
+              className={classes.image}
+              src={treasure.image_url}
+            />
+          </div>
         </div>
         <div className={classes.text}>
           <Typography align="center" gutterBottom variant="h4">
-            {product.title}
+            {treasure.title}
           </Typography>
           <Tooltip
             title={
@@ -73,7 +112,7 @@ const ProductCard = props => {
                 variant="body1"
                 className={classes.tooltip}
               >
-                {product.description}
+                {treasure.description}
               </Typography>
             }
           >
@@ -82,7 +121,7 @@ const ProductCard = props => {
               align="center"
               variant="body1"
             >
-              {product.description}
+              {treasure.description}
             </Typography>
           </Tooltip>
         </div>
@@ -91,22 +130,45 @@ const ProductCard = props => {
       <CardActions>
         <Grid container justify="space-between">
           <Grid className={classes.statsItem} item>
-            <AccessTimeIcon className={classes.statsIcon} />
-            <Typography display="inline" variant="body2">
-              Att a 2hr atrás
-            </Typography>
+            <Tooltip
+              title={
+                <Typography
+                  align="right"
+                  variant="body1"
+                  className={classes.tooltip}
+                >
+                  {moment(treasure.updated_at)
+                    .locale('pt-br')
+                    .subtract(2, 'days')
+                    .calendar()}
+                </Typography>
+              }
+            >
+              <div className={classes.statsItem}>
+                <AccessTimeIcon className={classes.statsIcon} />
+                <Typography
+                  display="inline"
+                  variant="body2"
+                  className={classes.date}
+                >
+                  {moment(treasure.updated_at)
+                    .locale('pt-br')
+                    .calendar()}
+                </Typography>
+              </div>
+            </Tooltip>
           </Grid>
           <Button
             variant="contained"
             color="primary"
-            onClick={() => handleOpen(product)}
+            onClick={() => handleOpen(treasure)}
           >
-            R${product.amount}
+            R${treasure.price}
           </Button>
           <Grid className={classes.statsItem} item>
             <GetAppIcon className={classes.statsIcon} />
             <Typography display="inline" variant="body2">
-              {product.totalDownloads}
+              Disponiveis: {treasure.qt_bought}
             </Typography>
           </Grid>
         </Grid>
@@ -117,7 +179,7 @@ const ProductCard = props => {
 
 ProductCard.propTypes = {
   className: PropTypes.string,
-  product: PropTypes.object.isRequired
+  treasure: PropTypes.object.isRequired
 };
 
 export default ProductCard;

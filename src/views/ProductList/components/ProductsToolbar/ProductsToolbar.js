@@ -28,16 +28,50 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const ProductsToolbar = props => {
-  const { className, ...rest } = props;
+  const {
+    className,
+    contextGetTreasures,
+    contextUpdateTreasure,
+    contextDeleteTreasure,
+    currentTreasure,
+    setCurrentTreasure,
+    handleOpen,
+    selectedTreasure,
+    ...rest
+  } = props;
 
   const classes = useStyles();
+
+  const handleUpdateTreasure = async () => {
+    const response = await contextUpdateTreasure(
+      selectedTreasure,
+      currentTreasure
+    );
+    //handleEditOpen(true);
+  };
+
+  const handleDeleteTreasure = async () => {
+    await contextDeleteTreasure(selectedTreasure);
+    await contextGetTreasures();
+    setCurrentTreasure({});
+  };
 
   return (
     <div {...rest} className={clsx(classes.root, className)}>
       <div className={classes.row}>
         <span className={classes.spacer} />
-        <Button className={classes.deleteButton}>DELETE</Button>
-        <Button className={classes.editButton}>EDIT</Button>
+        <Button
+          className={classes.deleteButton}
+          onClick={() => handleDeleteTreasure()}
+        >
+          DELETE
+        </Button>
+        <Button
+          className={classes.editButton}
+          onClick={() => handleUpdateTreasure()}
+        >
+          EDIT
+        </Button>
         <Button color="primary" variant="contained">
           Add product
         </Button>

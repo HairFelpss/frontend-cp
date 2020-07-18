@@ -10,11 +10,11 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Paypal = ({ box, handleClose }) => {
+const Paypal = ({ treasure, handleClose }) => {
   const classes = useStyles();
 
   const buy = async () => {
-    window.open(await handlePaypal(box), '_blank');
+    window.open(await handlePaypal(treasure), '_blank');
   };
 
   return (

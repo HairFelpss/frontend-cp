@@ -45,6 +45,7 @@ const UsersToolbar = props => {
   } = props;
 
   const classes = useStyles();
+
   const handleOpenUpdateUserModal = async () => {
     if (selectedUsers.length === 0 || selectedUsers.length > 1) return;
 
