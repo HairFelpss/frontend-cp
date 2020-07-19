@@ -186,7 +186,7 @@ const SignUp = props => {
   const handleSignUp = async event => {
     event.preventDefault();
     const response = await contextPostUser(formState.values);
-    //history.push('/');
+    history.push('/');
   };
 
   const hasError = field =>
@@ -221,7 +221,6 @@ const SignUp = props => {
                   value={formState.values.login || ''}
                   variant="outlined"
                 />
-
                 <TextField
                   className={classes.textField}
                   error={hasError('name')}
@@ -339,6 +338,7 @@ const SignUp = props => {
                       label="Resposta"
                       name="answer"
                       onChange={handleChange}
+                      value={formState.values.answer || ''}
                       required
                       type="text"
                       variant="outlined"
@@ -389,7 +389,7 @@ const SignUp = props => {
                 </Button>
                 <Typography color="textSecondary" variant="body1">
                   Have an account?{' '}
-                  <Link component={RouterLink} to="/sign-in" variant="h6">
+                  <Link component={RouterLink} to="/" variant="h6">
                     Sign in
                   </Link>
                 </Typography>

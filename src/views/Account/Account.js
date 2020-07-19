@@ -24,7 +24,7 @@ const Account = () => {
     question: '',
     answer: ''
   });
-
+  console.log(storageUserId)
   const handleUpdateUser = async user => {
     await contextUpdateUser(storageUserId, user);
     handleUserInfo();

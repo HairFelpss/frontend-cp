@@ -46,7 +46,7 @@ const UsersToolbar = props => {
 
   const classes = useStyles();
 
-  const handleUpdateUser = async () => {
+  const handleOpenUpdateUserModal = async () => {
     if (selectedUsers.length === 0 || selectedUsers.length > 1) return;
 
     const response = await contextGetOneUser(selectedUsers);
@@ -54,7 +54,13 @@ const UsersToolbar = props => {
     handleOpen(true);
   };
 
+  const handleOpenCreateUserModal = async () => {
+    handleOpen(true);
+  };
+
   const handleDeleteUser = async () => {
+    if (selectedUsers.length === 0 || selectedUsers.length > 1) return;
+
     await contextDeleteUser(selectedUsers);
     await contextGetUsers();
     setSelectedUsers([]);
@@ -72,11 +78,15 @@ const UsersToolbar = props => {
         </Button>
         <Button
           className={classes.editButton}
-          onClick={() => handleUpdateUser()}
+          onClick={() => handleOpenUpdateUserModal()}
         >
           EDIT
         </Button>
-        <Button color="primary" variant="contained">
+        <Button
+          color="primary"
+          variant="contained"
+          onClick={() => handleOpenCreateUserModal()}
+        >
           Add user
         </Button>
       </div>
