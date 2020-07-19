@@ -11,18 +11,18 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Pagseguro = ({ box }) => {
+const Pagseguro = ({ treasure }) => {
   const classes = useStyles();
 
   const [code, setCode] = useState('');
-
+  console.log('treasure=> ', treasure);
   useEffect(() => {
     const buy = async () => {
-      const pagseguro = await handlePagSeguro(box);
+      const pagseguro = await handlePagSeguro(treasure);
       setCode(pagseguro.boxInfo.code);
     };
     buy();
-  }, [box]);
+  }, [treasure]);
 
   return (
     <form
