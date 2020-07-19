@@ -45,11 +45,16 @@ const UsersToolbar = props => {
   } = props;
 
   const classes = useStyles();
+
   const handleOpenUpdateUserModal = async () => {
     if (selectedUsers.length === 0 || selectedUsers.length > 1) return;
 
     const response = await contextGetOneUser(selectedUsers);
     setUser(response);
+    handleOpen(true);
+  };
+
+  const handleOpenCreateUserModal = async () => {
     handleOpen(true);
   };
 
@@ -77,7 +82,11 @@ const UsersToolbar = props => {
         >
           EDIT
         </Button>
-        <Button color="primary" variant="contained">
+        <Button
+          color="primary"
+          variant="contained"
+          onClick={() => handleOpenCreateUserModal()}
+        >
           Add user
         </Button>
       </div>
