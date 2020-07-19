@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Fail = () => {
+const FailPayPal = () => {
   const classes = useStyles();
 
   return (
@@ -43,4 +43,4 @@ const Fail = () => {
   );
 };
 
-export default Fail;
+export default FailPayPal;

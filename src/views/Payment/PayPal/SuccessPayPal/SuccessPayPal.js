@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Success = () => {
+const SuccessPayPal = () => {
   const classes = useStyles();
   const [type, setType] = useState('');
   const [code, setCode] = useState('');
@@ -74,4 +74,4 @@ const Success = () => {
   );
 };
 
-export default Success;
+export default SuccessPayPal;
