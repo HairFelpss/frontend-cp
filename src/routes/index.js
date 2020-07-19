@@ -12,7 +12,8 @@ import {
   SignUp as SignUpView,
   SignIn as SignInView,
   NotFound as NotFoundView,
-  Ticket as TicketView
+  Ticket as TicketView,
+  Extract as ExtractView
 } from '../views';
 
 import { Success as SuccessView, Fail as FailView } from '../views/Payment';
@@ -53,6 +54,13 @@ const Routes = () => {
         exact
         layout={MainLayout}
         path="/account"
+        isPrivate
+      />
+      <RouteWithLayout
+        component={ExtractView}
+        exact
+        layout={MainLayout}
+        path="/extract"
         isPrivate
       />
       <RouteWithLayout

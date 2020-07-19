@@ -10,6 +10,7 @@ import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import SettingsIcon from '@material-ui/icons/Settings';
 import ExitToAppOutlinedIcon from '@material-ui/icons/ExitToAppOutlined';
 import ConfirmationNumberRoundedIcon from '@material-ui/icons/ConfirmationNumberRounded';
+import AssignmentIcon from '@material-ui/icons/Assignment';
 
 import { Profile, SidebarNav } from './components';
 
@@ -70,6 +71,11 @@ const Sidebar = props => {
       title: 'Account',
       href: '/account',
       icon: <AccountBoxIcon />
+    },
+    {
+      title: 'Extract',
+      href: '/extract',
+      icon: <AssignmentIcon />
     },
     {
       title: 'Settings',
