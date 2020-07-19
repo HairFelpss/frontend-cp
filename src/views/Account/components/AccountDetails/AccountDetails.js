@@ -17,36 +17,54 @@ import {
   InputLabel
 } from '@material-ui/core';
 import Save from '@material-ui/icons/Save';
+import Edit from '@material-ui/icons/Edit';
+import uuid from 'uuid/v1';
 
-const useStyles = makeStyles(() => ({
-  root: {},
-  formControl: {  
-    minWidth: 372,
-    marginTop: 8
-    
+import questions from '../../../../common/verificationQuestion';
+const useStyles = makeStyles(theme => ({
+  actions: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+  saveBtn: {
+    backgroundColor: theme.palette.primary.main
+  },
+  editBtn: {
+    backgroundColor: theme.palette.error.main,
+    color: theme.palette.white
+  },
+  formControl: {
+    marginTop: theme.spacing(2),
+    minWidth: 240
+  },
+  select: {
+    color: '#000000',
+    opacity: 0.3
   }
 }));
 
 const AccountDetails = props => {
-  const { className, ...rest } = props;
+  const {
+    className,
+    values,
+    setValues,
+    handleUserInfo,
+    handleUpdateUser,
+    ...rest
+  } = props;
 
   const classes = useStyles();
 
-  const [values, setValues] = useState({
-    Name: 'Lucas Souza Mendes',
-    Login: 'Luquinha',
-    email: 'lucassouze@gmail.com',
-    C_email: 'lucassouze@gmail.com'
-  });
-
-  const [ age, setAge] = useState('');
+  const [defaultQuestion, setDefaultQuestion] = useState('');
+  const [editMode, setEditMode] = useState(false);
 
   const handleChange = event => {
+    setDefaultQuestion(event.target.value);
     setValues({
       ...values,
       [event.target.name]: event.target.value
     });
-    setAge(event.target.value)
   };
 
   return (
@@ -61,23 +79,25 @@ const AccountDetails = props => {
                 fullWidth
                 label="Nome"
                 margin="dense"
-                name="Name"
+                name="name"
                 onChange={handleChange}
                 required
-                value={values.Name}
+                value={values.name}
                 variant="outlined"
+                disabled={!editMode}
               />
             </Grid>
             <Grid item md={6} xs={12}>
               <TextField
                 fullWidth
-                label="Login"
+                label="Nick"
                 margin="dense"
-                name="Login"
+                name="nick"
                 onChange={handleChange}
                 required
-                value={values.Login}
+                value={values.truename}
                 variant="outlined"
+                disabled={!editMode}
               />
             </Grid>
             <Grid item md={6} xs={12}>
@@ -90,6 +110,7 @@ const AccountDetails = props => {
                 required
                 value={values.email}
                 variant="outlined"
+                disabled={!editMode}
               />
             </Grid>
             <Grid item md={6} xs={12}>
@@ -100,52 +121,73 @@ const AccountDetails = props => {
                 name="C_email"
                 onChange={handleChange}
                 required
-                value={values.C_email}
+                value={values.email}
                 variant="outlined"
-                disabled
+                disabled={!editMode}
               />
             </Grid>
-            <Grid item md={6} xs={12}>   
+            <Grid item md={6} xs={12}>
               <FormControl variant="outlined" className={classes.formControl}>
-                <InputLabel 
-                  id="demo-simple-select-outlined-label">Pergunta de Verificação</InputLabel>
+                <InputLabel
+                  id="demo-simple-select-outlined-label"
+                  className={editMode ? null : classes.select}
+                >
+                  Pergunta de Verificação
+                </InputLabel>
                 <Select
                   id="demo-simple-select-outlined"
-                  margin="dense"
-                  value={age}
+                  value={defaultQuestion}
                   onChange={handleChange}
-                  label="Esse Aqui"
+                  label="Pergunta"
+                  name="question"
+                  disabled={!editMode}
                 >
                   <MenuItem value="">
                     <em>None</em>
                   </MenuItem>
-                  <MenuItem value={10}>Nome do seu cachorro</MenuItem>
-                  <MenuItem value={20}>Cor favorita</MenuItem>
-                  <MenuItem value={30}>Seu apelido</MenuItem>
-                  <MenuItem value={40}>Comida preferida</MenuItem>
-                  <MenuItem value={50}>Local favorito</MenuItem>
+                  {questions.map(question => (
+                    <MenuItem key={uuid()} value={question}>
+                      {question}
+                    </MenuItem>
+                  ))}
                 </Select>
               </FormControl>
             </Grid>
             <Grid item md={6} xs={12}>
               <TextField
-                className={classes.textField}
                 fullWidth
-                margin="dense"
                 label="Resposta"
-                name="Resposta"
+                margin="dense"
+                name="answer"
                 onChange={handleChange}
                 required
-                type="text"
+                value={values.answer}
                 variant="outlined"
+                className={classes.textField}
+                disabled={!editMode}
               />
             </Grid>
           </Grid>
         </CardContent>
         <Divider />
-        <CardActions>
-          <Button color="primary" variant="contained">
+        <CardActions className={classes.actions}>
+          <Button
+            className={classes.saveBtn}
+            color="primary"
+            variant="contained"
+            onClick={() => handleUpdateUser(values)}
+          >
             <Save /> <p style={{ paddingLeft: 10 }}>Salvar Dados</p>
+          </Button>
+          <Button
+            className={classes.editBtn}
+            variant="contained"
+            onClick={() => setEditMode(!editMode)}
+          >
+            <Edit />
+            <p style={{ paddingLeft: 10 }}>
+              {editMode ? 'Bloquear' : 'Editar'}
+            </p>
           </Button>
         </CardActions>
       </form>

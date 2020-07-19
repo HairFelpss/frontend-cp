@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/styles';
 
-import handlePagSeguro from '../../../services/api/pagseguro';
+import handlePagSeguro from '../../../services/api/payment/pagseguro';
 
 const useStyles = makeStyles(theme => ({
   image: {
@@ -11,18 +11,18 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Pagseguro = ({ box }) => {
+const Pagseguro = ({ treasure }) => {
   const classes = useStyles();
 
   const [code, setCode] = useState('');
-
+  console.log('treasure=> ', treasure);
   useEffect(() => {
     const buy = async () => {
-      const pagseguro = await handlePagSeguro(box);
+      const pagseguro = await handlePagSeguro(treasure);
       setCode(pagseguro.boxInfo.code);
     };
     buy();
-  }, [box]);
+  }, [treasure]);
 
   return (
     <form

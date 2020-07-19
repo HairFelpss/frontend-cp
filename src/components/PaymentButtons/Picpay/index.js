@@ -9,7 +9,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Picpay = ({ box }) => {
+const Picpay = ({ treasure }) => {
   const classes = useStyles();
 
   return (

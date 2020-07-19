@@ -167,11 +167,12 @@ const SignIn = props => {
     event.preventDefault();
     signIn(formState.values);
   };
+
   const hasError = field =>
     formState.touched[field] && formState.errors[field] ? true : false;
 
   return (
-    <div className={classes.root}>
+    <div {...props} className={classes.root}>
       <Grid className={classes.grid} container>
         <Grid className={classes.content} item lg={12} xs={12}>
           <div className={classes.content}>
@@ -187,7 +188,8 @@ const SignIn = props => {
                   align="center"
                   className={classes.sugestion}
                   color="textSecondary"
-                  variant="body1">
+                  variant="body1"
+                >
                   Bem vindo ao nosso servidor
                 </Typography>
                 <TextField
@@ -225,7 +227,8 @@ const SignIn = props => {
                   fullWidth
                   size="large"
                   type="submit"
-                  variant="contained">
+                  variant="contained"
+                >
                   Sign in now
                 </Button>
                 <Typography color="textSecondary" variant="body1">

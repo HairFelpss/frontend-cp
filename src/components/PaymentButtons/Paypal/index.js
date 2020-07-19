@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/styles';
-import handlePaypal from '../../../services/api/paypal';
+import handlePaypal from '../../../services/api/payment/paypal';
 
 const useStyles = makeStyles(theme => ({
   image: {
@@ -10,11 +10,11 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Paypal = ({ box, handleClose }) => {
+const Paypal = ({ treasure, handleClose }) => {
   const classes = useStyles();
 
   const buy = async () => {
-    window.open(await handlePaypal(box), '_blank');
+    window.open(await handlePaypal(treasure), '_blank');
   };
 
   return (

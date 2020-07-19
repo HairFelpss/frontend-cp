@@ -34,8 +34,7 @@ const FailPayPal = () => {
             <img
               alt="Under development"
               className={classes.image}
-              src="/images/wait.svg"
-              ð
+              src="/images/warning.svg"
             />
           </div>
         </Grid>

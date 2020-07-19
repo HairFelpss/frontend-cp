@@ -18,6 +18,11 @@ import {
   InputLabel
 } from '@material-ui/core';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import uuid from 'uuid/v1';
+
+import { useUser } from '../../context/User';
+
+import questions from '../../common/verificationQuestion';
 
 const schema = {
   name: {
@@ -39,11 +44,15 @@ const schema = {
       maximum: 64
     }
   },
-  c_email: {
+  confirm_email: {
     presence: { allowEmpty: false, message: 'is required' },
     email: true,
     length: {
       maximum: 64
+    },
+    equality: {
+      attribute: 'email',
+      message: '^The emails does not match'
     }
   },
   password: {
@@ -52,10 +61,14 @@ const schema = {
       maximum: 128
     }
   },
-  c_password: {
+  confirm_password: {
     presence: { allowEmpty: false, message: 'is required' },
     length: {
       maximum: 128
+    },
+    equality: {
+      attribute: 'password',
+      message: '^The passwords does not match'
     }
   },
   policy: {
@@ -65,52 +78,15 @@ const schema = {
 };
 
 const useStyles = makeStyles(theme => ({
-  formControl: {
-    marginTop: theme.spacing(2),
-    minWidth: 240
-  },
-  selectEmpty: {
-    marginTop: theme.spacing(2),
-  },
   root: {
     backgroundColor: theme.palette.background.default,
     height: '100%'
   },
-  grid: {
-    height: '100%'
-  },
-  quoteContainer: {
-    [theme.breakpoints.down('md')]: {
-      display: 'none'
-    }
-  },
-  quote: {
-    backgroundColor: theme.palette.neutral,
-    height: '100%',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundImage: 'url(/images/auth.jpg)',
-    backgroundSize: 'cover',
-    backgroundRepeat: 'no-repeat',
-    backgroundPosition: 'center'
-  },
-  quoteInner: {
-    textAlign: 'center',
-    flexBasis: '600px'
-  },
-  quoteText: {
-    color: theme.palette.white,
-    fontWeight: 300
-  },
+  grid: { height: '100%' },
   name: {
     marginTop: theme.spacing(3),
     color: theme.palette.white
   },
-  bio: {
-    color: theme.palette.white
-  },
-  contentContainer: {},
   content: {
     height: '100%',
     display: 'flex',
@@ -124,19 +100,18 @@ const useStyles = makeStyles(theme => ({
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(2)
   },
-  logoImage: {
-    marginLeft: theme.spacing(4)
-  },
   contentBody: {
-    flexGrow: 1,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center'
   },
+  formControl: {
+    marginTop: theme.spacing(1.5),
+    minWidth: 240
+  },
   form: {
     paddingLeft: 16,
     paddingRight: 16,
-    paddingBottom: 125,
     flexBasis: 700,
     [theme.breakpoints.down('sm')]: {
       paddingLeft: theme.spacing(2),
@@ -162,12 +137,11 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-
-
 const SignUp = props => {
   const { history } = props;
 
   const classes = useStyles();
+  const { contextPostUser } = useUser();
 
   const [formState, setFormState] = useState({
     isValid: false,
@@ -175,8 +149,6 @@ const SignUp = props => {
     touched: {},
     errors: {}
   });
-
-  const [ age, setAge] = useState('');
 
   useEffect(() => {
     const errors = validate(formState.values, schema);
@@ -190,7 +162,6 @@ const SignUp = props => {
 
   const handleChange = event => {
     event.persist();
-    setAge(event.target.value)
 
     setFormState(formState => ({
       ...formState,
@@ -212,22 +183,17 @@ const SignUp = props => {
     history.goBack();
   };
 
-  const handleSignUp = event => {
-    if ( formState.values.email === formState.values.c_email){
-      alert('emailconfere')
-    }else{
-      alert('verificar email')
-    }
-
+  const handleSignUp = async event => {
     event.preventDefault();
-    history.push('/');
+    const response = await contextPostUser(formState.values);
+    //history.push('/');
   };
 
   const hasError = field =>
     formState.touched[field] && formState.errors[field] ? true : false;
 
   return (
-    <div className={classes.root}>
+    <div {...props} className={classes.root}>
       <Grid className={classes.grid} container>
         <Grid className={classes.content} item lg={12} xs={12}>
           <div className={classes.content}>
@@ -243,7 +209,7 @@ const SignUp = props => {
                 </Typography>
                 <Typography color="textSecondary" gutterBottom>
                   Utilize seu email para criar uma nova conta
-                </Typography>            
+                </Typography>
                 <TextField
                   className={classes.textField}
                   error={hasError('login')}
@@ -254,8 +220,8 @@ const SignUp = props => {
                   required
                   value={formState.values.login || ''}
                   variant="outlined"
-                />      
-               
+                />
+
                 <TextField
                   className={classes.textField}
                   error={hasError('name')}
@@ -288,18 +254,20 @@ const SignUp = props => {
                   <Grid item md={6} xs={6}>
                     <TextField
                       className={classes.textField}
-                      error={hasError('c_email')}
+                      error={hasError('confirm_email')}
                       fullWidth
                       label="Confirme o Email"
-                      name="c_email"
+                      name="confirm_email"
                       helperText={
-                        hasError('c_email') ? formState.errors.c_email[0] : null
+                        hasError('confirm_email')
+                          ? formState.errors.confirm_email[0]
+                          : null
                       }
                       onChange={handleChange}
                       required
                       type="text"
                       variant="outlined"
-                      value={formState.values.c_email || ''}
+                      value={formState.values.confirm_email || ''}
                     />
                   </Grid>
                   <Grid item md={6} xs={6}>
@@ -310,7 +278,9 @@ const SignUp = props => {
                       label="Senha"
                       name="password"
                       helperText={
-                        hasError('password') ? formState.errors.password[0] : null
+                        hasError('password')
+                          ? formState.errors.password[0]
+                          : null
                       }
                       onChange={handleChange}
                       required
@@ -321,37 +291,44 @@ const SignUp = props => {
                   <Grid item md={6} xs={6}>
                     <TextField
                       className={classes.textField}
-                      error={hasError('c_password')}
+                      error={hasError('confirm_password')}
                       fullWidth
                       label="Confirme a Senha"
-                      name="c_password"
+                      name="confirm_password"
                       helperText={
-                        hasError('c_password') ? formState.errors.c_password[0] : null
+                        hasError('confirm_password')
+                          ? formState.errors.confirm_password[0]
+                          : null
                       }
                       onChange={handleChange}
                       required
                       type="password"
-                      variant="outlined"                      
+                      variant="outlined"
                     />
-                  </Grid>                
-                  <Grid item md={6} xs={6}>   
-                    <FormControl variant="outlined" className={classes.formControl}>
-                      <InputLabel id="demo-simple-select-outlined-label">Pergunta de Verificação</InputLabel>
+                  </Grid>
+                  <Grid item md={6} xs={6}>
+                    <FormControl
+                      variant="outlined"
+                      className={classes.formControl}
+                    >
+                      <InputLabel id="demo-simple-select-outlined-label">
+                        Pergunta de Verificação
+                      </InputLabel>
                       <Select
-                        
                         id="demo-simple-select-outlined"
-                        value={age}
+                        value={formState.values.question || ''}
                         onChange={handleChange}
-                        label="Esse Aqui"
+                        label="Pergunta"
+                        name="question"
                       >
                         <MenuItem value="">
                           <em>None</em>
                         </MenuItem>
-                        <MenuItem value={10}>Nome do seu cachorro</MenuItem>
-                        <MenuItem value={20}>Cor favorita</MenuItem>
-                        <MenuItem value={30}>Seu apelido</MenuItem>
-                        <MenuItem value={40}>Comida preferida</MenuItem>
-                        <MenuItem value={50}>Local favorito</MenuItem>
+                        {questions.map(question => (
+                          <MenuItem key={uuid()} value={question}>
+                            {question}
+                          </MenuItem>
+                        ))}
                       </Select>
                     </FormControl>
                   </Grid>
@@ -360,14 +337,13 @@ const SignUp = props => {
                       className={classes.textField}
                       fullWidth
                       label="Resposta"
-                      name="Resposta"
+                      name="answer"
                       onChange={handleChange}
                       required
                       type="text"
                       variant="outlined"
                     />
                   </Grid>
-
                 </Grid>
 
                 <div className={classes.policy}>
@@ -381,14 +357,16 @@ const SignUp = props => {
                   <Typography
                     className={classes.policyText}
                     color="textSecondary"
-                    variant="body1">
+                    variant="body1"
+                  >
                     I have read the{' '}
                     <Link
                       color="primary"
                       component={RouterLink}
                       to="#"
                       underline="always"
-                      variant="h6">
+                      variant="h6"
+                    >
                       Terms and Conditions
                     </Link>
                   </Typography>
@@ -405,7 +383,8 @@ const SignUp = props => {
                   fullWidth
                   size="large"
                   type="submit"
-                  variant="contained">
+                  variant="contained"
+                >
                   Sign up now
                 </Button>
                 <Typography color="textSecondary" variant="body1">

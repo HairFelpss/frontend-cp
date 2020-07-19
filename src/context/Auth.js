@@ -8,14 +8,14 @@ import useStorage from '../utils/useStorage';
 const AuthContext = createContext();
 
 export default function AuthProvider({ children }) {
-  const [auth, setAuth] = useState(null);
   const [storageAuth, setStorageAuth] = useStorage('token');
+  const [storageUserId, setStorageUserId] = useStorage('userId');
 
   const signIn = async payload => {
     try {
       const response = await handleAuth(payload);
-      setAuth(response.user);
-      setStorageAuth(response.user, response.token);
+      setStorageAuth(response.token);
+      setStorageUserId(response.user.id);
       toast.info(`Bem vindo ${response.user.name}`);
     } catch (err) {
       console.log(err);
@@ -24,13 +24,18 @@ export default function AuthProvider({ children }) {
   };
 
   const signOut = () => {
-    setAuth(null);
     setStorageAuth(null);
   };
 
   return (
     <AuthContext.Provider
-      value={{ signed: !!storageAuth, auth, signIn, signOut }}
+      value={{
+        signed: !!storageAuth,
+        storageUserId,
+        storageAuth,
+        signIn,
+        signOut
+      }}
     >
       {children}
     </AuthContext.Provider>
@@ -40,6 +45,6 @@ export default function AuthProvider({ children }) {
 export function useAuth() {
   const context = useContext(AuthContext);
   if (!context) throw new Error('useAuth must be used within a AuthProvider');
-  const { signed, auth, signIn, signOut } = context;
-  return { signed, auth, signIn, signOut };
+  const { signed, storageUserId, storageAuth, signIn, signOut } = context;
+  return { signed, storageUserId, storageAuth, signIn, signOut };
 }

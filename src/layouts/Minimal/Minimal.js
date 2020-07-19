@@ -4,13 +4,17 @@ import { makeStyles } from '@material-ui/styles';
 
 import { Topbar } from './components';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(theme => ({
   root: {
     paddingTop: 64,
     height: '100%'
   },
   content: {
-    height: '100%'
+    height: '100%',
+    [theme.breakpoints.down('sm')]: {
+      height: '100%'
+    },
+    ['@media (max-height:800px)']: { height: 'unset' }
   }
 }));
 

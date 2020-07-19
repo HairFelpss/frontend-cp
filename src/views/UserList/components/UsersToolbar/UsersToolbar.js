@@ -31,16 +31,51 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const UsersToolbar = props => {
-  const { className, ...rest } = props;
+  const {
+    className,
+    contextUpdateUser,
+    contextGetUsers,
+    selectedUsers,
+    contextGetOneUser,
+    handleOpen,
+    contextDeleteUser,
+    setSelectedUsers,
+    setUser,
+    ...rest
+  } = props;
 
   const classes = useStyles();
+
+  const handleUpdateUser = async () => {
+    if (selectedUsers.length === 0 || selectedUsers.length > 1) return;
+
+    const response = await contextGetOneUser(selectedUsers);
+    setUser(response);
+    handleOpen(true);
+  };
+
+  const handleDeleteUser = async () => {
+    await contextDeleteUser(selectedUsers);
+    await contextGetUsers();
+    setSelectedUsers([]);
+  };
 
   return (
     <div {...rest} className={clsx(classes.root, className)}>
       <div className={classes.row}>
         <span className={classes.spacer} />
-        <Button className={classes.deleteButton}>DELETE</Button>
-        <Button className={classes.editButton}>EDIT</Button>
+        <Button
+          className={classes.deleteButton}
+          onClick={() => handleDeleteUser()}
+        >
+          DELETE
+        </Button>
+        <Button
+          className={classes.editButton}
+          onClick={() => handleUpdateUser()}
+        >
+          EDIT
+        </Button>
         <Button color="primary" variant="contained">
           Add user
         </Button>
