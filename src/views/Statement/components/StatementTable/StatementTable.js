@@ -18,6 +18,7 @@ import {
   TablePagination,
   Divider
 } from '@material-ui/core';
+import { StatusBullet } from 'components';
 
 const useStyles = makeStyles(theme => ({
   root: {},
@@ -44,8 +45,8 @@ const useStyles = makeStyles(theme => ({
     alignContent: 'center',
     justifyContent: 'space-evenly'
   },
-  subject: {
-    maxWidth: '250px',
+  description: {
+    maxWidth: '3400px',
     whiteSpace: ' nowrap',
     overflow: 'hidden',
     textOverflow: 'ellipsis'
@@ -65,11 +66,18 @@ const useStyles = makeStyles(theme => ({
       boxShadow: '#353C45 0 3px 13px 1px',
       webkitBoxShadow: '#353C45 0 3px 13px 1px'
     }
+  },
+  statusContainer: { textTransform: 'capitalize' },
+  status: {
+    marginRight: theme.spacing(1)
+  },
+  checkboxes: {
+    display: 'none'
   }
 }));
 
 const StatementTable = props => {
-  const { className, onClose, variant, open, users, ...rest } = props;
+  const { className, onClose, variant, open, statement, ...rest } = props;
 
   const classes = useStyles();
 
@@ -119,6 +127,20 @@ const StatementTable = props => {
     setRowsPerPage(event.target.value);
   };
 
+  const statusColors = {
+    2: 'success',
+    1: 'info',
+    0: 'warning',
+    3: 'danger'
+  };
+
+  const status = {
+    0: 'Pending',
+    1: 'Confirmed',
+    2: 'Develivered',
+    3: 'Cancelled'
+  };
+
   return (
     <Card {...rest} className={clsx(classes.root, className)}>
       <Divider />
@@ -128,53 +150,71 @@ const StatementTable = props => {
             <Table>
               <TableHead className={classes.tableHeader}>
                 <TableRow>
-                  <TableCell padding="checkbox" className={classes.tableCell}>
+                  <TableCell
+                    padding="checkbox"
+                    className={[classes.tableCell, classes.checkboxes]}
+                  >
                     <Checkbox
-                      checked={selectedUsers.length === users.length}
+                      checked={selectedUsers.length === statement.length}
                       color="primary"
                       indeterminate={
                         selectedUsers.length > 0 &&
-                        selectedUsers.length < users.length
+                        selectedUsers.length < statement.length
                       }
                       onChange={handleSelectAll}
                     />
                   </TableCell>
                   <TableCell className={classes.tableCell}>Data</TableCell>
-                  <TableCell className={classes.tableCell}>Nome</TableCell>
+                  <TableCell className={classes.tableCell}>Descrição</TableCell>
                   <TableCell className={classes.tableCell}>Valor</TableCell>
                   <TableCell className={classes.tableCell}>Status</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
-                {users.slice(0, rowsPerPage).map(user => (
+                {statement.slice(0, rowsPerPage).map(statement => (
                   <TableRow
                     className={classes.tableRow}
                     hover
-                    key={user.id}
-                    selected={selectedUsers.indexOf(user.id) !== -1}
+                    key={statement.id}
+                    selected={selectedUsers.indexOf(statement.id) !== -1}
                   >
-                    <TableCell padding="checkbox">
+                    <TableCell
+                      padding="checkbox"
+                      className={classes.checkboxes}
+                    >
                       <Checkbox
-                        checked={selectedUsers.indexOf(user.id) !== -1}
+                        checked={selectedUsers.indexOf(statement.id) !== -1}
                         color="primary"
-                        onChange={event => handleSelectOne(event, user.id)}
+                        onChange={event => handleSelectOne(event, statement.id)}
                         value="true"
                       />
                     </TableCell>
                     <TableCell>
                       <div className={classes.nameContainer}>
                         <Typography variant="body1">
-                          {moment(user.createdAt).format('DD/MM/YYYY')}
+                          {moment(statement.createdAt).format('DD/MM/YYYY')}
                         </Typography>
                       </div>
                     </TableCell>
                     <TableCell>
-                      <Typography variant="body1" className={classes.subject}>
-                        {user.subject}
+                      <Typography
+                        variant="body1"
+                        className={classes.description}
+                      >
+                        {statement.description}
                       </Typography>
                     </TableCell>
-                    <TableCell> {user.value}</TableCell>
-                    <TableCell> {user.status} </TableCell>
+                    <TableCell> R$ {statement.value}</TableCell>
+                    <TableCell>
+                      <div className={classes.statusContainer}>
+                        <StatusBullet
+                          className={classes.status}
+                          color={statusColors[statement.status]}
+                          size="sm"
+                        />
+                        {status[statement.status]}
+                      </div>
+                    </TableCell>
                   </TableRow>
                 ))}
               </TableBody>
@@ -185,7 +225,7 @@ const StatementTable = props => {
       <CardActions className={classes.actions}>
         <TablePagination
           component="div"
-          count={users.length}
+          count={statement.length}
           onChangePage={handlePageChange}
           onChangeRowsPerPage={handleRowsPerPageChange}
           page={page}
@@ -199,7 +239,7 @@ const StatementTable = props => {
 
 StatementTable.propTypes = {
   className: PropTypes.string,
-  users: PropTypes.array.isRequired
+  statement: PropTypes.array.isRequired
 };
 
 export default StatementTable;

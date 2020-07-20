@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/styles';
 
 import { StatementTable } from './components';
-import mockData from './data';
 import StatementToolbar from './components/StatementToolbar';
+
+import { getStatements } from '../../services/api/statement';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -17,13 +18,21 @@ const useStyles = makeStyles(theme => ({
 const Statement = () => {
   const classes = useStyles();
 
-  const [users] = useState(mockData);
+  const [statement, setStatement] = useState([]);
+
+  const handleGetStatement = async () => {
+    setStatement(await getStatements());
+  };
+
+  useEffect(() => {
+    handleGetStatement();
+  }, []);
 
   return (
     <div className={classes.root}>
       <StatementToolbar />
       <div className={classes.content}>
-        <StatementTable users={users} />
+        <StatementTable statement={statement} />
       </div>
     </div>
   );
