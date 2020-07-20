@@ -68,7 +68,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const ExtractTable = props => {
+const StatementTable = props => {
   const { className, onClose, variant, open, users, ...rest } = props;
 
   const classes = useStyles();
@@ -76,7 +76,6 @@ const ExtractTable = props => {
   const [selectedUsers, setSelectedUsers] = useState([]);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [page, setPage] = useState(0);
-
 
   const handleSelectAll = event => {
     const { users } = props;
@@ -145,7 +144,7 @@ const ExtractTable = props => {
                   <TableCell className={classes.tableCell}>Valor</TableCell>
                   <TableCell className={classes.tableCell}>Status</TableCell>
                 </TableRow>
-              </TableHead>              
+              </TableHead>
               <TableBody>
                 {users.slice(0, rowsPerPage).map(user => (
                   <TableRow
@@ -164,7 +163,9 @@ const ExtractTable = props => {
                     </TableCell>
                     <TableCell>
                       <div className={classes.nameContainer}>
-                        <Typography variant="body1">{moment(user.createdAt).format('DD/MM/YYYY')}</Typography>
+                        <Typography variant="body1">
+                          {moment(user.createdAt).format('DD/MM/YYYY')}
+                        </Typography>
                       </div>
                     </TableCell>
                     <TableCell>
@@ -172,8 +173,8 @@ const ExtractTable = props => {
                         {user.subject}
                       </Typography>
                     </TableCell>
-                    <TableCell> {user.value}</TableCell> 
-                    <TableCell> {user.status} </TableCell> 
+                    <TableCell> {user.value}</TableCell>
+                    <TableCell> {user.status} </TableCell>
                   </TableRow>
                 ))}
               </TableBody>
@@ -196,9 +197,9 @@ const ExtractTable = props => {
   );
 };
 
-ExtractTable.propTypes = {
+StatementTable.propTypes = {
   className: PropTypes.string,
   users: PropTypes.array.isRequired
 };
 
-export default ExtractTable;
+export default StatementTable;

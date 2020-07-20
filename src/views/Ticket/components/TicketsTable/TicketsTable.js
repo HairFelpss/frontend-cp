@@ -124,6 +124,11 @@ const TicketsTable = props => {
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [page, setPage] = useState(0);
 
+  const [l_date, setL_date] = useState('');
+  const [l_status, setL_status] = useState('');
+  const [l_ticketSolver, setL_ticketSolver] = useState('');
+  const [l_category, setL_category] = useState('');
+
   const statusColors = {
     open: 'success',
     pending: 'info',
@@ -132,29 +137,24 @@ const TicketsTable = props => {
 
   const userCategory = {
     late: (
-      <div className={classes.categoryRow}>
+      <span className={classes.categoryRow}>
         <WatchLaterIcon className={classes.see} />
         atraso
-      </div>
+      </span>
     ),
     bug: (
-      <div className={classes.categoryRow}>
+      <span className={classes.categoryRow}>
         <BugReportIcon className={classes.finish} />
         bug
-      </div>
+      </span>
     ),
     question: (
-      <div className={classes.categoryRow}>
+      <span className={classes.categoryRow}>
         <HelpIcon className={classes.reOpen} />
         duvida
-      </div>
+      </span>
     )
   };
-
-  const [l_date, setL_date] = React.useState('');
-  const [l_status, setL_status] = React.useState('');
-  const [l_ticketSolver, setL_ticketSolver] = React.useState('');
-  const [l_category, setL_category] = React.useState('');
 
   const handleChangeDate = event => {
     setL_date(event.target.value);
@@ -215,7 +215,7 @@ const TicketsTable = props => {
     <Card {...rest} className={clsx(classes.root, className)}>
       <CardHeader
         avatar={
-          <div container className={classes.btnGroup}>
+          <div className={classes.btnGroup}>
             <Button variant="outlined" className={classes.see}>
               Visualizar
             </Button>

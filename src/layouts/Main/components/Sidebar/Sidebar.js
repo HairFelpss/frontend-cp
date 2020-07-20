@@ -73,8 +73,8 @@ const Sidebar = props => {
       icon: <AccountBoxIcon />
     },
     {
-      title: 'Extract',
-      href: '/extract',
+      title: 'Statement',
+      href: '/statement',
       icon: <AssignmentIcon />
     },
     {

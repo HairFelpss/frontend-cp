@@ -35,7 +35,6 @@ const FailPagueSeguro = () => {
               alt="Under development"
               className={classes.image}
               src="/images/wait.svg"
-              ð
             />
           </div>
         </Grid>

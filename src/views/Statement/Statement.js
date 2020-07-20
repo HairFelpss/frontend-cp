@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/styles';
 
-import { ExtractTable} from './components'
+import { StatementTable } from './components';
 import mockData from './data';
-import ExtractToolbar from './components/ExtractToolbar';
+import StatementToolbar from './components/StatementToolbar';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -14,19 +14,19 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Extract = () => {
+const Statement = () => {
   const classes = useStyles();
 
   const [users] = useState(mockData);
 
   return (
     <div className={classes.root}>
-        <ExtractToolbar />
+      <StatementToolbar />
       <div className={classes.content}>
-        <ExtractTable users={users} />
+        <StatementTable users={users} />
       </div>
     </div>
   );
 };
 
-export default Extract;
+export default Statement;

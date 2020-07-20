@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const ExtractToolbar = props => {
+const StatementToolbar = props => {
   const { className, ...rest } = props;
 
   const classes = useStyles();
@@ -28,18 +28,15 @@ const ExtractToolbar = props => {
   return (
     <div {...rest} className={clsx(classes.root, className)}>
       <div className={classes.row}>
-        <Typography variant="h3">Extract</Typography>
-        <SearchInput
-          className={classes.searchInput}
-          placeholder="Search"
-        />
+        <Typography variant="h3">Statement</Typography>
+        <SearchInput className={classes.searchInput} placeholder="Search" />
       </div>
     </div>
   );
 };
 
-ExtractToolbar.propTypes = {
+StatementToolbar.propTypes = {
   className: PropTypes.string
 };
 
-export default ExtractToolbar;
+export default StatementToolbar;
