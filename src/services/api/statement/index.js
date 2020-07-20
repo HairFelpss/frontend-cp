@@ -9,7 +9,15 @@ export async function getStatements() {
     throw err;
   }
 }
-
+export async function getOneUserStatements(id) {
+  try {
+    const response = await api.get(`/statements/${id}`);
+    console.log(response.data);
+    return response.data;
+  } catch (err) {
+    throw err;
+  }
+}
 export async function getOneStatement(id) {
   try {
     const response = await api.get(`/statements/${id}}`);

@@ -9,9 +9,9 @@ export async function getTreasures() {
   }
 }
 
-export async function getOneTreasure(id) {
+export async function getOneTreasure(userId) {
   try {
-    const response = await api.get(`/treasures/${id}}`);
+    const response = await api.get(`/treasures/${userId}}`);
     return response.data;
   } catch (err) {
     throw err;

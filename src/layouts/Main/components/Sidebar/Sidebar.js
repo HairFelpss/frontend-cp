@@ -7,7 +7,6 @@ import DashboardIcon from '@material-ui/icons/Dashboard';
 import PeopleIcon from '@material-ui/icons/People';
 import StoreIcon from '@material-ui/icons/Store';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
-import SettingsIcon from '@material-ui/icons/Settings';
 import ExitToAppOutlinedIcon from '@material-ui/icons/ExitToAppOutlined';
 import ConfirmationNumberRoundedIcon from '@material-ui/icons/ConfirmationNumberRounded';
 import AssignmentIcon from '@material-ui/icons/Assignment';
@@ -76,11 +75,6 @@ const Sidebar = props => {
       title: 'Statement',
       href: '/statement',
       icon: <AssignmentIcon />
-    },
-    {
-      title: 'Settings',
-      href: '/settings',
-      icon: <SettingsIcon />
     },
     {
       title: 'Logout',

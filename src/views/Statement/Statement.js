@@ -3,8 +3,9 @@ import { makeStyles } from '@material-ui/styles';
 
 import { StatementTable } from './components';
 import StatementToolbar from './components/StatementToolbar';
+import { useAuth } from '../../context/Auth';
 
-import { getStatements } from '../../services/api/statement';
+import { getOneUserStatements } from '../../services/api/statement';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -17,11 +18,12 @@ const useStyles = makeStyles(theme => ({
 
 const Statement = () => {
   const classes = useStyles();
+  const { storageUserId } = useAuth();
 
   const [statement, setStatement] = useState([]);
 
   const handleGetStatement = async () => {
-    setStatement(await getStatements());
+    setStatement(await getOneUserStatements(storageUserId));
   };
 
   useEffect(() => {

@@ -8,7 +8,6 @@ import {
   ProductList as ProductListView,
   UserList as UserListView,
   Account as AccountView,
-  Settings as SettingsView,
   SignUp as SignUpView,
   SignIn as SignInView,
   NotFound as NotFoundView,
@@ -70,13 +69,6 @@ const Routes = () => {
         exact
         layout={MainLayout}
         path="/statement"
-        isPrivate
-      />
-      <RouteWithLayout
-        component={SettingsView}
-        exact
-        layout={MainLayout}
-        path="/settings"
         isPrivate
       />
       <RouteWithLayout
