@@ -30,6 +30,8 @@ import WatchLaterIcon from '@material-ui/icons/WatchLater';
 import HelpIcon from '@material-ui/icons/Help';
 import { StatusBullet } from 'components';
 
+import 'moment/locale/pt-br';
+
 const useStyles = makeStyles(theme => ({
   root: {},
   content: {
@@ -42,19 +44,23 @@ const useStyles = makeStyles(theme => ({
     alignContent: 'center',
     justifyContent: 'space-evenly'
   },
-  see: {
+  filter: {
     color: theme.palette.primary.main,
-    borderColor: theme.palette.primary.main
+    borderColor: theme.palette.primary.main,
+    marginLeft: '1%'
   },
   finish: {
     color: theme.palette.error.main,
     borderColor: theme.palette.error.main,
     marginLeft: '1%'
   },
-  reOpen: {
+  see: {
     color: theme.palette.success.main,
-    borderColor: theme.palette.success.main,
-    marginLeft: '1%'
+    borderColor: theme.palette.success.main
+  },
+  reset: {
+    color: theme.palette.warning.main,
+    borderColor: theme.palette.warning.main
   },
   tableHeader: {
     backgroundColor: theme.palette.primary.main
@@ -81,17 +87,31 @@ const useStyles = makeStyles(theme => ({
   category: { textTransform: 'capitalize' },
   categoryRow: {
     display: 'flex',
-    alignContent: 'center',
-    justifyContent: 'space-evenly'
+    alignContent: 'center'
+  },
+  categoryLate: {
+    color: theme.palette.primary.main,
+    borderColor: theme.palette.primary.main,
+    marginRight: '2%'
+  },
+  categoryBug: {
+    color: theme.palette.error.main,
+    borderColor: theme.palette.error.main,
+    marginRight: '2%'
+  },
+  categoryQuestion: {
+    color: theme.palette.success.main,
+    borderColor: theme.palette.success.main,
+    marginRight: '2%'
   },
   statusContainer: { textTransform: 'capitalize' },
   status: {
     marginRight: theme.spacing(1)
   },
   actions: {
-    justifyContent: 'flex-end'
+    justifyContent: 'space-between'
   },
-  subject: {
+  title: {
     maxWidth: '300px',
     whiteSpace: ' nowrap',
     overflow: 'hidden',
@@ -116,7 +136,17 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const TicketsTable = props => {
-  const { className, onClose, variant, open, users, ...rest } = props;
+  const {
+    className,
+    onClose,
+    variant,
+    open,
+    tickets,
+    handleFilterTickets,
+    handleGetTickets,
+    handleDeleteTicket,
+    ...rest
+  } = props;
 
   const classes = useStyles();
 
@@ -124,49 +154,24 @@ const TicketsTable = props => {
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [page, setPage] = useState(0);
 
-  const [l_date, setL_date] = useState('');
-  const [l_status, setL_status] = useState('');
-  const [l_ticketSolver, setL_ticketSolver] = useState('');
-  const [l_category, setL_category] = useState('');
+  const [filters, setFilters] = useState({
+    selects: {
+      category: null,
+      helper: null,
+      status: null
+    }
+  });
 
-  const statusColors = {
-    open: 'success',
-    pending: 'info',
-    close: 'danger'
-  };
+  const handleChange = event => {
+    event.persist();
 
-  const userCategory = {
-    late: (
-      <span className={classes.categoryRow}>
-        <WatchLaterIcon className={classes.see} />
-        atraso
-      </span>
-    ),
-    bug: (
-      <span className={classes.categoryRow}>
-        <BugReportIcon className={classes.finish} />
-        bug
-      </span>
-    ),
-    question: (
-      <span className={classes.categoryRow}>
-        <HelpIcon className={classes.reOpen} />
-        duvida
-      </span>
-    )
-  };
-
-  const handleChangeDate = event => {
-    setL_date(event.target.value);
-  };
-  const handleChangeStatus = event => {
-    setL_status(event.target.value);
-  };
-  const handleChangeTicketSolver = event => {
-    setL_ticketSolver(event.target.value);
-  };
-  const handleChangeCategory = event => {
-    setL_category(event.target.value);
+    setFilters(filters => ({
+      ...filters,
+      selects: {
+        ...filters.selects,
+        [event.target.name]: event.target.value
+      }
+    }));
   };
 
   const handleSelectAll = event => {
@@ -211,6 +216,37 @@ const TicketsTable = props => {
     setRowsPerPage(event.target.value);
   };
 
+  const statusColors = {
+    2: 'success',
+    1: 'danger',
+    0: 'warning'
+  };
+  const status = {
+    0: 'Aberto',
+    1: 'Cancelado',
+    2: 'Resolvido'
+  };
+
+  const userCategory = {
+    2: (
+      <span className={classes.categoryRow}>
+        <WatchLaterIcon className={classes.categoryLate} />
+        atraso
+      </span>
+    ),
+    0: (
+      <span className={classes.categoryRow}>
+        <BugReportIcon className={classes.categoryBug} />
+        bug
+      </span>
+    ),
+    1: (
+      <span className={classes.categoryRow}>
+        <HelpIcon className={classes.categoryQuestion} />
+        duvida
+      </span>
+    )
+  };
   return (
     <Card {...rest} className={clsx(classes.root, className)}>
       <CardHeader
@@ -219,56 +255,50 @@ const TicketsTable = props => {
             <Button variant="outlined" className={classes.see}>
               Visualizar
             </Button>
-            <Button variant="outlined" className={classes.finish}>
+            <Button
+              variant="outlined"
+              className={classes.finish}
+              onClick={() => handleDeleteTicket(selectedUsers)}
+            >
               Encerrar
             </Button>
-            <Button variant="outlined" className={classes.reOpen}>
-              Reabrir
+            <Button
+              variant="outlined"
+              className={classes.filter}
+              onClick={() => handleFilterTickets(filters.selects)}
+            >
+              Filtrar
             </Button>
           </div>
         }
         action={
           <Grid container className={classes.grid}>
-            <Grid item xl={3} lg={3} md={3} sm={3} xs={12}>
-              <FormControl variant="filled" className={classes.formControl}>
-                <InputLabel id="demo-simple-select-label">Data</InputLabel>
-                <Select
-                  labelId="demo-simple-select-filled-label"
-                  id="demo-simple-select-filled"
-                  value={l_date}
-                  onChange={handleChangeDate}
-                >
-                  <MenuItem value={0}>23/12/29</MenuItem>
-                  <MenuItem value={1}>23/12/29</MenuItem>
-                  <MenuItem value={2}>23/12/29</MenuItem>
-                </Select>
-              </FormControl>
-            </Grid>
-
-            <Grid item xl={3} lg={3} md={3} sm={3} xs={12}>
+            <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
               <FormControl variant="filled" className={classes.formControl}>
                 <InputLabel id="demo-simple-select-label">Status</InputLabel>
                 <Select
                   labelId="demo-simple-select-filled-label"
                   id="demo-simple-select-filled"
-                  value={l_status}
-                  onChange={handleChangeStatus}
+                  name="status"
+                  value={filters.selects.status || ''}
+                  onChange={handleChange}
                 >
-                  <MenuItem value={0}>Open</MenuItem>
-                  <MenuItem value={1}>Close</MenuItem>
-                  <MenuItem value={2}>Pending</MenuItem>
+                  <MenuItem value={0}>Aberto</MenuItem>
+                  <MenuItem value={1}>Fechado</MenuItem>
+                  <MenuItem value={2}>Resolvido</MenuItem>
                 </Select>
               </FormControl>
             </Grid>
 
-            <Grid item xl={3} lg={3} md={3} sm={3} xs={12}>
+            <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
               <FormControl variant="filled" className={classes.formControl}>
                 <InputLabel id="demo-simple-select-label">Atendente</InputLabel>
                 <Select
                   labelId="demo-simple-select-filled-label"
                   id="demo-simple-select-filled"
-                  value={l_ticketSolver}
-                  onChange={handleChangeTicketSolver}
+                  name="helper"
+                  value={filters.selects.helper || ''}
+                  onChange={handleChange}
                 >
                   <MenuItem value={0}>GM Claytchola</MenuItem>
                   <MenuItem value={1}>Cabelin firmezao</MenuItem>
@@ -276,14 +306,15 @@ const TicketsTable = props => {
                 </Select>
               </FormControl>
             </Grid>
-            <Grid item xl={3} lg={3} md={3} sm={3} xs={12}>
+            <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
               <FormControl variant="filled" className={classes.formControl}>
                 <InputLabel id="demo-simple-select-label">Categoria</InputLabel>
                 <Select
                   labelId="demo-simple-select-filled-label"
                   id="demo-simple-select-filled"
-                  value={l_category}
-                  onChange={handleChangeCategory}
+                  name="category"
+                  value={filters.selects.category || ''}
+                  onChange={handleChange}
                 >
                   <MenuItem value={0}>Bugs</MenuItem>
                   <MenuItem value={1}>Duvidas</MenuItem>
@@ -304,11 +335,11 @@ const TicketsTable = props => {
                 <TableRow>
                   <TableCell padding="checkbox" className={classes.tableCell}>
                     <Checkbox
-                      checked={selectedUsers.length === users.length}
+                      checked={selectedUsers.length === tickets.length}
                       color="primary"
                       indeterminate={
                         selectedUsers.length > 0 &&
-                        selectedUsers.length < users.length
+                        selectedUsers.length < tickets.length
                       }
                       onChange={handleSelectAll}
                     />
@@ -326,48 +357,48 @@ const TicketsTable = props => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {users.slice(0, rowsPerPage).map(user => (
+                {tickets.slice(0, rowsPerPage).map(ticket => (
                   <TableRow
                     className={classes.tableRow}
                     hover
-                    key={user.id}
-                    selected={selectedUsers.indexOf(user.id) !== -1}
+                    key={ticket.id}
+                    selected={selectedUsers.indexOf(ticket.id) !== -1}
                   >
                     <TableCell padding="checkbox">
                       <Checkbox
-                        checked={selectedUsers.indexOf(user.id) !== -1}
+                        checked={selectedUsers.indexOf(ticket.id) !== -1}
                         color="primary"
-                        onChange={event => handleSelectOne(event, user.id)}
+                        onChange={event => handleSelectOne(event, ticket.id)}
                         value="true"
                       />
                     </TableCell>
                     <TableCell>
                       <div className={classes.nameContainer}>
-                        <Typography variant="body1">#{user.ref}</Typography>
+                        <Typography variant="body1">#{ticket.id}</Typography>
                       </div>
                     </TableCell>
                     <TableCell>
-                      <Typography variant="body1" className={classes.subject}>
-                        {user.subject}
+                      <Typography variant="body1" className={classes.title}>
+                        {ticket.title}
                       </Typography>
                     </TableCell>
                     <TableCell>
                       <Typography variant="body1" className={classes.category}>
-                        {userCategory[user.category]}
+                        {userCategory[ticket.category]}
                       </Typography>
                     </TableCell>
-                    <TableCell>{user.email}</TableCell>
+                    <TableCell>{ticket.helped.email}</TableCell>
                     <TableCell>
-                      {moment(user.createdAt).format('DD/MM/YYYY')}
+                      {moment(ticket.created_at).format('DD/MM/YYYY')}
                     </TableCell>
                     <TableCell>
                       <div className={classes.statusContainer}>
                         <StatusBullet
                           className={classes.status}
-                          color={statusColors[user.status]}
+                          color={statusColors[ticket.status]}
                           size="sm"
                         />
-                        {user.status}
+                        {status[ticket.status]}
                       </div>
                     </TableCell>
                   </TableRow>
@@ -378,9 +409,16 @@ const TicketsTable = props => {
         </PerfectScrollbar>
       </CardContent>
       <CardActions className={classes.actions}>
+        <Button
+          variant="outlined"
+          className={classes.reset}
+          onClick={() => handleGetTickets()}
+        >
+          Resetar
+        </Button>
         <TablePagination
           component="div"
-          count={users.length}
+          count={tickets.length}
           onChangePage={handlePageChange}
           onChangeRowsPerPage={handleRowsPerPageChange}
           page={page}
@@ -394,7 +432,7 @@ const TicketsTable = props => {
 
 TicketsTable.propTypes = {
   className: PropTypes.string,
-  users: PropTypes.array.isRequired
+  tickets: PropTypes.array.isRequired
 };
 
 export default TicketsTable;

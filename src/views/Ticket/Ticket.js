@@ -1,8 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/styles';
 
 import { TicketsToolbar, TicketsTable } from './components';
-import mockData from './data';
+import {
+  getTickets,
+  getSearchTickets,
+  postFilterTickets,
+  postTicket,
+  updateTickets,
+  deleteTickets
+} from '../../services/api/tickets';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -16,13 +23,42 @@ const useStyles = makeStyles(theme => ({
 const Ticket = () => {
   const classes = useStyles();
 
-  const [users] = useState(mockData);
+  const [tickets, setTickets] = useState([]);
+
+  const handleGetTickets = async () => {
+    setTickets(await getTickets());
+  };
+
+  const handleSearchTickets = async payload => {
+    setTickets(await getSearchTickets(payload));
+  };
+
+  const handleFilterTickets = async payload => {
+    setTickets(await postFilterTickets(payload));
+  };
+
+  const handleDeleteTicket = async id => {
+    console.log(id.length);
+    if (id.length > 1) return;
+    console.log('passo => ', id);
+    await deleteTickets(id[0]);
+    handleGetTickets();
+  };
+
+  useEffect(() => {
+    handleGetTickets();
+  }, []);
 
   return (
     <div className={classes.root}>
-      <TicketsToolbar />
+      <TicketsToolbar handleSearchTickets={handleSearchTickets} />
       <div className={classes.content}>
-        <TicketsTable users={users} />
+        <TicketsTable
+          tickets={tickets}
+          handleFilterTickets={handleFilterTickets}
+          handleGetTickets={handleGetTickets}
+          handleDeleteTicket={handleDeleteTicket}
+        />
       </div>
     </div>
   );

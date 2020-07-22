@@ -13,8 +13,7 @@ const useStyles = makeStyles(theme => ({
     height: '100%',
     [theme.breakpoints.down('sm')]: {
       height: '100%'
-    },
-    ['@media (max-height:800px)']: { height: 'unset' }
+    }
   }
 }));
 

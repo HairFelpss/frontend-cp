@@ -6,7 +6,9 @@ import {
   getOneUser,
   postUser,
   updateUser,
-  deleteUser
+  deleteUser,
+  getSearchUsers,
+  getNumberOfAccounts
 } from '../services/api/user';
 
 const UserContext = createContext();
@@ -23,6 +25,24 @@ export default function UserProvider({ children }) {
     }
   };
 
+  const contextGetNumberOfAccounts = async () => {
+    try {
+      const response = await getNumberOfAccounts();
+      return response;
+    } catch (err) {
+      console.log('err => ', err);
+    }
+  };
+
+  const contextGetSearchUsers = async payload => {
+    try {
+      const response = await getSearchUsers(payload);
+      setUser(response);
+    } catch (err) {
+      console.log('err => ', err);
+    }
+  };
+
   const contextGetOneUser = async payload => {
     try {
       const response = await getOneUser(payload);
@@ -31,6 +51,7 @@ export default function UserProvider({ children }) {
       console.log('err => ', err);
     }
   };
+
   const contextPostUser = async payload => {
     try {
       await postUser(payload);
@@ -65,7 +86,9 @@ export default function UserProvider({ children }) {
         users,
         contextDeleteUser,
         contextPostUser,
-        contextUpdateUser
+        contextUpdateUser,
+        contextGetSearchUsers,
+        contextGetNumberOfAccounts
       }}
     >
       {children}
@@ -82,7 +105,9 @@ export function useUser() {
     users,
     contextDeleteUser,
     contextPostUser,
-    contextUpdateUser
+    contextUpdateUser,
+    contextGetSearchUsers,
+    contextGetNumberOfAccounts
   } = context;
   return {
     contextGetUsers,
@@ -90,6 +115,8 @@ export function useUser() {
     users,
     contextDeleteUser,
     contextPostUser,
-    contextUpdateUser
+    contextUpdateUser,
+    contextGetSearchUsers,
+    contextGetNumberOfAccounts
   };
 }

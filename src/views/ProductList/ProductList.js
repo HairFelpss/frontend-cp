@@ -34,6 +34,7 @@ const ProductList = () => {
     contextGetTreasures,
     contextUpdateTreasure,
     contextDeleteTreasure,
+    contextGetSearchTreasures,
     treasures
   } = useTreasure();
 
@@ -43,6 +44,10 @@ const ProductList = () => {
 
   const handleGetTreasures = async () => {
     await contextGetTreasures();
+  };
+
+  const handleSearchTreasures = async payload => {
+    await contextGetSearchTreasures(payload);
   };
 
   useEffect(() => {
@@ -73,6 +78,7 @@ const ProductList = () => {
         handleOpen={handleOpen}
         selectedTreasure={selectedTreasure}
         setCurrentTreasure={setCurrentTreasure}
+        handleSearchTreasures={handleSearchTreasures}
       />
       <div className={classes.content}>
         <Grid container spacing={1}>

@@ -6,7 +6,8 @@ import {
   getOneTreasure,
   postTreasure,
   updateTreasure,
-  deleteTreasure
+  deleteTreasure,
+  getSearchTreasures
 } from '../services/api/treasure';
 
 const TreasureContext = createContext();
@@ -17,6 +18,15 @@ export default function TreasureProvider({ children }) {
   const contextGetTreasures = async () => {
     try {
       const response = await getTreasures();
+      setTreasure(response);
+    } catch (err) {
+      console.log('err => ', err);
+    }
+  };
+
+  const contextGetSearchTreasures = async payload => {
+    try {
+      const response = await getSearchTreasures(payload);
       setTreasure(response);
     } catch (err) {
       console.log('err => ', err);
@@ -65,7 +75,8 @@ export default function TreasureProvider({ children }) {
         treasures,
         contextDeleteTreasure,
         contextPostTreasure,
-        contextUpdateTreasure
+        contextUpdateTreasure,
+        contextGetSearchTreasures
       }}
     >
       {children}
@@ -83,7 +94,8 @@ export function useTreasure() {
     treasures,
     contextDeleteTreasure,
     contextPostTreasure,
-    contextUpdateTreasure
+    contextUpdateTreasure,
+    contextGetSearchTreasures
   } = context;
   return {
     contextGetTreasures,
@@ -91,6 +103,7 @@ export function useTreasure() {
     treasures,
     contextDeleteTreasure,
     contextPostTreasure,
-    contextUpdateTreasure
+    contextUpdateTreasure,
+    contextGetSearchTreasures
   };
 }

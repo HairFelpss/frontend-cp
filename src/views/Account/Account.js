@@ -24,7 +24,7 @@ const Account = () => {
     question: '',
     answer: ''
   });
-  console.log(storageUserId)
+
   const handleUpdateUser = async user => {
     await contextUpdateUser(storageUserId, user);
     handleUserInfo();
@@ -51,11 +51,7 @@ const Account = () => {
           />
         </Grid>
         <Grid item lg={4} md={6} xl={4} xs={12}>
-          <ForgotPassword
-            values={values}
-            setValues={setValues}
-            handleUpdateUser={handleUpdateUser}
-          />
+          <ForgotPassword values={values} handleUpdateUser={handleUpdateUser} />
         </Grid>
       </Grid>
     </div>

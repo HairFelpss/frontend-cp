@@ -9,6 +9,16 @@ export async function getTreasures() {
   }
 }
 
+export async function getSearchTreasures(payload) {
+  try {
+    if (payload.length === 0) return await getTreasures();
+    const response = await api.get(`/treasures/search/${payload}`);
+    return response.data;
+  } catch (err) {
+    throw err;
+  }
+}
+
 export async function getOneTreasure(userId) {
   try {
     const response = await api.get(`/treasures/${userId}}`);

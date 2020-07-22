@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const TicketsToolbar = props => {
-  const { className, ...rest } = props;
+  const { className, handleSearchTickets, ...rest } = props;
 
   const classes = useStyles();
 
@@ -32,6 +32,7 @@ const TicketsToolbar = props => {
         <SearchInput
           className={classes.searchInput}
           placeholder="Search Ticket"
+          onChange={event => handleSearchTickets(event.target.value)}
         />
       </div>
     </div>

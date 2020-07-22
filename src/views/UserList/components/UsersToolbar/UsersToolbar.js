@@ -41,6 +41,7 @@ const UsersToolbar = props => {
     contextDeleteUser,
     setSelectedUsers,
     setUser,
+    handleSearchUsers,
     ...rest
   } = props;
 
@@ -94,6 +95,7 @@ const UsersToolbar = props => {
         <SearchInput
           className={classes.searchInput}
           placeholder="Search user"
+          onChange={event => handleSearchUsers(event.target.value)}
         />
       </div>
     </div>

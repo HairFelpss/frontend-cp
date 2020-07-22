@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
 import { Card, CardContent, Grid, Typography, Avatar } from '@material-ui/core';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import PeopleIcon from '@material-ui/icons/PeopleOutlined';
+import { useUser } from '../../../../context/User';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -43,9 +44,17 @@ const useStyles = makeStyles(theme => ({
 
 const TotalUsers = props => {
   const { className, ...rest } = props;
+  const { contextGetNumberOfAccounts } = useUser();
+  const [amount, setAmount] = useState({});
 
   const classes = useStyles();
 
+  const handleAmount = async () =>
+    setAmount(await contextGetNumberOfAccounts());
+  useEffect(() => {
+    handleAmount();
+  }, []);
+  console.log(amount);
   return (
     <Card {...rest} className={clsx(classes.root, className)}>
       <CardContent>
@@ -59,7 +68,7 @@ const TotalUsers = props => {
             >
               CONTAS REGISTRADAS
             </Typography>
-            <Typography variant="h3">1,600</Typography>
+            <Typography variant="h3">{amount.accounts}</Typography>
           </Grid>
           <Grid item>
             <Avatar className={classes.avatar}>
@@ -70,7 +79,11 @@ const TotalUsers = props => {
         <div className={classes.difference}>
           <ArrowUpwardIcon className={classes.differenceIcon} />
           <Typography className={classes.differenceValue} variant="body2">
-            16%
+            {(amount.lastMonth !== 0
+              ? (amount.currentMonth * 100) / amount.lastMonth
+              : amount.currentMonth * 100
+            ).toFixed(2)}
+            %
           </Typography>
           <Typography className={classes.caption} variant="caption">
             Desde o mês passado

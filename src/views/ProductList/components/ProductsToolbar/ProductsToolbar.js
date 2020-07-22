@@ -37,6 +37,7 @@ const ProductsToolbar = props => {
     setCurrentTreasure,
     handleOpen,
     selectedTreasure,
+    handleSearchTreasures,
     ...rest
   } = props;
 
@@ -80,6 +81,7 @@ const ProductsToolbar = props => {
         <SearchInput
           className={classes.searchInput}
           placeholder="Search product"
+          onChange={event => handleSearchTreasures(event.target.value)}
         />
       </div>
     </div>

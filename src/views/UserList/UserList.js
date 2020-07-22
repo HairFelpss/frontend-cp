@@ -22,7 +22,8 @@ const UserList = () => {
     contextUpdateUser,
     contextDeleteUser,
     users,
-    contextGetOneUser
+    contextGetOneUser,
+    contextGetSearchUsers
   } = useUser();
 
   const [selectedUsers, setSelectedUsers] = useState([]);
@@ -41,6 +42,10 @@ const UserList = () => {
     await contextGetUsers();
   };
 
+  const handleSearchUsers = async payload => {
+    await contextGetSearchUsers(payload);
+  };
+
   useEffect(() => {
     handleGetUsers();
   }, []);
@@ -55,6 +60,7 @@ const UserList = () => {
         contextDeleteUser={contextDeleteUser}
         contextGetUsers={contextGetUsers}
         setSelectedUsers={setSelectedUsers}
+        handleSearchUsers={handleSearchUsers}
       />
       <div className={classes.content}>
         <UsersTable

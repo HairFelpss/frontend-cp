@@ -72,7 +72,9 @@ const useStyles = makeStyles(theme => ({
     marginRight: theme.spacing(1)
   },
   checkboxes: {
-    display: 'none'
+    display: 'none',
+    color: theme.palette.text.primary,
+    fontSize: 15
   }
 }));
 
@@ -150,10 +152,7 @@ const StatementTable = props => {
             <Table>
               <TableHead className={classes.tableHeader}>
                 <TableRow>
-                  <TableCell
-                    padding="checkbox"
-                    className={[classes.tableCell, classes.checkboxes]}
-                  >
+                  <TableCell padding="checkbox" className={classes.checkboxes}>
                     <Checkbox
                       checked={selectedUsers.length === statement.length}
                       color="primary"
@@ -171,6 +170,7 @@ const StatementTable = props => {
                 </TableRow>
               </TableHead>
               <TableBody>
+                {console.log(statement)}
                 {statement.slice(0, rowsPerPage).map(statement => (
                   <TableRow
                     className={classes.tableRow}

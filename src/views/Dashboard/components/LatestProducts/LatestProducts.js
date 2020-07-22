@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
@@ -17,8 +17,10 @@ import {
 } from '@material-ui/core';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import moment from 'moment';
+import 'moment/locale/pt-br';
 
-import mockData from './data';
+import { useTreasure } from '../../../../context/Treasure';
 
 const useStyles = makeStyles(() => ({
   root: {},
@@ -38,32 +40,35 @@ const useStyles = makeStyles(() => ({
 
 const LatestProducts = props => {
   const { className, ...rest } = props;
+  const { treasures, contextGetTreasures } = useTreasure();
 
+  useEffect(() => {
+    contextGetTreasures();
+  }, []);
   const classes = useStyles();
-
-  const [products] = useState(mockData);
-
   return (
     <Card {...rest} className={clsx(classes.root, className)}>
       <CardHeader
-        subtitle={`${products.length} in total`}
+        subtitle={`${treasures.length} in total`}
         title="Latest products"
       />
       <Divider />
       <CardContent className={classes.content}>
         <List>
-          {products.map((product, i) => (
-            <ListItem divider={i < products.length - 1} key={product.id}>
+          {treasures.map((treasure, i) => (
+            <ListItem divider={i < treasures.length - 1} key={treasure.id}>
               <ListItemAvatar>
                 <img
                   alt="Product"
                   className={classes.image}
-                  src={product.imageUrl}
+                  src={treasure.imageUrl}
                 />
               </ListItemAvatar>
               <ListItemText
-                primary={product.name}
-                secondary={`Updated ${product.updatedAt.fromNow()}`}
+                primary={treasure.name}
+                secondary={`Updated ${moment(treasure.updated_at)
+                  .locale('pt-br')
+                  .calendar()}`}
               />
               <IconButton edge="end" size="small">
                 <MoreVertIcon />

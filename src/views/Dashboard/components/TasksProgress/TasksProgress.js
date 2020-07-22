@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
@@ -11,6 +11,7 @@ import {
   LinearProgress
 } from '@material-ui/core';
 import InsertChartIcon from '@material-ui/icons/InsertChartOutlined';
+import { getSolvedTickets } from '../../../../services/api/tickets';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -40,9 +41,17 @@ const useStyles = makeStyles(theme => ({
 
 const TasksProgress = props => {
   const { className, ...rest } = props;
-
   const classes = useStyles();
 
+  const [tickets, setTickets] = useState({});
+
+  const handleSolvedTickets = async () =>
+    await setTickets(await getSolvedTickets());
+
+  useEffect(() => {
+    handleSolvedTickets();
+  }, []);
+  console.log('tickets ===> ', tickets);
   return (
     <Card {...rest} className={clsx(classes.root, className)}>
       <CardContent>
@@ -52,10 +61,17 @@ const TasksProgress = props => {
               className={classes.title}
               color="textSecondary"
               gutterBottom
-              variant="body2">
+              variant="body2"
+            >
               TICKETS RESOLVIDOS
             </Typography>
-            <Typography variant="h3">75.5%</Typography>
+            <Typography variant="h3">
+              {(tickets.tickets !== 0
+                ? (tickets.solved * 100) / tickets.tickets
+                : tickets.solved * 100
+              ).toFixed(2)}
+              %
+            </Typography>
           </Grid>
           <Grid item>
             <Avatar className={classes.avatar}>
@@ -65,7 +81,11 @@ const TasksProgress = props => {
         </Grid>
         <LinearProgress
           className={classes.progress}
-          value={75.5}
+          value={
+            tickets.tickets !== 0
+              ? (tickets.solved * 100) / tickets.tickets
+              : tickets.solved * 100
+          }
           variant="determinate"
         />
       </CardContent>

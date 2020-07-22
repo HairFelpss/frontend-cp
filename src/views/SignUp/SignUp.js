@@ -185,7 +185,7 @@ const SignUp = props => {
 
   const handleSignUp = async event => {
     event.preventDefault();
-    const response = await contextPostUser(formState.values);
+    await contextPostUser(formState.values);
     history.push('/');
   };
 
