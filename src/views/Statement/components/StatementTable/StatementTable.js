@@ -170,7 +170,6 @@ const StatementTable = props => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {console.log(statement)}
                 {statement.slice(0, rowsPerPage).map(statement => (
                   <TableRow
                     className={classes.tableRow}

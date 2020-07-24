@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/styles';
 
 import { TicketsToolbar, TicketsTable } from './components';
+
 import {
   getTickets,
   getSearchTickets,
@@ -10,6 +11,7 @@ import {
   updateTickets,
   deleteTickets
 } from '../../services/api/tickets';
+import useStorage from '../../utils/useStorage';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -24,6 +26,7 @@ const Ticket = () => {
   const classes = useStyles();
 
   const [tickets, setTickets] = useState([]);
+  const [storageChatId, setStorageChatId] = useStorage('chatId');
 
   const handleGetTickets = async () => {
     setTickets(await getTickets());
@@ -38,9 +41,7 @@ const Ticket = () => {
   };
 
   const handleDeleteTicket = async id => {
-    console.log(id.length);
     if (id.length > 1) return;
-    console.log('passo => ', id);
     await deleteTickets(id[0]);
     handleGetTickets();
   };
@@ -58,6 +59,7 @@ const Ticket = () => {
           handleFilterTickets={handleFilterTickets}
           handleGetTickets={handleGetTickets}
           handleDeleteTicket={handleDeleteTicket}
+          setStorageChatId={setStorageChatId}
         />
       </div>
     </div>

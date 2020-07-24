@@ -29,7 +29,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function SimpleModal({ open, handleClose, children }) {
+export default function PaymentModal({ open, handleClose, children }) {
   const classes = useStyles();
   return (
     <Modal

@@ -54,7 +54,7 @@ const TotalUsers = props => {
   useEffect(() => {
     handleAmount();
   }, []);
-  console.log(amount);
+
   return (
     <Card {...rest} className={clsx(classes.root, className)}>
       <CardContent>

@@ -47,16 +47,16 @@ const UsersToolbar = props => {
 
   const classes = useStyles();
 
-  const handleOpenUpdateUserModal = async () => {
+  const handleOpenUpdateUserModal = async title => {
     if (selectedUsers.length === 0 || selectedUsers.length > 1) return;
 
     const response = await contextGetOneUser(selectedUsers);
     setUser(response);
-    handleOpen(true);
+    handleOpen('Atualizar Usuário');
   };
 
   const handleOpenCreateUserModal = async () => {
-    handleOpen(true);
+    handleOpen('Criar Usuário');
   };
 
   const handleDeleteUser = async () => {

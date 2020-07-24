@@ -43,8 +43,6 @@ const SuccessPagSeguro = () => {
     for (let value of urlParam.keys()) {
       params.push(value);
     }
-    console.log(params[0]);
-    console.log(urlParam.get(params[0]));
   };
 
   useEffect(() => mp(), []);

@@ -7,3 +7,4 @@ export { default as SignUp } from './SignUp';
 export { default as UserList } from './UserList';
 export { default as Ticket } from './Ticket';
 export { default as Statement } from './Statement';
+export { default as Chat } from './Chat';

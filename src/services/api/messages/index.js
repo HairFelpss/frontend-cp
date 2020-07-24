@@ -1,6 +1,6 @@
 import api from '../index';
 
-export async function getMessages() {
+export async function getMessages(id) {
   try {
     const response = await api.get(`/messages/${id}`);
     return response.data;
@@ -17,7 +17,7 @@ export async function postMessage(payload) {
     throw err;
   }
 }
-export async function deleteMessage() {
+export async function deleteMessage(id) {
   try {
     const response = await api.delete(`/messages/${id}`);
     return response.data;

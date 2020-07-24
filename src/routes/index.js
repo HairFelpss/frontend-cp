@@ -12,7 +12,8 @@ import {
   SignIn as SignInView,
   NotFound as NotFoundView,
   Ticket as TicketView,
-  Statement as StatementView
+  Statement as StatementView,
+  Chat as ChatView
 } from '../views';
 
 import {
@@ -34,6 +35,13 @@ const Routes = () => {
         exact
         layout={MainLayout}
         path="/tickets"
+        isPrivate
+      />
+      <RouteWithLayout
+        component={ChatView}
+        exact
+        layout={MainLayout}
+        path="/chat"
         isPrivate
       />
       <RouteWithLayout

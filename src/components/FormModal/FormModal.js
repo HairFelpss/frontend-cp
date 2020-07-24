@@ -71,11 +71,10 @@ const schema = {
 
 const useStyles = makeStyles(theme => ({
   modalCreate: {
-    height: '444px',
-    width: '600px'
+    maxHeight: '50%'
   },
   title: {
-    padding: theme.spacing(3)
+    paddingBottom: '2%'
   },
   formControl: {
     width: '50%'
@@ -84,6 +83,7 @@ const useStyles = makeStyles(theme => ({
 
 const FormModal = props => {
   const {
+    title,
     specificObj,
     handleClose,
     getFunction,
@@ -156,7 +156,7 @@ const FormModal = props => {
     <Dialog {...rest} open={open} onClose={handleClose}>
       <DialogContent className={classes.modalCreate}>
         <Typography className={classes.title} variant="h2">
-          Edit User
+          {title}
         </Typography>
         <Grid container spacing={3}>
           <Grid item md={6} xs={12}>

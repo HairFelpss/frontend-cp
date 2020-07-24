@@ -29,8 +29,10 @@ const UserList = () => {
   const [selectedUsers, setSelectedUsers] = useState([]);
   const [user, setUser] = useState([]);
   const [open, setOpen] = useState(false);
+  const [modalTitle, setModalTitle] = useState('');
 
-  const handleOpen = () => {
+  const handleOpen = title => {
+    setModalTitle(title);
     setOpen(true);
   };
 
@@ -71,6 +73,7 @@ const UserList = () => {
       </div>
       <Modal
         open={open}
+        title={modalTitle}
         specificObj={user}
         handleClose={handleClose}
         getFunction={contextGetUsers}

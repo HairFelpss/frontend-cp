@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import moment from 'moment';
@@ -145,6 +146,8 @@ const TicketsTable = props => {
     handleFilterTickets,
     handleGetTickets,
     handleDeleteTicket,
+    handleSeeTicket,
+    setStorageChatId,
     ...rest
   } = props;
 
@@ -247,14 +250,31 @@ const TicketsTable = props => {
       </span>
     )
   };
+
   return (
     <Card {...rest} className={clsx(classes.root, className)}>
       <CardHeader
         avatar={
           <div className={classes.btnGroup}>
-            <Button variant="outlined" className={classes.see}>
-              Visualizar
-            </Button>
+            {selectedUsers.length === 0 || selectedUsers.length > 1 ? (
+              <Button variant="outlined" className={classes.see}>
+                Visualizar
+              </Button>
+            ) : (
+              <Link
+                to={{
+                  pathname: '/chat'
+                }}
+              >
+                <Button
+                  variant="outlined"
+                  className={classes.see}
+                  onClick={() => setStorageChatId(selectedUsers[0])}
+                >
+                  Visualizar
+                </Button>
+              </Link>
+            )}
             <Button
               variant="outlined"
               className={classes.finish}

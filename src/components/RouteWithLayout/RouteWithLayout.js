@@ -8,6 +8,7 @@ const RouteWithLayout = props => {
     layout: Layout,
     isPrivate = false,
     component: Component,
+    path,
     ...rest
   } = props;
 
@@ -17,6 +18,15 @@ const RouteWithLayout = props => {
 
   if (signed && !isPrivate) return <Redirect to="/dashboard" />;
 
+  const chatRedirect =
+    localStorage.getItem('chatId') === 'undefined' ||
+    !localStorage.getItem('chatId')
+      ? false
+      : true;
+
+  if (!chatRedirect === true && path === '/chat') {
+    return <Redirect to="/tickets" />;
+  }
   return (
     <Route
       {...rest}
@@ -34,7 +44,8 @@ RouteWithLayout.propTypes = {
     .isRequired,
   isPrivate: PropTypes.bool,
   layout: PropTypes.any.isRequired,
-  path: PropTypes.string
+  path: PropTypes.string,
+  chatRedirect: PropTypes.bool
 };
 
 RouteWithLayout.defaultProps = {

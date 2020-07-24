@@ -56,7 +56,6 @@ export async function updateTickets(id, payload) {
 
 export async function deleteTickets(id) {
   try {
-    console.log(id);
     const response = await api.delete(`/tickets/${id}`);
     return response.data;
   } catch (err) {

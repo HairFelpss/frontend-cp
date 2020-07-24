@@ -3,7 +3,6 @@ import api from '../index';
 export async function getStatements() {
   try {
     const response = await api.get('/statements');
-    console.log(response.data);
     return response.data;
   } catch (err) {
     throw err;
@@ -12,7 +11,6 @@ export async function getStatements() {
 export async function getOneUserStatements(id) {
   try {
     const response = await api.get(`/statements/${id}`);
-    console.log(response.data);
     return response.data;
   } catch (err) {
     throw err;

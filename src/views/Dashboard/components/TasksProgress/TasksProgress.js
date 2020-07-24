@@ -51,7 +51,7 @@ const TasksProgress = props => {
   useEffect(() => {
     handleSolvedTickets();
   }, []);
-  console.log('tickets ===> ', tickets);
+
   return (
     <Card {...rest} className={clsx(classes.root, className)}>
       <CardContent>

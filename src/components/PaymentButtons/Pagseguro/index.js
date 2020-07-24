@@ -15,7 +15,6 @@ const Pagseguro = ({ treasure }) => {
   const classes = useStyles();
 
   const [code, setCode] = useState('');
-  console.log('treasure=> ', treasure);
   useEffect(() => {
     const buy = async () => {
       const pagseguro = await handlePagSeguro(treasure);

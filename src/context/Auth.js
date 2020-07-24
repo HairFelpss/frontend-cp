@@ -25,6 +25,7 @@ export default function AuthProvider({ children }) {
 
   const signOut = () => {
     setStorageAuth(null);
+    setStorageUserId(null);
   };
 
   return (
