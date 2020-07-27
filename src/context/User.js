@@ -8,7 +8,8 @@ import {
   updateUser,
   deleteUser,
   getSearchUsers,
-  getNumberOfAccounts
+  getNumberOfAccounts,
+  getManagers
 } from '../services/api/user';
 
 const UserContext = createContext();
@@ -20,6 +21,15 @@ export default function UserProvider({ children }) {
     try {
       const response = await getUsers();
       setUser(response);
+    } catch (err) {
+      console.log('err => ', err);
+    }
+  };
+
+  const contextGetManagers = async () => {
+    try {
+      const response = await getManagers();
+      return response;
     } catch (err) {
       console.log('err => ', err);
     }
@@ -88,7 +98,8 @@ export default function UserProvider({ children }) {
         contextPostUser,
         contextUpdateUser,
         contextGetSearchUsers,
-        contextGetNumberOfAccounts
+        contextGetNumberOfAccounts,
+        contextGetManagers
       }}
     >
       {children}
@@ -107,7 +118,8 @@ export function useUser() {
     contextPostUser,
     contextUpdateUser,
     contextGetSearchUsers,
-    contextGetNumberOfAccounts
+    contextGetNumberOfAccounts,
+    contextGetManagers
   } = context;
   return {
     contextGetUsers,
@@ -117,6 +129,7 @@ export function useUser() {
     contextPostUser,
     contextUpdateUser,
     contextGetSearchUsers,
-    contextGetNumberOfAccounts
+    contextGetNumberOfAccounts,
+    contextGetManagers
   };
 }

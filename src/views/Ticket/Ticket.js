@@ -11,6 +11,9 @@ import {
   updateTickets,
   deleteTickets
 } from '../../services/api/tickets';
+
+import { useUser } from '../../context/User';
+
 import useStorage from '../../utils/useStorage';
 
 const useStyles = makeStyles(theme => ({
@@ -24,6 +27,9 @@ const useStyles = makeStyles(theme => ({
 
 const Ticket = () => {
   const classes = useStyles();
+  const { contextGetManagers } = useUser();
+
+  const [managers, setManagers] = useState([]);
 
   const [tickets, setTickets] = useState([]);
   const [storageChatId, setStorageChatId] = useStorage('chatId');
@@ -40,6 +46,10 @@ const Ticket = () => {
     setTickets(await postFilterTickets(payload));
   };
 
+  const handleGetManagers = async () => {
+    setManagers(await contextGetManagers());
+  };
+
   const handleDeleteTicket = async id => {
     if (id.length > 1) return;
     await deleteTickets(id[0]);
@@ -48,6 +58,7 @@ const Ticket = () => {
 
   useEffect(() => {
     handleGetTickets();
+    handleGetManagers();
   }, []);
 
   return (
@@ -60,6 +71,7 @@ const Ticket = () => {
           handleGetTickets={handleGetTickets}
           handleDeleteTicket={handleDeleteTicket}
           setStorageChatId={setStorageChatId}
+          managers={managers}
         />
       </div>
     </div>

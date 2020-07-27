@@ -22,21 +22,23 @@ const Chat = () => {
   const location = useLocation();
   const { storageUserId } = useAuth();
   const [messages, setMessages] = useState([]);
+  const [storageChatId, setStorageChatId] = useState('');
   const [text, setText] = useState('');
 
   const handleGetMessages = async () => {
-    const storageChatId = localStorage.getItem('chatId');
-    setMessages(await getMessages(storageChatId));
+    const id = localStorage.getItem('chatId');
+    setStorageChatId(id);
+    setMessages(await getMessages(id));
   };
 
   const handlePostMessage = async text => {
     const payload = {
       content: text,
-      cp_ticket_id: location.state,
+      cp_ticket_id: storageChatId,
       writer_id: storageUserId
     };
     setText('');
-
+    console.log(payload);
     try {
       await postMessage(payload);
       handleGetMessages();

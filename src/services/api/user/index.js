@@ -9,6 +9,15 @@ export async function getUsers() {
   }
 }
 
+export async function getManagers() {
+  try {
+    const response = await api.get('/users/managers');
+    return response.data;
+  } catch (err) {
+    throw err;
+  }
+}
+
 export async function getNumberOfAccounts() {
   try {
     const response = await api.get('/users/count');

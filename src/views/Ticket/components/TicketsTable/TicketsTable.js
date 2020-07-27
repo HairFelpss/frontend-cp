@@ -148,6 +148,9 @@ const TicketsTable = props => {
     handleDeleteTicket,
     handleSeeTicket,
     setStorageChatId,
+    ticketCategory,
+    ticketStatus,
+    managers,
     ...rest
   } = props;
 
@@ -303,8 +306,11 @@ const TicketsTable = props => {
                   value={filters.selects.status || ''}
                   onChange={handleChange}
                 >
-                  <MenuItem value={0}>Aberto</MenuItem>
-                  <MenuItem value={1}>Fechado</MenuItem>
+                  <MenuItem value="">
+                    <em>None</em>
+                  </MenuItem>
+                  <MenuItem value={'0'}>Aberto</MenuItem>
+                  <MenuItem value={1}>Cancelado</MenuItem>
                   <MenuItem value={2}>Resolvido</MenuItem>
                 </Select>
               </FormControl>
@@ -320,9 +326,14 @@ const TicketsTable = props => {
                   value={filters.selects.helper || ''}
                   onChange={handleChange}
                 >
-                  <MenuItem value={0}>GM Claytchola</MenuItem>
-                  <MenuItem value={1}>Cabelin firmezao</MenuItem>
-                  <MenuItem value={2}>ADM Peixero</MenuItem>
+                  <MenuItem value="">
+                    <em>None</em>
+                  </MenuItem>
+                  {managers.map(manager => (
+                    <MenuItem value={manager.ID} key={manager.ID}>
+                      {manager.truename}
+                    </MenuItem>
+                  ))}
                 </Select>
               </FormControl>
             </Grid>
@@ -336,9 +347,12 @@ const TicketsTable = props => {
                   value={filters.selects.category || ''}
                   onChange={handleChange}
                 >
-                  <MenuItem value={0}>Bugs</MenuItem>
+                  <MenuItem value="">
+                    <em>None</em>
+                  </MenuItem>
                   <MenuItem value={1}>Duvidas</MenuItem>
                   <MenuItem value={2}>Atraso</MenuItem>
+                  <MenuItem value={'0'}>Bug</MenuItem>
                 </Select>
               </FormControl>
             </Grid>
