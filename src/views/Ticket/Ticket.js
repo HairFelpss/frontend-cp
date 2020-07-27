@@ -43,6 +43,11 @@ const Ticket = () => {
   };
 
   const handleFilterTickets = async payload => {
+    const filter = [];
+    Object.values(payload).map(
+      value => (filter[0] = value !== null ? true : false)
+    );
+    if (!filter[0]) return;
     setTickets(await postFilterTickets(payload));
   };
 

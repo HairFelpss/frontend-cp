@@ -38,13 +38,9 @@ const Chat = () => {
       writer_id: storageUserId
     };
     setText('');
-    console.log(payload);
-    try {
-      await postMessage(payload);
-      handleGetMessages();
-    } catch (err) {
-      console.log(err);
-    }
+
+    await postMessage(payload);
+    handleGetMessages();
   };
 
   const handleSetText = event => {
